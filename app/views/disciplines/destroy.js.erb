@@ -1,0 +1,8 @@
+
+$('#discipline_<%= @discipline.id %>').remove();
+
+var discipline = document.getElementsByClassName("discipline");
+
+if (discipline.length <= 0){
+    $('#disciplines').append("<%= j render(:partial => '/empty') %>");
+}

@@ -1,0 +1,31 @@
+<% content_for :title do %>
+  <title>Дисциплины | MSUniversity</title>
+<% end %>
+
+<% content_for :header do %>
+
+  <div class="col-8">
+    <h2>Дисциплины</h2>
+  </div>
+
+  <div class="col-4 align-self-center">
+    <%= link_to new_discipline_path, id: 'new_discipline', remote: true do %>
+      <button type="button" class="btn btn-outline-primary btn-block">
+        Добавить дисциплину
+      </button>
+    <% end %>
+  </div>
+
+<% end %>
+
+<!-- Disciplines list -->
+
+<div id="disciplines">
+  <% if @disciplines.any? %>
+    <% @disciplines.each do |d| %>
+      <%= render partial: '/disciplines/discipline_index_partial', object: d %>
+    <% end %>
+  <% else %>
+    <%= render partial: '/empty' %>
+  <% end %>
+</div>

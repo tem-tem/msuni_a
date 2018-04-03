@@ -1,0 +1,29 @@
+
+<div class="row py-3 border-top-0 discipline" id="discipline_<%= discipline_index_partial.id %>">
+  <div class="col-8 align-self-center">
+    <p><%= link_to discipline_index_partial.title, discipline_index_partial %></p>
+  </div>
+
+  <div class="col-4 align-self-center">
+
+    <div class="row">
+
+      <div class="col-6">
+        <%= link_to edit_discipline_path(discipline_index_partial.id), remote: true do %>
+          <button type="button" class="btn btn-outline-secondary btn-block" >
+            Редактировать
+          </button>
+        <% end %>
+      </div>
+
+      <div class="col-6">
+        <%= link_to discipline_index_partial, method: :delete, data: { confirm: 'Are you sure?' }, remote: true do %>
+          <button type="button" class="btn btn-outline-danger btn-block">Удалить</button>
+        <% end %>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

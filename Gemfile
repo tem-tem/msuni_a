@@ -34,11 +34,10 @@ gem 'activerecord-sqlserver-adapter'
 gem 'wdm'
 
 # ГЕМЫ КОТОРЫЕ ВРОДЕ КАК НУЖНЫ
-# gem 'simplemde'
-# gem 'simplemde-rails'
-# gem 'bootstrap', '~> 4.0.0'
-# gem 'sprockets-rails'
-# gem 'jquery-rails'
+gem 'simplemde'
+gem 'simplemde-rails'
+gem 'sprockets-rails'
+gem 'jquery-rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

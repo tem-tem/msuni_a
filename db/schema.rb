@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180402223525) do
+ActiveRecord::Schema.define(version: 20180403194608) do
 
   create_table "Clients", primary_key: "ID_Client", id: :integer, default: nil, force: :cascade do |t|
     t.string "LastName_Cl", limit: 30, null: false
@@ -280,16 +280,10 @@ ActiveRecord::Schema.define(version: 20180402223525) do
     t.index ["content_type_id"], name: "auth_permission_content_type_id_2f476e4b"
   end
 
-  create_table "disc2s", force: :cascade do |t|
-    t.string "user"
-    t.integer "user_fav_int"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "disciplines", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "title"
   end
 
   create_table "django_admin_log", id: :integer, force: :cascade do |t|
