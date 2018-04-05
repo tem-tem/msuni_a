@@ -34,7 +34,6 @@ gem 'activerecord-sqlserver-adapter'
 gem 'wdm'
 
 # ГЕМЫ КОТОРЫЕ ВРОДЕ КАК НУЖНЫ
-gem 'simplemde'
 gem 'simplemde-rails'
 gem 'sprockets-rails'
 gem 'jquery-rails'

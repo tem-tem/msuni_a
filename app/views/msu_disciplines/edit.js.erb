@@ -5,7 +5,7 @@ if (modal) {
     modal.remove();
 }
 
-$("#new_discipline_form").append("<%= j render(:partial => 'disciplines/form') %>");
+$("#new_discipline_form").append("<%= j render(:partial => 'msu_disciplines/form') %>");
 
 if (status){
     $("#notice").html(status);

@@ -1,0 +1,18 @@
+var modal = $("#disciplineModal");
+var status = "<%= j flash[:error] %>";
+
+if (modal) {
+    modal.remove();
+}
+
+$("#new_discipline_form").append("<%= j render(:partial => 'msu_disciplines/form') %>");
+
+if (status){
+    $("#notice").html(status);
+}
+
+$('#disciplineModal').modal({ backdrop: false });
+
+$('#disciplineModal').on('shown.bs.modal', function() {
+    $('#input-discipline-name').focus();
+})

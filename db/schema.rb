@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180403194608) do
+ActiveRecord::Schema.define(version: 20180405001440) do
 
   create_table "Clients", primary_key: "ID_Client", id: :integer, default: nil, force: :cascade do |t|
     t.string "LastName_Cl", limit: 30, null: false
@@ -280,12 +280,6 @@ ActiveRecord::Schema.define(version: 20180403194608) do
     t.index ["content_type_id"], name: "auth_permission_content_type_id_2f476e4b"
   end
 
-  create_table "disciplines", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "title"
-  end
-
   create_table "django_admin_log", id: :integer, force: :cascade do |t|
     t.datetime "action_time", precision: 7, null: false
     t.text "object_id"
@@ -314,6 +308,46 @@ ActiveRecord::Schema.define(version: 20180403194608) do
     t.text "session_data", null: false
     t.datetime "expire_date", precision: 7, null: false
     t.index ["expire_date"], name: "django_session_expire_date_a5c62663"
+  end
+
+  create_table "msu_books", force: :cascade do |t|
+    t.string "title"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "msu_disciplines", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "msu_images", force: :cascade do |t|
+    t.string "title"
+    t.string "link"
+    t.bigint "msu_lecture_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["msu_lecture_id"], name: "index_msu_images_on_msu_lecture_id"
+  end
+
+  create_table "msu_lecture_books", force: :cascade do |t|
+    t.bigint "msu_lectures_id"
+    t.bigint "msu_books_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["msu_books_id"], name: "index_msu_lecture_books_on_msu_books_id"
+    t.index ["msu_lectures_id"], name: "index_msu_lecture_books_on_msu_lectures_id"
+  end
+
+  create_table "msu_lectures", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.bigint "msu_disciplines_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["msu_disciplines_id"], name: "index_msu_lectures_on_msu_disciplines_id"
   end
 
   create_table "ssum", id: false, force: :cascade do |t|
@@ -367,4 +401,8 @@ ActiveRecord::Schema.define(version: 20180403194608) do
   add_foreign_key "auth_permission", "django_content_type", column: "content_type_id", name: "auth_permission_content_type_id_2f476e4b_fk_django_content_type_id"
   add_foreign_key "django_admin_log", "_User", column: "user_id", name: "django_admin_log_user_id_c564eba6_fk__User_id"
   add_foreign_key "django_admin_log", "django_content_type", column: "content_type_id", name: "django_admin_log_content_type_id_c4bce8eb_fk_django_content_type_id"
+  add_foreign_key "msu_images", "msu_lectures", on_delete: :cascade
+  add_foreign_key "msu_lecture_books", "msu_books", column: "msu_books_id", on_delete: :cascade
+  add_foreign_key "msu_lecture_books", "msu_lectures", column: "msu_lectures_id", on_delete: :cascade
+  add_foreign_key "msu_lectures", "msu_disciplines", column: "msu_disciplines_id", on_delete: :cascade
 end
