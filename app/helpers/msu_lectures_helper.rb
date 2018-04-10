@@ -1,0 +1,2 @@
+module MsuLecturesHelper
+end

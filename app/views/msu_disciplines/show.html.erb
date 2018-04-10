@@ -3,7 +3,30 @@
 <% end %>
 
 <% content_for :header do %>
-  <h2><%= @discipline.title %></h2>
-<% end %>
+
+  <div class="col-8">
+    <h2><%= @discipline.title %> </h2>
+  </div>
+
+  <div class="col-4 align-self-center">
+    <%= link_to new_msu_discipline_msu_lecture_path(@discipline) do %>
+      <button type="button" class="btn btn-outline-primary btn-block">
+        Добавить лекцию
+      </button>
+    <% end %>
+  </div>
+
+<%	 end %>
+
 
 <!-- Lections here -->
+
+<div id="lectures">
+  <% if @lectures.any? %>
+    <% @lectures.each do |d| %>
+      <%= render partial: '/msu_lectures/lecture', object: d %>
+    <% end %>
+  <% else %>
+    <%= render partial: '/empty' %>
+  <% end %>
+</div>

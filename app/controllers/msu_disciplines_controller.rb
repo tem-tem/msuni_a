@@ -6,6 +6,7 @@ class MsuDisciplinesController < ApplicationController
 
   def show
     @discipline = MsuDiscipline.find(params[:id])
+    @lectures = MsuLecture.where(msu_disciplines_id: params['msu_disciplines_id']).all
   end
 
   def new
@@ -35,7 +36,7 @@ class MsuDisciplinesController < ApplicationController
     @discipline = MsuDiscipline.find(params[:id])
 
     @discipline.update(discipline_params)
-    @discipline.tit
+
 
     respond_to do |f|
       f.js do

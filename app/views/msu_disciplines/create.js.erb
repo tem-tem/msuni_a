@@ -9,6 +9,7 @@ if (status == "ok") {
     }
 
     $('#disciplineModal').modal('hide');
-    $('#disciplines').append("<%= j render(:partial => 'msu_disciplines/disciplines_list', :object => @discipline) %>");
+    $('#disciplines').append("<%= j render(:partial => '/msu_disciplines/discipline', :object => @discipline) %>");
 
+    // window.location.reload()
 }
