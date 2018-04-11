@@ -15,7 +15,7 @@
           </button>
         </div>
 
-        <%= form_for @discipline, remote: true  do |f| %>
+        <%= form_for [:admin, @discipline], remote: true  do |f| %>
           <div class="input-group mb-3">
             <%= f.text_field :title,
                              class: 'form-control',

@@ -10,7 +10,7 @@
   </div>
 
   <div class="col-4 align-self-center">
-    <%= link_to new_msu_discipline_path, id: 'new_discipline', remote: true do %>
+    <%= link_to [:new, :admin, :msu_discipline], id: 'new_discipline', remote: true do %>
       <button type="button" class="btn btn-outline-primary btn-block">
         Добавить дисциплину
       </button>
@@ -20,7 +20,7 @@
 
 <!-- Disciplines list -->
 <% content_for :content do %>
-<%= render '/msu_disciplines/disciplines_list' %>
+<%= render '/admin/msu_disciplines/disciplines_list' %>
 <% end %>
 
 

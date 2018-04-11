@@ -1,7 +1,6 @@
-class MsuDisciplinesController < ApplicationController
+class Admin::MsuDisciplinesController < ApplicationController
   def index
     @disciplines = MsuDiscipline.all
-
   end
 
   def show

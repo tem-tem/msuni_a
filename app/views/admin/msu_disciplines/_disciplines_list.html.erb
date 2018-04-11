@@ -1,7 +1,7 @@
 <div id="disciplines">
   <% if @disciplines.any? %>
     <% @disciplines.each do |d| %>
-      <%= render partial: '/msu_disciplines/discipline', object: d %>
+      <%= render partial: '/admin/msu_disciplines/discipline', object: d %>
     <% end %>
   <% else %>
     <%= render partial: '/empty' %>

@@ -1,0 +1,2 @@
+$('#disciplineModal').modal('hide');
+$('#discipline_<%= @discipline.id %>_name').replaceWith('<%=	j link_to @discipline.title, [:admin, @discipline] %>');

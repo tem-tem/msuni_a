@@ -1,6 +1,6 @@
 <% provide(:page_notice, flash.now[:error]) %>
 
-<%= form_for [@discipline, @lecture] do |f| %>
+<%= form_for [:admin, @discipline, @lecture] do |f| %>
   <%= f.label :title %>:
   <%= f.text_field :title %><br />
 

@@ -1,4 +1,4 @@
-class MsuLecturesController < ApplicationController
+class Admin::MsuLecturesController < ApplicationController
 
   def index
     @discipline = MsuDiscipline.find(params[:msu_discipline_id])
@@ -18,7 +18,7 @@ class MsuLecturesController < ApplicationController
       redirect_to(@discipline)
       flash[:success] = 'Лекция сохранена'
     else
-      flash.now[:error] = @lecture.errors.full_messages 
+      flash.now[:error] = @lecture.errors.full_messages
       render :new
     end
 
