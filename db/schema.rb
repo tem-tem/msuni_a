@@ -344,10 +344,10 @@ ActiveRecord::Schema.define(version: 20180405001440) do
   create_table "msu_lectures", force: :cascade do |t|
     t.string "title"
     t.text "content"
-    t.bigint "msu_disciplines_id"
+    t.bigint "msu_discipline_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["msu_disciplines_id"], name: "index_msu_lectures_on_msu_disciplines_id"
+    t.index ["msu_discipline_id"], name: "index_msu_lectures_on_msu_discipline_id"
   end
 
   create_table "ssum", id: false, force: :cascade do |t|
@@ -404,5 +404,5 @@ ActiveRecord::Schema.define(version: 20180405001440) do
   add_foreign_key "msu_images", "msu_lectures", on_delete: :cascade
   add_foreign_key "msu_lecture_books", "msu_books", column: "msu_books_id", on_delete: :cascade
   add_foreign_key "msu_lecture_books", "msu_lectures", column: "msu_lectures_id", on_delete: :cascade
-  add_foreign_key "msu_lectures", "msu_disciplines", column: "msu_disciplines_id", on_delete: :cascade
+  add_foreign_key "msu_lectures", "msu_disciplines", on_delete: :cascade
 end

@@ -146,7 +146,6 @@ GEM
     selenium-webdriver (3.11.0)
       childprocess (~> 0.5)
       rubyzip (~> 1.2)
-    simplemde (0.1.0)
     simplemde-rails (1.11.2)
     sprockets (3.7.1)
       concurrent-ruby (~> 1.0)
@@ -195,7 +194,6 @@ DEPENDENCIES
   rails (~> 5.1.6)
   sass-rails (~> 5.0)
   selenium-webdriver
-  simplemde
   simplemde-rails
   sprockets-rails
   tiny_tds

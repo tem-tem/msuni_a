@@ -1,7 +1,7 @@
 
 <div class="row py-3 border-top-0 discipline" id="lecture_<%= lecture.id %>">
   <div class="col-8 align-self-center">
-    <p id="discipline_<%= lecture.id %>_name"> <%= link_to lecture.title, lecture %></p>
+    <p id="lecture_<%= lecture.id %>_name"> <%= link_to lecture.title, [@discipline, lecture] %></p>
   </div>
 
   <div class="col-4 align-self-center">
@@ -9,7 +9,7 @@
     <div class="row">
 
       <div class="col-6">
-        <%= link_to edit_msu_lecture_path(lecture.id), remote: true do %>
+        <%= link_to [:edit, @discipline, lecture] do %>
           <button type="button" class="btn btn-outline-secondary btn-block" >
             Редактировать
           </button>
@@ -17,7 +17,7 @@
       </div>
 
       <div class="col-6">
-        <%= link_to lecture, method: :delete, data: { confirm: 'Are you sure?' }, remote: true do %>
+        <%= link_to [@discipline, lecture], method: :delete, data: { confirm: 'Are you sure?' }, remote: true do %>
           <button type="button" class="btn btn-outline-danger btn-block">Удалить</button>
         <% end %>
       </div>

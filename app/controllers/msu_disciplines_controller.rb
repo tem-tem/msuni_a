@@ -6,7 +6,7 @@ class MsuDisciplinesController < ApplicationController
 
   def show
     @discipline = MsuDiscipline.find(params[:id])
-    @lectures = MsuLecture.where(msu_disciplines_id: params['msu_disciplines_id']).all
+    @lectures = @discipline.msu_lectures.all
   end
 
   def new
