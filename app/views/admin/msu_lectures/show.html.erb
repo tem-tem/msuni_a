@@ -1,0 +1,12 @@
+
+<%= @lecture.title %>
+
+<div id="lecture_content">
+  <%= @lecture.content %>
+</div>
+
+<script>
+  $(document).ready(function(){
+    $('#lecture_content').html(marked("<%= j @lecture.content %>"));
+  });
+</script>

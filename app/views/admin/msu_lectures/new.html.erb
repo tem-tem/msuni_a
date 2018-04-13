@@ -5,7 +5,19 @@
   <%= f.text_field :title %><br />
 
   <%= f.label :content %>:
-  <%= f.text_field :content %><br />
+  <%= f.text_area :content, id: "content_editor" %><br />
 
   <%= f.submit %>
 <% end %>
+
+<script>
+  var simplemde = new SimpleMDE({
+    element: $("#content_editor")[0],
+    spellChecker: false,
+    autosave: {
+  		enabled: true,
+  		uniqueId: "MyUniqueID",
+  		delay: 1000,
+    	}
+    });
+</script>

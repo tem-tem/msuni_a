@@ -13,8 +13,9 @@
 //= require rails-ujs
 //= require turbolinks
 
+//= require simplemde.min
+//= require marked
 //= require jquery3
 //= require popper
 //= require bootstrap-sprockets
 //= require_tree .
-
