@@ -74,6 +74,8 @@ GEM
     erubi (1.7.1)
     execjs (2.7.0)
     ffi (1.9.23-x86-mingw32)
+    font-awesome-rails (4.7.0.4)
+      railties (>= 3.2, < 6.0)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     i18n (1.0.0)
@@ -98,6 +100,11 @@ GEM
     nio4r (2.3.0)
     nokogiri (1.8.2-x86-mingw32)
       mini_portile2 (~> 2.3.0)
+    octicons (5.3.0)
+      nokogiri (>= 1.6.3.1)
+    octicons_helper (4.3.0)
+      octicons (= 5.3.0)
+      rails
     popper_js (1.12.9)
     public_suffix (3.0.2)
     puma (3.11.3)
@@ -188,8 +195,10 @@ DEPENDENCIES
   byebug
   capybara (~> 2.13)
   coffee-rails (~> 4.2)
+  font-awesome-rails
   jbuilder (~> 2.5)
   jquery-rails
+  octicons_helper
   puma (~> 3.7)
   rails (~> 5.1.6)
   sass-rails (~> 5.0)

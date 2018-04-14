@@ -1,7 +1,7 @@
 
-<div class="row py-3 border-top-0 discipline" id="lecture_<%= lecture.id %>">
+<div class="row px-5 py-2 border-top-0 lecture" id="lecture-<%= lecture.id %>">
   <div class="col-8 align-self-center">
-    <p id="lecture_<%= lecture.id %>_name"> <%= link_to lecture.title, [:admin, @discipline, lecture] %></p>
+    <p id="lecture-<%= lecture.id %>-name"> <%= link_to lecture.title, [:admin, @discipline, lecture] %></p>
   </div>
 
   <div class="col-4 align-self-center">

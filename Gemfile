@@ -32,11 +32,13 @@ gem 'bootstrap', '~> 4.0.0'
 gem 'tiny_tds'
 gem 'activerecord-sqlserver-adapter'
 gem 'wdm'
+gem "font-awesome-rails"
+gem 'simplemde-rails'
+gem 'jquery-rails'
+gem 'octicons_helper'
 
 # ГЕМЫ КОТОРЫЕ ВРОДЕ КАК НУЖНЫ
-gem 'simplemde-rails'
 gem 'sprockets-rails'
-gem 'jquery-rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

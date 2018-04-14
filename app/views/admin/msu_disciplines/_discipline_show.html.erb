@@ -1,0 +1,24 @@
+
+<div class="row p-5">
+  <div class="col-8">
+    <h1><%= @discipline.title %> </h1>
+  </div>
+
+  <div class="col-4 align-self-center">
+    <%= link_to [:new, :admin, @discipline, :msu_lecture] do %>
+      <button type="button" class="btn btn-outline-primary btn-block">
+        Добавить лекцию
+      </button>
+    <% end %>
+  </div>
+</div>
+
+<div id="lectures">
+  <% if @lectures.any? %>
+    <% @lectures.each do |lecture| %>
+      <%= render partial: '/admin/msu_lectures/lecture', object: lecture %>
+    <% end %>
+  <% else %>
+    <%= render partial: '/admin/empty' %>
+  <% end %>
+</div>

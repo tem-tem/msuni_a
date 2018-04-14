@@ -6,30 +6,44 @@
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
     <%= yield :head %>
   </head>
 
   <body>
-
-  <div class="container">
-    <div class="text-danger" id="page-notice">
-      <%= yield :page_notice %>
+  <div class="container-fluid">
+    <div class="menu">
+      <% if admin? %>
+        <%= render partial: '/admin/menu' %>
+      <% end %>
     </div>
-    <div class="col-xl-12 align-self-center">
 
-      <div class="row py-5 border-bottom">
-        <%= yield :header %>
-      </div>
-
-      <%= yield :content%>
-      <%= yield %>
-
-      <br>
-
-
+    <%= yield %>
+    <div class="row footer">
+      <%= yield :footer %>
     </div>
   </div>
 
-  <%= yield :page_scripts %>
+    <!-- <div class="container">
+      <div class="text-danger" id="page-notice">
+        <%= yield :page_notice %>
+      </div>
+      <div class="col-xl-12 align-self-center">
+
+        <div class="row py-5 border-bottom">
+          <%= yield :header %>
+        </div>
+
+        <%= yield :content%>
+
+        <br>
+
+
+      </div>
+    </div> -->
+
+
+
+    <%= yield :page_scripts %>
   </body>
 </html>

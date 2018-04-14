@@ -5,7 +5,18 @@ class Admin::MsuDisciplinesController < ApplicationController
 
   def show
     @discipline = MsuDiscipline.find(params[:id])
-    @lectures = @discipline.msu_lectures.all
+
+    respond_to do |f|
+      f.js do
+        if @discipline
+          @lectures = @discipline.msu_lectures.all
+          flash.now[:error] = 'ok'
+        else
+          flash.now[:danger] = @discipline.errors.messages[:title].first.to_s
+          redirect_to [:admin, :msu_disciplines]
+        end
+      end
+    end
   end
 
   def new
