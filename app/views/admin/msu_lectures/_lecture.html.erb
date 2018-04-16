@@ -1,29 +1,30 @@
-
-<div class="row px-5 py-2 border-top-0 lecture" id="lecture-<%= lecture.id %>">
-  <div class="col-8 align-self-center">
-    <p id="lecture-<%= lecture.id %>-name"> <%= link_to lecture.title, [:admin, @discipline, lecture] %></p>
-  </div>
-
-  <div class="col-4 align-self-center">
-
-    <div class="row">
-
-      <div class="col-6">
-        <%= link_to [:edit, :admin, @discipline, lecture] do %>
-          <button type="button" class="btn btn-outline-secondary btn-block" >
-            Редактировать
-          </button>
-        <% end %>
+<div class="row justify-content-center my-4", id="lecture-<%= lecture.id %>">
+  <div class="col-12 row lecture">
+    <%= link_to [:admin, lecture.msu_discipline, lecture],
+        class: "col-8 align-self-center py-5" do %>
+      <div style="word-wrap:break-word;">
+        <h5><%= lecture.title %></h5>
       </div>
+    <% end %>
+    <div class="col-4 align-self-center">
 
-      <div class="col-6">
-        <%= link_to [:admin, @discipline, lecture], method: :delete, data: { confirm: 'Are you sure?' }, remote: true do %>
-          <button type="button" class="btn btn-outline-danger btn-block">Удалить</button>
-        <% end %>
+        <div class="row my-3">
+          <%= link_to [:edit, :admin, lecture.msu_discipline, lecture] do %>
+            <button type="button" class="btn btn-outline-secondary btn-block" >
+              Редактировать
+            </button>
+          <% end %>
+        </div>
+
+        <div class="row my-3">
+          <%= link_to [:admin, lecture.msu_discipline, lecture],
+              method: :delete,
+              data: { confirm: 'Are you sure?' },
+              remote: true do %>
+            <button type="button" class="btn btn-outline-danger btn-block">Удалить</button>
+          <% end %>
+        </div>
+
       </div>
-
-    </div>
-
   </div>
-
 </div>

@@ -1,2 +1,10 @@
+var edited_discipline_name = $('#discipline-<%= @discipline.id %>-name');
+var edited_discipline = $('#discipline-<%= @discipline.id %>');
+
 $('#disciplineModal').modal('hide');
-$('#discipline_<%= @discipline.id %>_name').replaceWith('<%=	j link_to @discipline.title, [:admin, @discipline] %>');
+
+edited_discipline_name.replaceWith('<%= @discipline.title %>');
+
+if (edited_discipline.hasClass('discipline-active')){
+  $('#active-discipline-title').text('<%= @discipline.title %>')
+}

@@ -1,11 +1,7 @@
 var status = "<%= j flash[:error] %>";
 
-
-console.log(status);
-
-
 if (status == "ok") {
-
-  $('#discipline-content').html("<%= j render(partial: '/admin/msu_disciplines/discipline_show', :object => @discipline) %>");
-
+  $('#discipline-content').html("<%= j render(partial: '/admin/msu_disciplines/msu_discipline', :object => @discipline) %>");
 }
+$(".discipline").removeClass("discipline-active");
+$("#discipline-<%= @discipline.id %>").addClass("discipline-active");

@@ -1,18 +1,21 @@
 
-<div class="row border-top discipline align-middle" id="discipline-<%= discipline.id %>">
+<div class="row border-bottom discipline align-middle" id="discipline-<%= discipline.id %>">
   <%= link_to [:admin, discipline],
-              class: "col-10 py-2 align-self-center discipline-name",
+              class: "col-10 py-3",
+              id: "discipline-#{ discipline.id }-link",
               remote: true do %>
-    <p id="discipline-<%= discipline.id %>-name"> <%= discipline.title %></p>
+    <p id="discipline-<%= discipline.id %>-name">
+      <%= discipline.title %>
+    </p>
   <% end %>
 
   <%= link_to [:edit, :admin, discipline],
       remote: true,
-      class: "col-2 discipline-button d-flex align-items-center justify-content-center" do %>
+      class: "col-2 discipline-button" do %>
 
     <%= octicon "pencil",
         :height => 16,
-        class: "button-icon",
+        class: "button-icon mx-auto",
         :"aria-label" => "Добавить дисциплину" %>
 
   <% end %>

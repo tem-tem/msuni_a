@@ -9,7 +9,6 @@ class Admin::MsuDisciplinesController < ApplicationController
     respond_to do |f|
       f.js do
         if @discipline
-          @lectures = @discipline.msu_lectures.all
           flash.now[:error] = 'ok'
         else
           flash.now[:danger] = @discipline.errors.messages[:title].first.to_s
@@ -44,9 +43,7 @@ class Admin::MsuDisciplinesController < ApplicationController
 
   def update
     @discipline = MsuDiscipline.find(params[:id])
-
     @discipline.update(discipline_params)
-
 
     respond_to do |f|
       f.js do
@@ -54,7 +51,6 @@ class Admin::MsuDisciplinesController < ApplicationController
           flash.now[:error] = 'ok'
         else
           flash.now[:error] = @discipline.errors.messages[:title].first.to_s
-          logger.debug flash.now[:error]
           render action: :edit
         end
       end
@@ -65,7 +61,7 @@ class Admin::MsuDisciplinesController < ApplicationController
     @discipline = MsuDiscipline.destroy(params[:id])
 
     respond_to do |f|
-      f.html { redirect_to disciplines_path }
+      f.html { render :index }
       f.js
     end
   end

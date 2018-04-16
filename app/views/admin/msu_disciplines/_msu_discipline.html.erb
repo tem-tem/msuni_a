@@ -1,0 +1,42 @@
+<div class="row justify-content-center">
+  <div class="col-10">
+    <div class="row py-5">
+    <div class="col-8">
+      <h1 id="active-discipline-title"><%= @discipline.title %></h1>
+    </div>
+
+    <div class="col-4 align-self-center">
+      <%= link_to [:new, :admin, @discipline, :msu_lecture] do %>
+        <button type="button" class="btn btn-outline-primary btn-block">
+          Добавить лекцию
+        </button>
+      <% end %>
+    </div>
+    </div>
+
+    <!-- Lectures list -->
+    <div id="lectures">
+        <% if @discipline.msu_lectures.any? %>
+          <% @discipline.msu_lectures.each do |l| %>
+            <%= render partial: '/admin/msu_lectures/lecture', object: l %>
+          <% end %>
+        <% else %>
+          <%= render partial: '/admin/empty' %>
+        <% end %>
+    </div>
+    <!-- Lectures list end -->
+
+    <div class="row py-5 justify-content-center">
+      <div class="col-4">
+        <%= link_to [:admin, @discipline],
+            method: :delete,
+            data: { confirm: 'Are you sure?' },
+            remote: true do %>
+          <button type="button" class="btn btn-outline-danger btn-block">
+            Удалить дисциплину
+          </button>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

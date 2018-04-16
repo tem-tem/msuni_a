@@ -21,6 +21,7 @@
 
 $bg-color: #f9f9f9;
 $bg2-color: #f1f1f1;
+$menu-height: 60px;
 
 
 h1, h2, h3, h4, h5, h6{
@@ -32,18 +33,30 @@ body{
   background-color: $bg-color;
 }
 
+p{
+  word-wrap: break-word;
+  margin-bottom: 0;
+}
+
 a {
-  color: #000f14;
+  color: #667987;
 }
 a:hover {
   text-decoration: none;
-  color: #667987;
+  color: #000f14;
 }
 
 .menu{
-  height: 60px;
+  height: $menu-height;
+  position: sticky;
+  top: 0;
+  z-index: 99999;
+  background-color: $bg-color;
 }
 
+#disciplineModal{
+  z-index: 999999;
+}
 .menu-link{
   border: none;
   color: $secondary;
@@ -53,7 +66,7 @@ a:hover {
 }
 
 .menu-link-disabled:hover{
-  border-bottom: 4px solid $secondary;
+  border-bottom: 4px solid $bg2-color;
 }
 .menu-link-active{
   border-bottom: 4px solid $primary;
@@ -61,24 +74,38 @@ a:hover {
 }
 
 .discipline-menu{
-  height: 85vh;
+  height: calc(100vh - $menu-height);
   overflow-y: auto;
 }
 
 .discipline{
   background-color: $bg-color;
   border-left: 4px solid $bg-color;
+  display: flex;
+}
+
+.discipline a{
+  flex: 1;
+}
+
+.discipline-active{
+  background-color: white;
+  border-left: 4px solid $primary;
+  box-shadow: 0px 0px 20px #0000001a;
+  z-index: 999;
+  position: relative;
 }
 
 .discipline:hover{
+  background-color: white;
   border-left: 4px solid $primary;
 }
 
 .discipline-button{
-  // height: inherit;
-  // display:flex;
-  // align-items:center;
-  // justify-content:center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  fill: $dark;
 }
 
 .discipline-button:hover{
@@ -92,4 +119,18 @@ a:hover {
 .footer{
   height: 100px;
   background-color: $bg2-color;
+}
+
+.lecture{
+  background-color: white;
+  box-shadow: 0px 0px 40px #0000;
+  border-left: 4px solid $bg2-color;
+  -webkit-transition: box-shadow 0.2s, border-left 0.2s; /* For Safari 3.1 to 6.0 */
+  transition: box-shadow 0.4s, border-left 0.2s;
+}
+
+.lecture:hover{
+  background-color: white;
+  box-shadow: 0px 15px 40px #0066ff1a;
+  border-left: 4px solid $primary;
 }
