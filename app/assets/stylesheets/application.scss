@@ -50,11 +50,15 @@ a:hover {
   height: $menu-height;
   position: sticky;
   top: 0;
-  z-index: 99999;
+  z-index: 9999;
   background-color: $bg-color;
 }
 
 #disciplineModal{
+  z-index: 999999;
+}
+
+.bring-to-front{
   z-index: 999999;
 }
 .menu-link{
@@ -133,4 +137,22 @@ a:hover {
   background-color: white;
   box-shadow: 0px 15px 40px #0066ff1a;
   border-left: 4px solid $primary;
+}
+
+.huge-lecture-title{
+  font-size: 60px;
+  word-wrap: break-word;
+}
+
+.lecture-name-input{
+  border: none;
+  background-color: inherit;
+  box-sizing: border-box;
+  resize: none;
+  width: 100%;
+}
+
+
+.lecture-name-input:focus{
+text-decoration: underline;
 }

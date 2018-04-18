@@ -12,6 +12,14 @@
 
   <body>
   <div class="container-fluid">
+
+    <% if flash.any? %>
+      <% flash.each do |key, message| %>
+        <%= render partial: 'admin/alert',
+                 locals: {key: key, message: message} %>
+      <% end %>
+    <% end %>
+
     <div class="menu">
       <% if admin? %>
         <%= render partial: '/admin/menu' %>
@@ -24,25 +32,14 @@
     </div>
   </div>
 
-    <!-- <div class="container">
-      <div class="text-danger" id="page-notice">
-        <%= yield :page_notice %>
-      </div>
-      <div class="col-xl-12 align-self-center">
-
-        <div class="row py-5 border-bottom">
-          <%= yield :header %>
-        </div>
-
-        <%= yield :content%>
-
-        <br>
-
-
-      </div>
-    </div> -->
-
-
+    <script>
+      $('document').ready(function() {
+        setTimeout(function() {
+          $('#flash').remove();
+          <% flash.discard %>
+        }, 3000);
+      });
+    </script>
 
     <%= yield :page_scripts %>
   </body>

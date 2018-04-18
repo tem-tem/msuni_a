@@ -15,15 +15,37 @@ class Admin::MsuLecturesController < ApplicationController
 
     if @lecture.save
       redirect_to([:admin, @discipline, @lecture])
-      flash[:success] = 'Лекция сохранена'
+      flash[:success] = 'Лекция создана'
     else
-      flash.now[:error] = @lecture.errors.full_messages
+      flash[:danger] = @lecture.errors.full_messages.to_sentence
       render :new
     end
   end
 
   def show
     @lecture = MsuLecture.find(params[:id])
+  end
+
+  def edit
+    @lecture = MsuLecture.find(params[:id])
+  end
+
+  def update
+    @lecture = MsuLecture.find(params[:id])
+    @lecture.update(lecture_params)
+
+    if @lecture.valid?
+      redirect_to([:admin, @lecture.msu_discipline, @lecture])
+      flash[:success] = 'Лекция обновлена'
+    else
+      flash[:danger] = @lecture.errors.full_messages.to_sentence
+      render :edit
+    end
+  end
+
+  def destroy
+    @lecture = MsuLecture.find(params[:id])
+    @lecture.destroy
   end
 
   private

@@ -1,0 +1,8 @@
+
+$('#lecture-<%= @lecture.id %>').remove();
+
+var lecture = document.getElementsByClassName("lecture");
+
+if (lecture.length <= 0){
+    $('#lectures').append("<%= j render(:partial => '/admin/empty') %>");
+}

@@ -1,0 +1,56 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-9">
+
+      <%= form_for [:admin, @lecture.msu_discipline, @lecture] do |f| %>
+
+        <div class="row pt-5">
+          <h1>
+            <%= f.text_area :title,
+                class: 'col lecture-name-input',
+                placeholder: 'Здесь название лекции',
+                autofocus: true,
+                'data-autoresize': true %>
+          </h1>
+        </div>
+
+        <div class="row">
+          <div class="col text-secondary text-right mb-3">
+            <%= @lecture.msu_discipline.title %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col bring-to-front">
+            <%= f.text_area :content,
+                id: "content_editor" %>
+          </div>
+        </div>
+
+        <div class="row pb-5 justify-content-center">
+          <div class="col">
+            <%= f.submit  class: "btn btn-outline-primary btn-block" %>
+          </div>
+        </div>
+
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<% content_for :page_scripts do %>
+  <script>
+    var simplemde = new SimpleMDE({
+      element: $("#content_editor")[0],
+      spellChecker: false
+      });
+
+    jQuery.each(jQuery('textarea[data-autoresize]'), function() {
+        var offset = this.offsetHeight - this.clientHeight;
+        var resizeTextarea = function(el) {
+            jQuery(el).css('height', 'auto').css('height', el.scrollHeight + offset);
+        };
+        jQuery(this).on('keyup input', function() { resizeTextarea(this); }).removeAttr('data-autoresize');
+    });
+  </script>
+<% end %>

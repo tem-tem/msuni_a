@@ -36,6 +36,7 @@ gem "font-awesome-rails"
 gem 'simplemde-rails'
 gem 'jquery-rails'
 gem 'octicons_helper'
+gem 'rails-i18n'
 
 # ГЕМЫ КОТОРЫЕ ВРОДЕ КАК НУЖНЫ
 gem 'sprockets-rails'

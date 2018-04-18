@@ -30,7 +30,7 @@ class Admin::MsuDisciplinesController < ApplicationController
         if @discipline.valid?
           flash.now[:error] = 'ok'
         else
-          flash.now[:error] = @discipline.errors.messages[:title].first.to_s
+          flash.now[:error] = @discipline.errors.full_messages.to_sentence
           render action: :new
         end
       end
@@ -48,9 +48,9 @@ class Admin::MsuDisciplinesController < ApplicationController
     respond_to do |f|
       f.js do
         if @discipline.valid?
-          flash.now[:error] = 'ok'
+          flash.now[:success] = 'Дисциплина сохранена'
         else
-          flash.now[:error] = @discipline.errors.messages[:title].first.to_s
+          flash.now[:error] = @discipline.errors.full_messages.to_sentence
           render action: :edit
         end
       end

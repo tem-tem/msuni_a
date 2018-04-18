@@ -1,8 +1,7 @@
 class MsuDiscipline < ApplicationRecord
-  validates :title, presence: {message: 'Название не может быть пустым'},
+  validates :title, presence: true,
             uniqueness: {
-                case_sensitive: false,
-                message: "Уже существует"
+                case_sensitive: false
             }
   has_many :msu_lectures, dependent: :delete_all
 end
