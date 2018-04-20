@@ -1,0 +1,27 @@
+<div class="row discipline-menu-header border-bottom">
+  <!-- Disciplines header -->
+  <div class="col-10 py-3 align-self-center">
+    <div class="text-secondary">Список дисциплин</div>
+  </div>
+  <%= link_to [:new, :admin, :msu_discipline],
+      id: 'new_discipline',
+      remote: true,
+      class: "col-2 discipline-button d-flex align-items-center justify-content-center" do %>
+    <%= octicon "plus",
+        height: 36,
+        "aria-label": "Добавить дисциплину" %>
+  <% end %>
+</div>
+
+  <!-- Disciplines list -->
+
+  <div id="disciplines">
+    <% if @disciplines.any? %>
+      <% @disciplines.each do |d| %>
+        <%= render partial: '/admin/msu_disciplines/discipline_menu_item',
+            locals: {discipline: d} %>
+      <% end %>
+    <% else %>
+      <%= render partial: '/empty' %>
+    <% end %>
+  </div>

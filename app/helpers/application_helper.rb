@@ -4,6 +4,7 @@ module ApplicationHelper
   end
 
   def current_controller?(name)
-    (controller_name == name)? 'active' : 'disabled' 
+    (controller_name == name)? 'active' : 'disabled'
   end
+
 end

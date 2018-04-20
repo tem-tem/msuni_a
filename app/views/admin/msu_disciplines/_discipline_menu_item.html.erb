@@ -2,8 +2,7 @@
 <div class="row border-bottom discipline align-middle" id="discipline-<%= discipline.id %>">
   <%= link_to [:admin, discipline],
               class: "col-10 py-3",
-              id: "discipline-#{ discipline.id }-link",
-              remote: true do %>
+              id: "discipline-#{ discipline.id }-link" do %>
     <p id="discipline-<%= discipline.id %>-name">
       <%= discipline.title %>
     </p>

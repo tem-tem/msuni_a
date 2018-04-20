@@ -2,31 +2,25 @@
   <title><%= @discipline.title %> | MSUniversity</title>
 <% end %>
 
-<% content_for :header do %>
+<div class="row">
 
-  <div class="col-8">
-    <h2><%= @discipline.title %> </h2>
+  <div class="col-md-2 border-right discipline-menu">
+    <%= render partial: '/admin/msu_disciplines/disciplines_menu' %>
   </div>
 
-  <div class="col-4 align-self-center">
-    <%= link_to [:new, :admin, @discipline, :msu_lecture] do %>
-      <button type="button" class="btn btn-outline-primary btn-block">
-        Добавить лекцию
-      </button>
-    <% end %>
+  <div class="col-md-5" id="discipline-content">
+    <%= render partial: '/admin/msu_disciplines/msu_discipline',
+          locals: {discipline: @discipline} %>
   </div>
-
-<%	 end %>
-
-
-<!-- Lections here -->
-
-<div id="lectures">
-  <% if @lectures.any? %>
-    <% @lectures.each do |d| %>
-      <%= render partial: '/admin/msu_lectures/lecture', object: d %>
-    <% end %>
-  <% else %>
-    <%= render partial: '/empty' %>
-  <% end %>
+  <div class="col-md-5 lecture-preview">
+  </div>
 </div>
+
+<div id="new_discipline_form"></div>
+
+<%= content_for :page_scripts do %>
+  <script>
+    $(".discipline").removeClass("discipline-active");
+    $("#discipline-<%= @discipline.id %>").addClass("discipline-active");
+  </script>
+<% end %>

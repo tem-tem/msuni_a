@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180405001440) do
+ActiveRecord::Schema.define(version: 20180419175202) do
 
   create_table "Clients", primary_key: "ID_Client", id: :integer, default: nil, force: :cascade do |t|
     t.string "LastName_Cl", limit: 30, null: false
@@ -350,6 +350,16 @@ ActiveRecord::Schema.define(version: 20180405001440) do
     t.index ["msu_discipline_id"], name: "index_msu_lectures_on_msu_discipline_id"
   end
 
+  create_table "msu_presentations", force: :cascade do |t|
+    t.string "title"
+    t.boolean "visible"
+    t.bigint "msu_lecture_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "path"
+    t.index ["msu_lecture_id"], name: "index_msu_presentations_on_msu_lecture_id"
+  end
+
   create_table "ssum", id: false, force: :cascade do |t|
     t.integer "summ"
   end
@@ -405,4 +415,5 @@ ActiveRecord::Schema.define(version: 20180405001440) do
   add_foreign_key "msu_lecture_books", "msu_books", column: "msu_books_id", on_delete: :cascade
   add_foreign_key "msu_lecture_books", "msu_lectures", column: "msu_lectures_id", on_delete: :cascade
   add_foreign_key "msu_lectures", "msu_disciplines", on_delete: :cascade
+  add_foreign_key "msu_presentations", "msu_lectures"
 end

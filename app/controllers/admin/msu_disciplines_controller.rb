@@ -5,17 +5,12 @@ class Admin::MsuDisciplinesController < ApplicationController
 
   def show
     @discipline = MsuDiscipline.find(params[:id])
-
-    respond_to do |f|
-      f.js do
-        if @discipline
-          flash.now[:error] = 'ok'
-        else
-          flash.now[:danger] = @discipline.errors.messages[:title].first.to_s
-          redirect_to [:admin, :msu_disciplines]
-        end
-      end
+    @disciplines = MsuDiscipline.all
+    if not @discipline
+      flash[:danger] = @discipline.errors.full_messages.to_sentence
+      redirect_to [:admin, :msu_disciplines]
     end
+
   end
 
   def new
@@ -58,12 +53,9 @@ class Admin::MsuDisciplinesController < ApplicationController
   end
 
   def destroy
+    flash.now[:success] = "Дисциплина удалена"
     @discipline = MsuDiscipline.destroy(params[:id])
-
-    respond_to do |f|
-      f.html { render :index }
-      f.js
-    end
+    redirect_to [:admin, :msu_disciplines]
   end
 
   private

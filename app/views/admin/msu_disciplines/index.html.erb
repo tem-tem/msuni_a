@@ -5,36 +5,12 @@
 <div class="row">
 
   <div class="col-md-2 border-right discipline-menu">
-    <div class="row discipline-menu-header border-bottom">
-      <!-- Disciplines header -->
-      <div class="col-10 py-3 align-self-center">
-        <div class="text-secondary">Список дисциплин</div>
-      </div>
-      <%= link_to [:new, :admin, :msu_discipline],
-          id: 'new_discipline',
-          remote: true,
-          class: "col-2 discipline-button d-flex align-items-center justify-content-center" do %>
-        <%= octicon "plus",
-            height: 36,
-            "aria-label": "Добавить дисциплину" %>
-      <% end %>
-    </div>
-
-      <!-- Disciplines list -->
-
-      <div id="disciplines">
-        <% if @disciplines.any? %>
-          <% @disciplines.each do |d| %>
-            <%= render partial: '/admin/msu_disciplines/discipline_menu_item',
-                locals: {discipline: d} %>
-          <% end %>
-        <% else %>
-          <%= render partial: '/empty' %>
-        <% end %>
-      </div>
+    <%= render partial: '/admin/msu_disciplines/disciplines_menu' %>
   </div>
 
-  <div class="col-md-8" id="discipline-content">
+  <div class="col-md-5" id="discipline-content">
+  </div>
+  <div class="col-md-5">
   </div>
 </div>
 

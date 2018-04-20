@@ -15,9 +15,16 @@
   <%= link_to [:admin, :msu_lectures],
               class: "menu-link menu-link-#{current_controller?('msu_lectures')}" do %>
       <div>
-        Все лекции
+        Лекции
       </div>
-    <% end %>
+  <% end %>
+
+  <%= link_to [:admin, :msu_presentations],
+              class: "menu-link menu-link-#{current_controller?('msu_presentations')}" do %>
+      <div>
+        Презентации
+      </div>
+  <% end %>
 </div>
 
   <!-- <ul class="nav">
