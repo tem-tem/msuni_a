@@ -1,2 +1,13 @@
 
-<%= link_to "display using the full viewer", pdfjs.full_path(file: '../test.pdf') %>
+<% if @presentations.any? %>
+  <% @presentations.each do |p| %>
+    <div>
+      <%= p.title %>
+      <%= p.filename %>
+      |
+      <%= p.msu_lecture.title %>
+      <%= link_to "display using the full viewer",
+                  pdfjs.full_path(file: "../msu_presentations/#{p.filename}") %>
+    </div>
+  <% end %>
+<% end %>

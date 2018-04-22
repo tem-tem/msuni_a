@@ -14,6 +14,8 @@ Rails.application.routes.draw do
       resources :msu_presentations
     end
 
+    get 'upload', to: 'msu_presentations#upload'
+
     resources :msu_lectures, only: :index
     resources :msu_presentations, only: :index
 

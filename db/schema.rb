@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180419175202) do
+ActiveRecord::Schema.define(version: 20180422224516) do
 
   create_table "Clients", primary_key: "ID_Client", id: :integer, default: nil, force: :cascade do |t|
     t.string "LastName_Cl", limit: 30, null: false
@@ -356,7 +356,7 @@ ActiveRecord::Schema.define(version: 20180419175202) do
     t.bigint "msu_lecture_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "path"
+    t.string "filename"
     t.index ["msu_lecture_id"], name: "index_msu_presentations_on_msu_lecture_id"
   end
 
