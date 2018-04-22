@@ -1,0 +1,71 @@
+<%= content_for :head do %>
+  <%= stylesheet_link_tag 'static_pages', media: 'all', 'data-turbolinks-track': 'reload' %>
+<% end %>
+<div class="container-fluid row border-bottom vertical-align">
+  <div class="col-1 border-right">     <!-- style="background: brown"    text-center pt-4 border-right    -->
+    <div>
+      Дисциплины
+    </div>
+  </div>
+  <div class="col-4 text-primary ">
+    <b class="msu_title">MSUniversity </b>
+  </div>
+  <div class="col-2 text-primary text-left" style="font-size: 30pt; line-height: 0.8">
+    <div class="text-left">
+      <b style="font-size: 20pt; line-height: 0.8"> Проектирование Баз Данных</b>
+    </div>
+  </div>
+  <div class="col-1">
+
+  </div>
+  <div class="col-4 text-center">
+    <ul class="list-inline mt-3 top-right-selector">
+      <li class="list-inline-item selector-margin"> <%=	 link_to "Лекции", lectures_path, remote: true %> </li>
+      <li class="list-inline-item selector-margin">Презентации</li>
+      <li class="list-inline-item selector-margin">Видеоуроки</li>
+      <li class="list-inline-item selector-margin">Книги</li>
+    </ul>
+  </div>
+</div>
+<div class="container-fluid row ">
+  <div class="col-9">
+
+  </div>
+  <div class="col-3">
+    <!--<ul class="list-group ">-->
+
+    <!--<li class="list-group-item borderless"><div class="numberCircle">1</div> Введение в проектирование баз данных. Data Base Design</li>-->
+    <!--<li class="list-group-item borderless"><div class="numberCircle">2</div>Компетенция специалистов по базам данных. Нормализация. Основы языка</li>-->
+    <!--<li class="list-group-item borderless"><div class="numberCircle">3</div>Внешние и внутренние соединения таблиц баз данных. Вложенные запросы типа I и II. проектирование</li>-->
+    <!--<li class="list-group-item borderless"><div class="numberCircle">4</div>Понятие</li>-->
+    <!--<li class="list-group-item borderless"><div class="numberCircle">5</div>Vestibulum at eros</li>-->
+    <!--</ul>-->
+    <table id="lecture_list">
+
+      <!--<tr class="list-group-item borderless">-->
+        <!--<td class="">-->
+          <!--<div class="numberCircle mr-3">1</div>-->
+        <!--</td>-->
+        <!--<td> Введение в проектирование баз данных. Data Base Design</td>-->
+      <!--</tr>-->
+      <!--<tr class="list-group-item borderless">-->
+        <!--<td class="">-->
+          <!--<div class="numberCircle mr-3">2</div>-->
+        <!--</td>-->
+        <!--<td> Компетенция специалистов по базам данных. Нормализация. Основы языка</td>-->
+      <!--</tr>-->
+      <!--<tr class="list-group-item borderless">-->
+        <!--<td class="">-->
+          <!--<div class="numberCircle mr-3">3</div>-->
+        <!--</td>-->
+        <!--<td> Внешние и внутренние соединения таблиц баз данных. Вложенные запросы типа I и II. проектирование</td>-->
+      <!--</tr>-->
+      <!--<tr class="list-group-item borderless">-->
+        <!--<td class="">-->
+          <!--<div class="numberCircle mr-3">3</div>-->
+        <!--</td>-->
+        <!--<td> Понятие BIG DATA. NOSQL средства обработки и хранения баз данных</td>-->
+      <!--</tr>-->
+    </table>
+  </div>
+</div>

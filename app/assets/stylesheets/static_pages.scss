@@ -1,3 +1,43 @@
 // Place all the styles related to the StaticPages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.top-right-selector {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.msu_title {
+  font-size: 50pt;
+
+}
+
+.selector-margin {
+  margin-right: 20px;
+  margin-left: 20pt;
+}
+
+.vertical-align > [class^="col-"],
+.vertical-align > [class*=" col-"] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+tr.borderless {
+  border: 0 none;
+}
+
+.numberCircle {
+  border-radius: 50%;
+  width: 23pt;
+  height: 23pt;
+  padding: 3pt;
+  background: #fff;
+  border: 1pt solid #666;
+  color: #666;
+  text-align: center;
+  display: inline-block;
+  font: 14pt Arial, sans-serif;
+}
