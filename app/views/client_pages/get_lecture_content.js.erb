@@ -1,0 +1,3 @@
+$('#main_container').empty();
+// $('#main_container').append("<= j render(:partial => '/client_pages/lecture_container', locals: {lecture: @lecture}) %>");
+$('#main_container').html(marked("<%= j @lecture.content %>"));

@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root 'static_pages#client_side'
 
   get 'lectures', to: 'client_pages#get_lecture_list'
+  get 'lecture', to: 'client_pages#get_lecture_content'
   get 'admin', to: 'static_pages#admin'
   namespace :admin do
 

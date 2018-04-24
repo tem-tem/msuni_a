@@ -1,3 +1,6 @@
+$('#lecture_list').empty();
+<%	i=0  %>
 <%  @lectures.each do |lecture| %>
-$('#lecture_list').append("<%= j render(:partial => '/client_pages/lecture_list_item', locals: {lecture: lecture}) %>");
+<%	 i+=1 %>
+$('#lecture_list').append("<%= j render(:partial => '/client_pages/lecture_list_item', locals: {lecture: lecture, item_id:i}) %>");
 <% end %>
