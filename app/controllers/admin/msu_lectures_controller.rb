@@ -23,7 +23,11 @@ class Admin::MsuLecturesController < ApplicationController
   end
 
   def show
-    @lecture = MsuLecture.find(params[:id])
+    if MsuLecture.exists?(params[:id])
+      @lecture = MsuLecture.find(params[:id])
+    else
+      redirect_to [:admin, :msu_disciplines]
+    end
   end
 
   def edit
@@ -44,8 +48,15 @@ class Admin::MsuLecturesController < ApplicationController
   end
 
   def destroy
-    @lecture = MsuLecture.find(params[:id])
-    @lecture.destroy
+    if MsuLecture.exists?(params[:id])
+      @lecture = MsuLecture.find(params[:id])
+      @lecture.destroy
+    end
+
+    respond_to do |format|
+      format.html {redirect_back(fallback_location: [:admin, :msu_disciplines])}
+      format.js
+    end
   end
 
   private

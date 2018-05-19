@@ -1,6 +1,5 @@
 <%= form_for [:admin, @lecture, @presentation] do |f| %>
-  <%= f.label :title %>
-  <%= f.text_field :title %>
-  <%= f.file_field :file %>
+  <%= f.file_field :pdf, accept: ".pdf" %>
+  <%= f.file_field :pptx, accept: ".pptx, .ppt" %>
   <%= f.submit %>
 <% end %>

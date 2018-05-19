@@ -38,9 +38,8 @@ gem 'jquery-rails'
 gem 'octicons_helper'
 gem 'rails-i18n'
 gem 'pdfjs_viewer-rails'
-
-# ГЕМЫ КОТОРЫЕ ВРОДЕ КАК НУЖНЫ
 gem 'sprockets-rails'
+gem 'carrierwave', '~> 1.0'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
