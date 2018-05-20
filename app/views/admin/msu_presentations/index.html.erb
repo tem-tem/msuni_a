@@ -1,13 +1,20 @@
-
-<% if @presentations.any? %>
-  <% @presentations.each do |p| %>
-    <div>
-      <%= p.pdf_filename %>
-      <%= p.pptx_filename %>
-      |
-      <%= p.msu_lecture.title %>
-      <%= link_to "display using the full viewer",
-                  pdfjs.full_path(file: "../msu_presentations/#{p.pdf_filename}") %>
-    </div>
-  <% end %>
+<% content_for :title do %>
+  <title> Презентации | MSUniversity</title>
 <% end %>
+
+  <div class="row container">
+    <% if @presentations.any? %>
+      <div class="col-3">
+        <% @presentations.each do |p| %>
+          <div class="presentations">
+            <%= p.msu_lecture.title %>
+            <%= render partial:'/admin/msu_presentations/presentation', object: p %>
+          </div>
+        <% end %>
+      </div>
+      <% else %>
+        <div class="text-secondary">
+          Презентаций нет
+        </div>
+    <% end %>
+  </div>

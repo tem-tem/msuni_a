@@ -33,7 +33,7 @@
     <div class="col-3 my-5">
       <div class=" my-3">
         <%= link_to [:edit, :admin, @lecture.msu_discipline, @lecture] do %>
-          <button type="button" class="btn btn-outline-secondary btn-block" >
+          <button type="button" class="btn btn-outline-primary btn-block" >
             Редактировать лекцию
           </button>
         <% end %>
@@ -46,46 +46,7 @@
             Презентации этой лекции:
           </div>
           <% @lecture.msu_presentations.each do |p| %>
-
-            <div class="py-2 my-3 lecture">
-
-              <div class="row justify-content-center my-3">
-                <%= p.title %>
-              </div>
-
-              <div class="row justify-content-center my-3">
-                <div class="col-4">
-                  <%= link_to pdfjs.full_path(file: "msu_presentations/#{p.pdf_filename}"),
-                  target: "_blank" do %>
-                  <button type="button" class="btn btn-block btn-outline-primary align-self-center">
-                    PDF
-                  </button>
-                  <% end %>
-                </div>
-
-                <div class="col-4">
-                  <%= link_to "/pdfjs/msu_presentations/#{p.pptx_filename}", download: p.title do %>
-                  <button type="button" class="btn btn-block btn-outline-secondary align-self-center">
-                    PPTX
-                  </button>
-                  <% end %>
-                </div>
-
-                <div class="col-4">
-                  <%= link_to [:admin, @lecture, p],
-                  method: :delete,
-                  data: { confirm: 'Are you sure?' } do %>
-                  <button type="button" class="btn btn-outline-danger align-self-center">
-                    <%= octicon "trashcan",
-                    height: 18,
-                    class: "text-danger",
-                      "aria-label": "Удалить" %>
-                    </button>
-                    <% end %>
-                  </div>
-              </div>
-
-            </div>
+            <%= render partial:'/admin/msu_presentations/presentation', object: p %>
           <% end %>
         <% else %>
           <div class="text-secondary text-center my-3">

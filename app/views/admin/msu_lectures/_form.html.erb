@@ -35,6 +35,31 @@
 
       <% end %>
     </div>
+
+    <div class="col-3 my-5">
+      <div class="my-3 border-top border-bottom">
+        <div class="my-3">
+          <%= form_for [:admin, @lecture, :msu_image], remote: true  do |f| %>
+            <%= f.file_field :pdf, accept: ".pdf", class: "my-3" %>
+            <%= f.submit "Загрузить файлы", class: "btn btn-outline-primary btn-block" %>
+          <% end %>
+        </div>
+        <% if @lecture.msu_images.any? %>
+          <div class="text-secondary text-center my-3">
+            Изображения
+          </div>
+          <% @lecture.msu_presentations.each do |p| %>
+            <%= render partial:'/admin/msu_presentations/presentation', object: p %>
+          <% end %>
+        <% else %>
+          <div class="text-secondary text-center my-3">
+            У этой лекции нет изображений
+          </div>
+        <% end %>
+
+
+
+      </div>
   </div>
 </div>
 

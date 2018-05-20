@@ -1,3 +1,5 @@
+
+
 <div class="row menu border-bottom justify-content-center">
   <%= link_to admin_path, class: "menu-link menu-link-#{current_controller?('static_pages')}" do %>
     <div>
@@ -26,24 +28,3 @@
       </div>
   <% end %>
 </div>
-
-  <!-- <ul class="nav">
-    <li class="nav-item">
-      <%= link_to 'MSU-admin', admin_path, class: 'nav-link' %>
-    </li>
-    <li class="nav-item">
-      <%= link_to 'Дисциплины', [:admin, :msu_disciplines], class: "nav-link #{current_controller?('msu_disciplines')}" %>
-    </li>
-    <li class="nav-item">
-      <%= link_to 'Все лекции', [:admin, :msu_lectures], class: "nav-link #{current_controller?('msu_lectures')}" %>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link disabled" href="#">Презентации</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link disabled" href="#">Видеоуроки</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link disabled" href="#">Книги</a>
-    </li>
-  </ul> -->
