@@ -39,43 +39,57 @@
     <div class="col-3 my-5">
       <div class="my-3 border-top border-bottom">
         <div class="my-3">
-          <%= form_for [:admin, @lecture, :msu_image], remote: true  do |f| %>
-            <%= f.file_field :pdf, accept: ".pdf", class: "my-3" %>
-            <%= f.submit "Загрузить файлы", class: "btn btn-outline-primary btn-block" %>
+          <%= form_for [:admin, @lecture], remote: true,
+              class: "dropzone", id: "lecture-images-dropzone"  do |f| %>
+            <%= f.file_field :images, multiple: true %>
+            <% param_name = :images %>
+            <%= f.submit "Добавить изображения"%>
           <% end %>
         </div>
-        <% if @lecture.msu_images.any? %>
+        <% if @lecture.images.any? %>
           <div class="text-secondary text-center my-3">
             Изображения
           </div>
-          <% @lecture.msu_presentations.each do |p| %>
-            <%= render partial:'/admin/msu_presentations/presentation', object: p %>
+          <%= @lecture.images %>
+          <% @lecture.images.each do |i| %>
+            <div class="image">
+              <%= i.identifier %>
+              <br>
+              <%= i.url %>
+            </div>
           <% end %>
         <% else %>
           <div class="text-secondary text-center my-3">
             У этой лекции нет изображений
           </div>
         <% end %>
-
-
-
       </div>
   </div>
 </div>
 
-<% content_for :page_scripts do %>
-  <script>
-    var simplemde = new SimpleMDE({
-      element: $("#content_editor")[0],
-      spellChecker: false
-      });
-
-    jQuery.each(jQuery('textarea[data-autoresize]'), function() {
-        var offset = this.offsetHeight - this.clientHeight;
-        var resizeTextarea = function(el) {
-            jQuery(el).css('height', 'auto').css('height', el.scrollHeight + offset);
-        };
-        jQuery(this).on('keyup input', function() { resizeTextarea(this); }).removeAttr('data-autoresize');
+<script>
+  var simplemde = new SimpleMDE({
+    element: $("#content_editor")[0],
+    spellChecker: false
     });
-  </script>
-<% end %>
+
+  jQuery.each(jQuery('textarea[data-autoresize]'), function() {
+      var offset = this.offsetHeight - this.clientHeight;
+      var resizeTextarea = function(el) {
+          jQuery(el).css('height', 'auto').css('height', el.scrollHeight + offset);
+      };
+      jQuery(this).on('keyup input', function() { resizeTextarea(this); }).removeAttr('data-autoresize');
+  });
+
+  // "lectureImagesDropzone" is the camelized version of the HTML element's ID
+  Dropzone.options.lectureImagesDropzone = {
+    paramName: "<%= param_name %>", // The name that will be used to transfer the file
+    maxFilesize: 2, // MB
+    accept: function(file, done) {
+      if (file.name == "justinbieber.jpg") {
+        done("Naha, you don't.");
+      }
+      else { done(); }
+    }
+  };
+</script>

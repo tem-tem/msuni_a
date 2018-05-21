@@ -38,31 +38,39 @@ class Admin::MsuLecturesController < ApplicationController
     @lecture = MsuLecture.find(params[:id])
     @lecture.update(lecture_params)
 
-    if @lecture.valid?
-      redirect_to([:admin, @lecture.msu_discipline, @lecture])
-      flash[:success] = 'Лекция обновлена'
-    else
-      flash[:danger] = @lecture.errors.full_messages.to_sentence
-      render :edit
+    respond_to do |f|
+      f.html do
+        if @lecture.valid?
+          redirect_to([:admin, @lecture.msu_discipline, @lecture])
+          flash[:success] = 'Лекция обновлена'
+        else
+          flash[:danger] = @lecture.errors.full_messages.to_sentence
+          render :edit
+        end
+      end
+      f.js do
+        unless @lecture.valid?
+          flash[:danger] = @lecture.errors.full_messages.to_sentence
+        end
+      end
     end
   end
 
   def destroy
-    if MsuLecture.exists?(params[:id])
-      @lecture = MsuLecture.find(params[:id])
-      @lecture.destroy
-    end
+    @lecture = MsuLecture.find(params[:id])
+    @lecture.destroy
+    # respond_to do |format|
+    #
+    #   format.js {flash.now[:success] = 'Лекция удалена'}
+    #   format.html {redirect_back(fallback_location: [:admin, :msu_disciplines])}
+    # end
 
-    respond_to do |format|
-      format.html {redirect_back(fallback_location: [:admin, :msu_disciplines])}
-      format.js
-    end
   end
 
   private
 
   def lecture_params
-    params.require(:msu_lecture).permit(:title, :content)
+    params.require(:msu_lecture).permit(:title, :content, {images: []})
   end
 
 end

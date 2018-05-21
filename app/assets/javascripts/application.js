@@ -14,6 +14,7 @@
 //= require turbolinks
 
 //= require simplemde.min
+//= require dropzone
 //= require marked
 //= require jquery3
 //= require popper

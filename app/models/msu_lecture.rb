@@ -9,4 +9,6 @@ class MsuLecture < ApplicationRecord
             }
   validates :msu_discipline_id, presence: {message: 'Как ты умудрился потерять
   дисциплину?' }
+
+  mount_uploaders :images, ImageUploader
 end
