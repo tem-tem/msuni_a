@@ -13,6 +13,14 @@
 
 }
 
+.current_discipline {
+  font-size: 20pt;
+  line-height: 0.8;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
 .selector-margin {
   margin-right: 20px;
   margin-left: 20pt;
@@ -41,3 +49,95 @@ tr.borderless {
   display: inline-block;
   font: 14pt Arial, sans-serif;
 }
+
+/* The Overlay (background) */
+.overlay {
+  /* Height & width depends on how you want to reveal the overlay */
+  z-index: 1000;
+  height: 0%;
+  width: 100%;
+  position: fixed; /* Stay in place */
+  overflow-x: hidden; /* Disable horizontal scroll */
+  transition: 0.5s; /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
+}
+
+.discipline-links {
+  font-size: 5rem;
+  line-height: 5rem;
+  color: white;
+  display: block;
+}
+
+.overlay_subtitle {
+  color: white;
+  font-size: 1.5rem;
+}
+
+a:hover {
+  color: white;
+  text-decoration: none;
+}
+
+.overlay-text {
+  color: white;
+  font-size: 4rem;
+  line-height: 4rem;
+}
+
+// Hover anim
+.underline {
+  /* I don't know why this is needed, I just added it and it worked in IE Edge. If we remove this width, the gradient breaks in IE Edge */
+  width: calc(100%);
+  background-image: linear-gradient(transparent calc(100% - 10px), white 10px);
+  background-repeat: no-repeat;
+  background-size: 0% 100%;
+  transition: background-size 1s;
+}
+
+.discipline-links:hover .underline {
+  background-size: 100% 100%;
+}
+
+// Cross btn
+.close {
+  font-size: 45px;
+  color: white;
+  &:hover {
+    color: white;
+  }
+}
+
+// old version works perfectly on codepen, but here we don`t have bourbon
+//@import "bourbon"
+//$crossHoverColor: white
+//.close
+//  position: relative
+//  display: inline-block
+//  width: 50px
+//  height: 50px
+//  overflow: hidden
+//  &:hover
+//    &::before, &::after
+//      background: $crossHoverColor
+//
+//  &::before, &::after
+//    content: ''
+//    position: absolute
+//    height: 2px
+//    width: 100%
+//    top: 50%
+//    left: 0
+//    background: white
+//
+//  &::before
+//    @include transform(rotate(45deg))
+//
+//  &::after
+//    @include transform(rotate(-45deg))
+//
+//  &.thick
+//    &::before, &::after
+//      height: 4px
+//      margin-top: -2px
+
+//  Overlay end
