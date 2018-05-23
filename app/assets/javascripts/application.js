@@ -31,3 +31,13 @@
 //     });
 //   });
 // }
+
+function copyImageLink(id) {
+  var copyText = $('#' + id);
+  copyText.select();
+  document.execCommand("copy");
+}
+
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})

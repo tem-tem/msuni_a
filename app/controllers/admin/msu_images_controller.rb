@@ -26,6 +26,11 @@ class Admin::MsuImagesController < ApplicationController
 
   end
 
+  def destroy
+    image = MsuImage.find(params[:id])
+    flash.now[:success] = "Изображение удалено" if image.destroy
+  end
+
   private
 
     def image_params

@@ -157,3 +157,22 @@ a:hover {
 .lecture-name-input:focus{
 text-decoration: underline;
 }
+
+.image-delete-button {
+  position:relative;
+  top:0;
+  height:0;
+  opacity: 0;
+  -webkit-transition: top 0.4s, opacity 0.2s; /* For Safari 3.1 to 6.0 */
+  transition: top 0.4s, opacity 0.2s;
+}
+.image-card:hover .image-delete-button{
+  opacity: 1;
+  top: 20px;
+}
+.image-card:hover .cover{
+  background-color: white;
+}
+.copy-button:hover .button-icon{
+  fill: $light;
+}

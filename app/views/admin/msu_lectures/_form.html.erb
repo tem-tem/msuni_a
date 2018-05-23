@@ -4,12 +4,18 @@
 
       <%= form_for [:admin, @lecture.msu_discipline, @lecture], remote: true do |f| %>
 
-        <div class="row my-3 pb-2 justify-content-center">
-          <div class="col">
+        <div class="row my-3 pb-2 bring-to-front"
+             style="position: sticky;top: 70px; ">
+          <div class="btn-group" role="group" aria-label="Basic example">
             <%= f.submit "Сохранить",
-                class: "btn btn-outline-primary",
-                remote: true,
-                id: "lectureSave" %>
+              class: "btn btn-outline-success",
+              remote: true,
+              id: "lectureSave" %>
+
+            <%= link_to "Завершить редактирование", [:admin, @lecture.msu_discipline, @lecture],
+              onclick: "$('#lectureSave').click();",
+              class: "btn btn-outline-primary" %>
+
           </div>
         </div>
 
@@ -30,7 +36,7 @@
         </div>
 
         <div class="row">
-          <div class="col bring-to-front">
+          <div class="col">
             <%= f.text_area :content,
                 id: "content_editor" %>
           </div>
@@ -46,7 +52,7 @@
       </button>
       <% end %>
       <div class="my-3 border-top border-bottom">
-        <div class="my-3">
+        <div class="">
           <!-- Modal -->
           <div class="modal fade bring-to-front" id="imagesUploadModal"
                tabindex="-1"
@@ -75,9 +81,18 @@
         </div>
 
         <% if @lecture.msu_images.any? %>
-          <div class="text-secondary text-center my-3"
+          <div class="text-secondary text-right mt-2 mb-3"
                id="images-list">
-            Вставьте ссылку на изображение в редактор, чтобы добавить её в лекцию
+               
+            <%= octicon "question",
+                :height => 18,
+                color: "secondary",
+                class: "button-icon mx-auto ml-2",
+                "aria-label": "Подсказчик",
+                "data-toggle": "tooltip",
+                "data-placement": "left",
+                "title": "Вставьте ссылку на изображение в редактор, чтобы добавить её в лекцию" %>
+
           </div>
           <% @lecture.msu_images.each do |img| %>
             <%= render img %>
@@ -92,6 +107,7 @@
 
       </div>
   </div>
+</div>
 </div>
 
 <% content_for :page_scripts do %>

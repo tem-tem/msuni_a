@@ -1,5 +1,41 @@
-<div class="my-3">
+<div class="mt-3 image-card" id="image-<%= msu_image.id %>">
+  <div class="text-center image-delete-button">
+    <%= link_to [:admin, msu_image.msu_lecture, msu_image],
+        method: :delete,
+        style: "box-shadow: 0 10px 30px rgba(0,0,0,0.5)",
+        data: { confirm: 'Are you sure?' },
+        remote: true do %>
+      <button type="button" class="btn btn-danger">
+        Удалить
+      </button>
+    <% end %>
+  </div>
+  <div class="cover"></div>
   <img src="<%= msu_image.image.url %>"
        alt="<%= msu_image.title %>"
        class="img-thumbnail">
+  <!-- <button type="button" class="btn btn-outline-danger">Удалить</button> -->
+</div>
+
+<div class="input-group input-group-sm mt-1 mb-3">
+  <input type="text" class="form-control"
+  id="input-<%= msu_image.id %>"
+  aria-label="Вставьте эту ссылку в лекцию"
+  aria-describedby="basic-addon2" readonly
+  onclick="this.select();"
+  value="![Текст к изображению](<%= msu_image.image.url %>)">
+  <div class="input-group-append">
+    <button class="btn btn-outline-secondary copy-button"
+      type="button"
+      onclick= "copyImageLink('input-<%= msu_image.id %>')"
+      data-toggle= "tooltip"
+      data-placement= "bottom"
+      title= "Скопировать ссылку">
+
+      <%= octicon "clippy",
+          :height => 18,
+          class: "button-icon mx-auto",
+          "aria-label": "Скопировать" %>
+    </button>
+  </div>
 </div>
