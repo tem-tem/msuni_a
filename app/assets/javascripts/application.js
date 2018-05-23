@@ -31,3 +31,5 @@
 //     });
 //   });
 // }
+
+var currentDisciplineId = null;

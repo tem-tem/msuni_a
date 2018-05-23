@@ -13,11 +13,18 @@
 
 }
 
-.current_discipline {
+#current_discipline {
   font-size: 20pt;
   line-height: 0.8;
   &:hover {
     cursor: pointer;
+  }
+}
+
+#current_discipline > a{
+  color: inherit;
+  &:hover{
+    color: inherit;
   }
 }
 
@@ -30,7 +37,7 @@
 .vertical-align > [class*=" col-"] {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: left;
 }
 
 tr.borderless {
@@ -73,7 +80,7 @@ tr.borderless {
   font-size: 1.5rem;
 }
 
-a:hover {
+.overlay > a, a:hover {
   color: white;
   text-decoration: none;
 }
@@ -96,6 +103,13 @@ a:hover {
 
 .discipline-links:hover .underline {
   background-size: 100% 100%;
+}
+
+.discipline-links > a{
+  color: inherit;
+  :hover{
+    color: inherit;
+  }
 }
 
 // Cross btn

@@ -5,9 +5,6 @@
 <!-- The overlay -->
 <div id="disciplineSelector" class="overlay bg-primary">
 
-  <!-- Button to close the overlay navigation -->
-  <!--<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>-->
-
   <!-- Overlay content -->
   <div class="row border-bottom">
     <div class="col-2"></div>
@@ -22,22 +19,29 @@
     <div class="col-2"></div>
     <div class="col-6">
       <span class="overlay_subtitle">Дисциплины</span>
-      <a href="#" class="text-left pt-5  discipline-links"><span class="underline" onclick="closeNav()"> <b>Администрирование баз даных и лишний текст </b></span>
-      </a>
-      <a href="#" class="text-left pt-5  discipline-links">
-        <span class="underline" onclick="closeNav()"> <b> Как насчет еще одной дисциплины??  </b></span></a>
-      <a href="#" class="text-left pt-5  discipline-links">
-        <span class="underline" onclick="closeNav()"><b>Discipline 3</b></span> </a>
-      <a href="#" class="text-left pt-5  discipline-links">
-        <span class="underline" onclick="closeNav()"> <b>Discipline 4</b> </span></a>
-      <a href="#" class="text-left pt-5  discipline-links">
-        <span class="underline" onclick="closeNav()"> <b>Discipline 3</b></span></a>
-      <a href="#" class="text-left pt-5  discipline-links">
-        <span class="underline" onclick="closeNav()"> <b>Discipline 5</b></span></a>
-      <a href="#" class="text-left pt-5  discipline-links">
-        <span class="underline" onclick="closeNav()"><b>Discipline 6</b></span> </a>
-      <a href="#" class="text-left pt-5  discipline-links">
-        <span class="underline" onclick="closeNav()"> <b>Discipline 7</b> </span></a>
+      <div id="discipline_list">
+        <% @disciplines.each do |discipline| %>
+          <%= link_to set_discipline_path(title: discipline.title, id: discipline), class: "text-left pt-5  discipline-links", onclick: "closeNav()", remote: true do %>
+            <span class="underline"><b> <%= discipline.title %></b></span>
+          <% end %>
+        <% end %>
+        <!--<a href="#" class="text-left pt-5  discipline-links"><span class="underline" onclick="closeNav()"> <b>Администрирование баз даных и лишний текст </b></span>-->
+        <!--</a>-->
+        <!--<a href="#" class="text-left pt-5  discipline-links">-->
+        <!--<span class="underline" onclick="closeNav()"> <b> Как насчет еще одной дисциплины??  </b></span></a>-->
+        <!--<a href="#" class="text-left pt-5  discipline-links">-->
+        <!--<span class="underline" onclick="closeNav()"><b>Discipline 3</b></span> </a>-->
+        <!--<a href="#" class="text-left pt-5  discipline-links">-->
+        <!--<span class="underline" onclick="closeNav()"> <b>Discipline 4</b> </span></a>-->
+        <!--<a href="#" class="text-left pt-5  discipline-links">-->
+        <!--<span class="underline" onclick="closeNav()"> <b>Discipline 3</b></span></a>-->
+        <!--<a href="#" class="text-left pt-5  discipline-links">-->
+        <!--<span class="underline" onclick="closeNav()"> <b>Discipline 5</b></span></a>-->
+        <!--<a href="#" class="text-left pt-5  discipline-links">-->
+        <!--<span class="underline" onclick="closeNav()"><b>Discipline 6</b></span> </a>-->
+        <!--<a href="#" class="text-left pt-5  discipline-links">-->
+        <!--<span class="underline" onclick="closeNav()"> <b>Discipline 7</b> </span></a>-->
+      </div>
     </div>
     <div class="col-4"></div>
   </div>
@@ -50,12 +54,13 @@
       Дисциплины
     </div>
   </div>
-  <div class="col-4 text-primary">
+  <div class="col-3 text-primary ">
     <b class="msu_title">MSUniversity</b>
   </div>
-  <div class="col-2 text-primary text-left">
+  <div class="col-3 text-primary text-left mt-3">
     <div class="text-left">
-      <b class="current_discipline" onclick="openNav()"> Проектирование Баз Данных</b>
+      <!--<b id="current_discipline" onclick="openNav()"><= link_to "Проектирование Баз Данных", disciplines_path, remote: true %></b>-->
+      <b id="current_discipline" onclick="openNav()">Проектирование Баз Данных</b>
     </div>
   </div>
 
@@ -65,7 +70,7 @@
 
   <div class="col-4 text-center">
     <ul class="list-inline mt-3 top-right-selector">
-      <li class="list-inline-item selector-margin"> <%= link_to "Лекции", lectures_path, remote: true %> </li>
+      <li id="lecture_link" class="list-inline-item selector-margin"> <%= link_to "Лекции", lectures_path, remote: true %> </li>
       <li class="list-inline-item selector-margin">Презентации</li>
       <li class="list-inline-item selector-margin">Видеоуроки</li>
       <li class="list-inline-item selector-margin">Книги</li>
