@@ -83,7 +83,7 @@
         <% if @lecture.msu_images.any? %>
           <div class="text-secondary text-right mt-2 mb-3"
                id="images-list">
-               
+
             <%= octicon "question",
                 :height => 18,
                 color: "secondary",
@@ -117,6 +117,10 @@
       spellChecker: false,
       autosave: true
       });
+
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+    })
 
     jQuery.each(jQuery('textarea[data-autoresize]'), function() {
         var offset = this.offsetHeight - this.clientHeight;

@@ -4,13 +4,15 @@
 
 <div class="container">
   <% @disciplines.each do |discipline| %>
-    <div class="row py-3 border-bottom">
-      Дисциплина: <%= discipline.title %>
-    </div>
-    <div class="lectures">
-      <% discipline.msu_lectures.each do |l| %>
-        <%= render partial:'/admin/msu_lectures/lecture', object: l %>
-      <% end %>
-    </div>
+    <% if discipline.msu_lectures.any? %>
+      <div class="row py-3 border-bottom">
+        Дисциплина: <%= discipline.title %>
+      </div>
+      <div class="lectures">
+        <% discipline.msu_lectures.each do |l| %>
+          <%= render partial:'/admin/msu_lectures/lecture', object: l %>
+        <% end %>
+      </div>
+    <% end %>
   <% end %>
 </div>

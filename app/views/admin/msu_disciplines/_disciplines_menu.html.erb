@@ -1,7 +1,14 @@
 <div class="row discipline-menu-header border-bottom">
   <!-- Disciplines header -->
   <div class="col-10 py-3 align-self-center">
-    <div class="text-secondary">Список дисциплин</div>
+    <div class="text-secondary">
+      Список дисциплин
+        <%  if @disciplines.any?  %>
+          <span class="ml-2 badge badge-pill badge-secondary">
+            <%= @disciplines.count%>
+          </span>
+        <% end %>
+    </div>
   </div>
   <%= link_to [:new, :admin, :msu_discipline],
       id: 'new_discipline',

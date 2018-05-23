@@ -14,6 +14,7 @@
 //= require turbolinks
 
 //= require simplemde.min
+//= require showdown.min
 //= require marked
 //= require jquery3
 //= require popper
@@ -37,7 +38,3 @@ function copyImageLink(id) {
   copyText.select();
   document.execCommand("copy");
 }
-
-$(function () {
-  $('[data-toggle="tooltip"]').tooltip()
-})
