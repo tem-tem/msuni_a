@@ -1,0 +1,7 @@
+<%= form_for [:admin, @lecture, @image],
+    authenticity_token: true do |f| %>
+  <%= f.file_field :images,
+      multiple: true,
+      accept:'image/*',
+      onchange: "this.form.submit()"  %>
+<% end %>

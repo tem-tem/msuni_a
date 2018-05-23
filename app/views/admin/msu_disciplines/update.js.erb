@@ -1,10 +1,17 @@
+var error = "<%= j flash[:danger] %>";
 var edited_discipline_name = $('#discipline-<%= @discipline.id %>-name');
 var edited_discipline = $('#discipline-<%= @discipline.id %>');
 
-$('#disciplineModal').modal('hide');
+if (error){
+    $("#discipline-errors").addClass("text-danger mb-3");
+    $("#discipline-errors").html(error);
+    $("#discipline-errors").show(200);
+} else {
+  $('#formDisciplineModal').modal('hide');
 
-edited_discipline_name.replaceWith('<%= @discipline.title %>');
-
-if (edited_discipline.hasClass('discipline-active')){
-  $('#active-discipline-title').text('<%= @discipline.title %>')
+  edited_discipline_name.text('<%= @discipline.title %>');
+  if (edited_discipline.hasClass('discipline-active')){
+    $('#active-discipline-title').text('<%= @discipline.title %>');
+    $("#discipline-tab-title").text("<%= j @discipline.title %> | MSUniversity");
+  }
 }

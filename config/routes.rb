@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
     resources :msu_lectures do
       resources :msu_presentations
+      resources :msu_images
     end
 
     get 'upload', to: 'msu_presentations#upload'

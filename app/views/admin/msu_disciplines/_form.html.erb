@@ -1,41 +1,15 @@
+<div id="discipline-errors" style="display:none;"></div>
 
-<div class="modal fade" id="disciplineModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-
-    <div class="modal-content">
-
-
-      <div class="modal-body">
-
-        <div class="row justify-content-between pb-3">
-          <div class="col-10 text-danger" id="notice"></div>
-
-          <button type="button" class="close col-1" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-
-        <%= form_for [:admin, @discipline], remote: true  do |f| %>
-          <div class="input-group mb-3">
-            <%= f.text_field :title,
-                             class: 'form-control',
-                             id: 'input-discipline-name',
-                             placeholder: 'Название дисциплины',
-                             'aria-label' => 'Название дисциплины',
-                             'aria-describedby' => 'basic-addon2' %>
-            <div class="input-group-append">
-              <%= f.button "Подтвердить!", class: 'btn btn-outline-primary', remote: true %>
-            </div>
-          </div>
-        <% end %>
-
-      </div>
-      <!--
-
-            <div class="modal-footer">
-              <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
-            </div> -->
-
+<%= form_for [:admin, @discipline], remote: true  do |f| %>
+  <div class="input-group mb-3">
+    <%= f.text_field :title,
+                     class: 'form-control',
+                     id: 'input-discipline-name',
+                     placeholder: 'Название дисциплины',
+                     'aria-label' => 'Название дисциплины',
+                     'aria-describedby' => 'basic-addon2' %>
+    <div class="input-group-append">
+      <%= f.button "Подтвердить", class: 'btn btn-outline-primary', remote: true %>
     </div>
   </div>
-</div>
+<% end %>

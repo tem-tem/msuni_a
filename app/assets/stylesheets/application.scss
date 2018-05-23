@@ -63,7 +63,9 @@ a:hover {
 #disciplineModal{
   z-index: 999999;
 }
-
+.modal-dialog{
+  box-shadow: 0 30px 50px rgba(0,0,0,0.3);
+}
 .bring-to-front{
   z-index: 999999;
 }

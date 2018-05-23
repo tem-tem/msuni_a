@@ -1,14 +1,14 @@
 <% content_for :title do %>
-  <title><%= @discipline.title %> | MSUniversity</title>
+  <title id="discipline-tab-title"><%= @discipline.title %> | MSUniversity</title>
 <% end %>
 
 <div class="row">
 
-  <div class="col-md-2 border-right discipline-menu">
+  <div class="col-sm-4 col-md-4 col-lg-3 border-right discipline-menu">
     <%= render partial: '/admin/msu_disciplines/disciplines_menu' %>
   </div>
 
-  <div class="col-md-5" id="discipline-content">
+  <div class="col-sm-8 col-md-8 col-lg-8" id="discipline-content">
     <%= render partial: '/admin/msu_disciplines/msu_discipline',
           locals: {discipline: @discipline} %>
   </div>
@@ -16,7 +16,7 @@
   </div>
 </div>
 
-<div id="new_discipline_form"></div>
+<!-- <div id="new_discipline_form"></div> -->
 
 <%= content_for :page_scripts do %>
   <script>

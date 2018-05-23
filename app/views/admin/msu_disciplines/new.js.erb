@@ -1,18 +1,16 @@
-var modal = $("#disciplineModal");
-var status = "<%= j flash[:error] %>";
 
-if (modal) {
-    modal.remove();
+$('#formDisciplineModal').on('shown.bs.modal', function() {
+  $('#input-discipline-name').focus();
+});
+
+$('#formDisciplineModal').modal({ backdrop: false });
+$("#formDisciplineModalLabel").html("Новая дисциплина");
+$("#formDisciplineModalBody").html("<%= j render 'admin/msu_disciplines/form' %>");
+
+var error = "<%= j flash.now[:danger] %>";
+console.log(error);
+if (error){
+  $("#discipline-errors").addClass("text-danger mb-3");
+  $("#discipline-errors").html(error);
+  $("#discipline-errors").show(200);
 }
-
-$("#new_discipline_form").append("<%= j render(:partial => '/admin/msu_disciplines/form') %>");
-
-if (status){
-    $("#notice").html(status);
-}
-
-$('#disciplineModal').modal({ backdrop: false });
-
-$('#disciplineModal').on('shown.bs.modal', function() {
-    $('#input-discipline-name').focus();
-})

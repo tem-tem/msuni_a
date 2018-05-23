@@ -1,0 +1,16 @@
+
+<div id="lecture-errors" style="display:none;"></div>
+
+<%= form_for [:admin, @lecture.msu_discipline, @lecture], remote: true do |f| %>
+<div class="input-group mb-3">
+  <%= f.text_field :title,
+  class: 'form-control',
+    id: 'input-lecture-title',
+    placeholder: 'Название лекции',
+    'aria-label' => 'Название лекции',
+    'aria-describedby' => 'basic-addon2' %>
+    <div class="input-group-append">
+      <%= f.button "Подтвердить", class: 'btn btn-outline-primary', remote: true %>
+    </div>
+  </div>
+  <% end %>

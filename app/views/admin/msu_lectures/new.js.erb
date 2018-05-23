@@ -1,0 +1,12 @@
+
+$('#newLectureModal').modal({ backdrop: false });
+$('#newLectureModalBody')
+  .html("<%= j render 'admin/msu_lectures/new_form' %>");
+
+  var error = "<%= j flash[:danger] %>";
+
+  if (error){
+    $("#lecture-errors").addClass("text-danger mb-3");
+    $("#lecture-errors").html(error);
+    $("#lecture-errors").show(200);
+  }

@@ -1,18 +1,9 @@
-var modal = $("#disciplineModal");
-var status = "<%= j flash[:error] %>";
+$('#formDisciplineModal').modal({ backdrop: false });
+$("#formDisciplineModalLabel")
+  .html("Редактирование дисциплины «<%= j @discipline.title %>»");
 
-if (modal) {
-    modal.remove();
-}
+$("#formDisciplineModalBody").html("<%= j render 'admin/msu_disciplines/form' %>");
 
-$("#new_discipline_form").append("<%= j render(:partial => '/admin/msu_disciplines/form') %>");
-
-if (status){
-    $("#notice").html(status);
-}
-
-$('#disciplineModal').modal({ backdrop: false });
-
-$('#disciplineModal').on('shown.bs.modal', function() {
+$('#formDisciplineModal').on('shown.bs.modal', function() {
     $('#input-discipline-name').focus();
 })

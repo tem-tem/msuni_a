@@ -40,6 +40,7 @@ gem 'rails-i18n'
 gem 'pdfjs_viewer-rails'
 gem 'sprockets-rails'
 gem 'carrierwave', '~> 1.0'
+gem 'remotipart', '~> 1.2'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

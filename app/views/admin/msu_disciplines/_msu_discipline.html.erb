@@ -1,16 +1,42 @@
 <div class="row justify-content-center">
   <div class="col-10">
-    <div class="row py-5">
+    <div class="row py-5 border-bottom">
     <div class="col-8">
       <h1 id="active-discipline-title"><%= @discipline.title %></h1>
     </div>
 
     <div class="col-4 align-self-center">
-      <%= link_to [:new, :admin, @discipline, :msu_lecture] do %>
-        <button type="button" class="btn btn-outline-primary btn-block">
+      <%= link_to [:new, :admin, @discipline, :msu_lecture],
+          remote: true do %>
+        <button type="button" class="btn btn-outline-primary btn-block"
+          data-toggle="modal" data-target="#newLectureModal">
           Добавить лекцию
         </button>
       <% end %>
+
+      <!-- Modal -->
+      <div class="modal fade bring-to-front" id="newLectureModal"
+           tabindex="-1"
+           role="dialog"
+           aria-labelledby="newLectureModal"
+           aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <div class="modal-title text-secondary" id="exampleModalLabel">Новая лекция</div>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body" id="newLectureModalBody">
+
+              <!-- Здесь форма -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+
     </div>
     </div>
 
@@ -26,7 +52,7 @@
     </div>
     <!-- Lectures list end -->
 
-    <div class="row py-5 justify-content-center">
+    <div class="row py-5 justify-content-center border-top">
       <div class="col-4">
         <%= link_to [:admin, @discipline],
             method: :delete,

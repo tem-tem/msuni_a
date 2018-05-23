@@ -1,0 +1,3 @@
+<% @new_images.each do |new_image| %>
+  $("#image-list").prepend("<%= j render new_image %>");
+<% end %>

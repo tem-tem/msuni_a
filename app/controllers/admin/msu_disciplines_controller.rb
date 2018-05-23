@@ -15,40 +15,39 @@ class Admin::MsuDisciplinesController < ApplicationController
 
   def new
     @discipline = MsuDiscipline.new
+    respond_to do |f|
+      f.js
+    end
   end
 
   def create
-    @discipline = MsuDiscipline.create(discipline_params)
-
-    respond_to do |f|
-      f.js do
-        if @discipline.valid?
-          flash.now[:error] = 'ok'
-        else
-          flash.now[:error] = @discipline.errors.full_messages.to_sentence
-          render action: :new
-        end
+    @discipline = MsuDiscipline.new(discipline_params)
+    if @discipline.save
+      flash.now[:success] = 'Дисциплина создана'
+      respond_to do |f|
+        f.js {redirect_to [:admin, @discipline]}
       end
+    else
+      flash.now[:danger] = @discipline.errors.full_messages.to_sentence
+      render :new
     end
   end
 
   def edit
     @discipline = MsuDiscipline.find(params[:id])
+    respond_to do |f|
+      f.js
+    end
   end
 
   def update
     @discipline = MsuDiscipline.find(params[:id])
     @discipline.update(discipline_params)
-
-    respond_to do |f|
-      f.js do
-        if @discipline.valid?
-          flash.now[:success] = 'Дисциплина сохранена'
-        else
-          flash.now[:error] = @discipline.errors.full_messages.to_sentence
-          render action: :edit
-        end
-      end
+    if @discipline.valid?
+      flash.now[:success] = 'Дисциплина сохранена'
+    else
+      flash.now[:danger] = @discipline.errors.full_messages.to_sentence
+      edit
     end
   end
 

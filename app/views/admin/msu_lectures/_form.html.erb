@@ -2,9 +2,18 @@
   <div class="row justify-content-center">
     <div class="col-9">
 
-      <%= form_for [:admin, @lecture.msu_discipline, @lecture] do |f| %>
+      <%= form_for [:admin, @lecture.msu_discipline, @lecture], remote: true do |f| %>
 
-        <div class="row pt-5">
+        <div class="row my-3 pb-2 justify-content-center">
+          <div class="col">
+            <%= f.submit "Сохранить",
+                class: "btn btn-outline-primary",
+                remote: true,
+                id: "lectureSave" %>
+          </div>
+        </div>
+
+        <div class="row">
           <h1>
             <%= f.text_area :title,
                 class: 'col lecture-name-input',
@@ -27,29 +36,51 @@
           </div>
         </div>
 
-        <div class="row pb-5 justify-content-center">
-          <div class="col">
-            <%= f.submit  class: "btn btn-outline-primary btn-block" %>
-          </div>
-        </div>
-
       <% end %>
     </div>
 
-    <div class="col-3 my-5">
+    <div class="col-3 my-3">
+      <%= link_to [:new, :admin, @lecture, :msu_image], remote: true do %>
+      <button type="button" class="btn btn-outline-primary btn-block" data-toggle="modal" data-target="#imagesUploadModal">
+        Добавить изображения
+      </button>
+      <% end %>
       <div class="my-3 border-top border-bottom">
         <div class="my-3">
-          <%= form_for [:admin, @lecture, :msu_image], remote: true  do |f| %>
-            <%= f.file_field :pdf, accept: ".pdf", class: "my-3" %>
-            <%= f.submit "Загрузить файлы", class: "btn btn-outline-primary btn-block" %>
-          <% end %>
-        </div>
-        <% if @lecture.msu_images.any? %>
-          <div class="text-secondary text-center my-3">
-            Изображения
+          <!-- Modal -->
+          <div class="modal fade bring-to-front" id="imagesUploadModal"
+               tabindex="-1"
+               role="dialog"
+               aria-labelledby="imagesUploadModal"
+               aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Выберите изображения</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body" id="imagesUploadModalBody">
+                  <!-- Здесь форма -->
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Отмена</button>
+                  <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                </div>
+              </div>
+            </div>
           </div>
-          <% @lecture.msu_presentations.each do |p| %>
-            <%= render partial:'/admin/msu_presentations/presentation', object: p %>
+
+        </div>
+
+        <% if @lecture.msu_images.any? %>
+          <div class="text-secondary text-center my-3"
+               id="images-list">
+            Вставьте ссылку на изображение в редактор, чтобы добавить её в лекцию
+          </div>
+          <% @lecture.msu_images.each do |img| %>
+            <%= render img %>
           <% end %>
         <% else %>
           <div class="text-secondary text-center my-3">
@@ -67,7 +98,8 @@
   <script>
     var simplemde = new SimpleMDE({
       element: $("#content_editor")[0],
-      spellChecker: false
+      spellChecker: false,
+      autosave: true
       });
 
     jQuery.each(jQuery('textarea[data-autoresize]'), function() {
@@ -77,5 +109,6 @@
         };
         jQuery(this).on('keyup input', function() { resizeTextarea(this); }).removeAttr('data-autoresize');
     });
+
   </script>
 <% end %>
