@@ -44,6 +44,8 @@
     </script>
 
     <%= yield :page_scripts %>
+  <% else %>
+    <%= yield %>
   <% end %>
   </body>
 </html>
