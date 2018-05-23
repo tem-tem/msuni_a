@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   mount PdfjsViewer::Rails::Engine => "/pdfjs", as: 'pdfjs'
-  root 'msu_disciplines#index'
+  root 'static_pages#client_side'
 
+  get 'lectures', to: 'client_pages#get_lecture_list'
+  get 'lecture', to: 'client_pages#get_lecture_content'
+  get 'set_discipline', to: 'client_pages#set_discipline'
   get 'admin', to: 'static_pages#admin'
   namespace :admin do
 

@@ -11,6 +11,7 @@
   </head>
 
   <body>
+  <% if admin? %>
   <div class="container-fluid">
 
     <% if flash.any? %>
@@ -43,5 +44,6 @@
     </script>
 
     <%= yield :page_scripts %>
+  <% end %>
   </body>
 </html>

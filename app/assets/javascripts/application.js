@@ -33,8 +33,12 @@
 //   });
 // }
 
+
 function copyImageLink(id) {
   var copyText = $('#' + id);
   copyText.select();
   document.execCommand("copy");
 }
+
+var currentDisciplineId = null;
+

@@ -1,0 +1,134 @@
+<%= content_for :head do %>
+  <%= stylesheet_link_tag 'static_pages', media: 'all', 'data-turbolinks-track': 'reload' %>
+<% end %>
+
+<!-- The overlay -->
+<div id="disciplineSelector" class="overlay bg-primary">
+
+  <!-- Overlay content -->
+  <div class="row border-bottom">
+    <div class="col-2"></div>
+    <div class="col-8 ">
+      <b class="overlay-text"> MSUniversity </b>
+    </div>
+    <div class="col-2">
+      <button class="close mt-2 mr-2" onclick="closeNav()">&#x2715;</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-2"></div>
+    <div class="col-6">
+      <span class="overlay_subtitle">Дисциплины</span>
+      <div id="discipline_list">
+        <% @disciplines.each do |discipline| %>
+          <%= link_to set_discipline_path(title: discipline.title, id: discipline), class: "text-left pt-5  discipline-links", onclick: "closeNav()", remote: true do %>
+            <span class="underline"><b> <%= discipline.title %></b></span>
+          <% end %>
+        <% end %>
+        <!--<a href="#" class="text-left pt-5  discipline-links"><span class="underline" onclick="closeNav()"> <b>Администрирование баз даных и лишний текст </b></span>-->
+        <!--</a>-->
+        <!--<a href="#" class="text-left pt-5  discipline-links">-->
+        <!--<span class="underline" onclick="closeNav()"> <b> Как насчет еще одной дисциплины??  </b></span></a>-->
+        <!--<a href="#" class="text-left pt-5  discipline-links">-->
+        <!--<span class="underline" onclick="closeNav()"><b>Discipline 3</b></span> </a>-->
+        <!--<a href="#" class="text-left pt-5  discipline-links">-->
+        <!--<span class="underline" onclick="closeNav()"> <b>Discipline 4</b> </span></a>-->
+        <!--<a href="#" class="text-left pt-5  discipline-links">-->
+        <!--<span class="underline" onclick="closeNav()"> <b>Discipline 3</b></span></a>-->
+        <!--<a href="#" class="text-left pt-5  discipline-links">-->
+        <!--<span class="underline" onclick="closeNav()"> <b>Discipline 5</b></span></a>-->
+        <!--<a href="#" class="text-left pt-5  discipline-links">-->
+        <!--<span class="underline" onclick="closeNav()"><b>Discipline 6</b></span> </a>-->
+        <!--<a href="#" class="text-left pt-5  discipline-links">-->
+        <!--<span class="underline" onclick="closeNav()"> <b>Discipline 7</b> </span></a>-->
+      </div>
+    </div>
+    <div class="col-4"></div>
+  </div>
+</div>
+<!--The overlay end!-->
+
+<div class="container-fluid row border-bottom vertical-align">
+  <div class="col-1 border-right">     <!-- style="background: brown"    text-center pt-4 border-right    -->
+    <div>
+      Дисциплины
+    </div>
+  </div>
+  <div class="col-3 text-primary ">
+    <b class="msu_title">MSUniversity</b>
+  </div>
+  <div class="col-3 text-primary text-left mt-3">
+    <div class="text-left">
+      <!--<b id="current_discipline" onclick="openNav()"><= link_to "Проектирование Баз Данных", disciplines_path, remote: true %></b>-->
+      <b id="current_discipline" onclick="openNav()">Проектирование Баз Данных</b>
+    </div>
+  </div>
+
+  <div class="col-1">
+
+  </div>
+
+  <div class="col-4 text-center">
+    <ul class="list-inline mt-3 top-right-selector">
+      <li id="lecture_link" class="list-inline-item selector-margin"> <%= link_to "Лекции", lectures_path, remote: true %> </li>
+      <li class="list-inline-item selector-margin">Презентации</li>
+      <li class="list-inline-item selector-margin">Видеоуроки</li>
+      <li class="list-inline-item selector-margin">Книги</li>
+    </ul>
+  </div>
+</div>
+<div class="container-fluid row ">
+  <div class="col-1"></div>
+  <div class="col-8 pt-5 border-right" id="main_container">
+
+  </div>
+  <div class="col-3 pt-4">
+    <!--<ul class="list-group ">-->
+
+    <!--<li class="list-group-item borderless"><div class="numberCircle">1</div> Введение в проектирование баз данных. Data Base Design</li>-->
+    <!--<li class="list-group-item borderless"><div class="numberCircle">2</div>Компетенция специалистов по базам данных. Нормализация. Основы языка</li>-->
+    <!--<li class="list-group-item borderless"><div class="numberCircle">3</div>Внешние и внутренние соединения таблиц баз данных. Вложенные запросы типа I и II. проектирование</li>-->
+    <!--<li class="list-group-item borderless"><div class="numberCircle">4</div>Понятие</li>-->
+    <!--<li class="list-group-item borderless"><div class="numberCircle">5</div>Vestibulum at eros</li>-->
+    <!--</ul>-->
+    <table id="lecture_list">
+
+      <!--<tr class="list-group-item borderless">-->
+      <!--<td class="">-->
+      <!--<div class="numberCircle mr-3">1</div>-->
+      <!--</td>-->
+      <!--<td> Введение в проектирование баз данных. Data Base Design</td>-->
+      <!--</tr>-->
+      <!--<tr class="list-group-item borderless">-->
+      <!--<td class="">-->
+      <!--<div class="numberCircle mr-3">2</div>-->
+      <!--</td>-->
+      <!--<td> Компетенция специалистов по базам данных. Нормализация. Основы языка</td>-->
+      <!--</tr>-->
+      <!--<tr class="list-group-item borderless">-->
+      <!--<td class="">-->
+      <!--<div class="numberCircle mr-3">3</div>-->
+      <!--</td>-->
+      <!--<td> Внешние и внутренние соединения таблиц баз данных. Вложенные запросы типа I и II. проектирование</td>-->
+      <!--</tr>-->
+      <!--<tr class="list-group-item borderless">-->
+      <!--<td class="">-->
+      <!--<div class="numberCircle mr-3">3</div>-->
+      <!--</td>-->
+      <!--<td> Понятие BIG DATA. NOSQL средства обработки и хранения баз данных</td>-->
+      <!--</tr>-->
+    </table>
+  </div>
+</div>
+
+
+<script>
+    function openNav() {
+        document.getElementById("disciplineSelector").style.height = "100%";
+    }
+
+    /* Close when someone clicks on the "x" symbol inside the overlay */
+    function closeNav() {
+        document.getElementById("disciplineSelector").style.height = "0%";
+    }
+</script>
