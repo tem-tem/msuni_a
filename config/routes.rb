@@ -13,6 +13,9 @@ Rails.application.routes.draw do
       resources :msu_lectures
     end
 
+    get 'msu_discipline/:id/toggle', to: 'msu_disciplines#toggle', as: 'toggle_discipline'
+    get 'msu_lecture/:id/toggle', to: 'msu_lectures#toggle', as: 'toggle_lecture'
+
     resources :msu_lectures do
       resources :msu_presentations
       resources :msu_images

@@ -7,6 +7,5 @@ class MsuLecture < ApplicationRecord
                 scope: :msu_discipline_id,
                 case_sensitive: false
             }
-  validates :msu_discipline_id, presence: {message: 'Как ты умудрился потерять
-  дисциплину?' }
+  validates :msu_discipline_id, presence: {message: 'Пропала дисциплина' }
 end

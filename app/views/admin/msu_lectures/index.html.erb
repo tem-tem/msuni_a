@@ -3,16 +3,32 @@
 <% end %>
 
 <div class="container">
-  <% @disciplines.each do |discipline| %>
-    <% if discipline.msu_lectures.any? %>
-      <div class="row py-3 border-bottom">
-        Дисциплина: <%= discipline.title %>
+  <div class="col-xl-9 col-lg-10 col-md-12 col-sm-12 col-xs-12 mx-auto">
+
+    <% @disciplines.each do |discipline| %>
+      <% if discipline.msu_lectures.any? %>
+      <div class="row py-3">
+        <a class="" href="#collapseLectures-<%= discipline.id %>" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseLectures-<%= discipline.id %>">
+          <%= octicon "unfold",
+              height: 18,
+              id: "triangle",
+              class: "button-icon mx-2",
+              "aria-label": "Раскрыть / Скрыть" %>
+          Дисциплина: <%= discipline.title %>
+        </a>
       </div>
-      <div class="lectures">
-        <% discipline.msu_lectures.each do |l| %>
-          <%= render partial:'/admin/msu_lectures/lecture', object: l %>
-        <% end %>
+      <div class="collapse border-bottom" id="collapseLectures-<%= discipline.id %>">
+        <div class="lectures">
+          <% discipline.msu_lectures.each do |l| %>
+            <%= render partial:'/admin/msu_lectures/lecture', object: l %>
+          <% end %>
+        </div>
       </div>
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
 </div>
+
+<script>
+  $(".collapse").collapse.show;
+</script>

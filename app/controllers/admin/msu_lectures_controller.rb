@@ -74,6 +74,13 @@ class Admin::MsuLecturesController < ApplicationController
     end
   end
 
+  def toggle
+    @id = params[:id]
+    lecture = MsuLecture.find(@id)
+    lecture.visible = !lecture.visible
+    lecture.save!
+  end
+
   private
 
   def lecture_params

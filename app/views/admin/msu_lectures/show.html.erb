@@ -15,7 +15,9 @@
       <div class="row ">
         <div class="col">
           <div id="lecture-discipline", class="border-bottom mb-4 text-secondary text-right">
+            <%= link_to [:admin, @lecture.msu_discipline] do %>
             Дисциплина: <%= @lecture.msu_discipline.title %>
+            <% end %>
           </div>
         </div>
       </div>
@@ -81,9 +83,9 @@
 <script>
   $(document).ready(function(){
     $('#lecture_content').html(marked("<%= j @lecture.content %>"));
-    $('p').each(function(){
-      var alt = $(this).children('img').attr('alt');
-      $(this).append("<div class='img-caption'>" + alt + "</div>");
-    });
+    // $('p').each(function(){
+    //   var alt = $(this).children('img').attr('alt');
+    //   $(this).append("<div class='img-caption'>" + alt + "</div>");
+    // });
   });
 </script>

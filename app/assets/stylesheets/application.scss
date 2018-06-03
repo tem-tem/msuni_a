@@ -50,7 +50,7 @@ a:hover {
   height: $menu-height;
   position: sticky;
   top: 0;
-  z-index: 9999;
+  z-index: 2;
   background-color: $bg-color;
 }
 .menu-link{
@@ -61,13 +61,13 @@ a:hover {
 }
 
 #disciplineModal{
-  z-index: 999999;
+  z-index: 3;
 }
 .modal-dialog{
   box-shadow: 0 30px 50px rgba(0,0,0,0.3);
 }
 .bring-to-front{
-  z-index: 999999;
+  z-index: 9000;
 }
 
 .menu-link-disabled:hover{
@@ -127,17 +127,19 @@ a:hover {
 }
 
 .lecture{
-  background-color: white;
-  box-shadow: 0px 0px 40px #0000;
-  border-left: 4px solid $bg2-color;
+  // background-color: white;
+  // box-shadow: 0px 15px 60px rgba(0, 0, 0, 0.03);
+  // border-left: 4px solid $bg2-color;
   -webkit-transition: box-shadow 0.2s, border-left 0.2s; /* For Safari 3.1 to 6.0 */
   transition: box-shadow 0.4s, border-left 0.2s;
+  border-radius: 10px;
+  border: 1px solid #dee2e6;
 }
 
 .lecture:hover{
   background-color: white;
-  box-shadow: 0px 15px 40px #0066ff1a;
-  border-left: 4px solid $primary;
+  box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.1), 0 0 10px rgba(0,0,0,0.1);
+  // border-left: 4px solid $primary;
 }
 
 .huge-lecture-title{
@@ -179,4 +181,65 @@ text-decoration: underline;
 
 img{
   max-width: 100%;
+}
+
+
+
+/* The switch - the box around the slider */
+.switch {
+ position: relative;
+ display: inline-block;
+ width: 50px;
+ height: 24px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {display:none;}
+
+/* The slider */
+.slider {
+ position: absolute;
+ cursor: pointer;
+ top: 0;
+ left: 0;
+ right: 0;
+ bottom: 0;
+ background-color: #e3e3e3;
+ -webkit-transition: .4s;
+ transition: .4s;
+}
+
+.slider:before {
+ position: absolute;
+ content: "";
+ height: 18px;
+ width: 18px;
+ left: 4px;
+ bottom: 3px;
+ background-color: white;
+ -webkit-transition: .4s;
+ transition: .4s;
+}
+
+input:checked + .slider {
+ background-color: $primary;
+}
+
+input:focus + .slider {
+ box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+ -webkit-transform: translateX(26px);
+ -ms-transform: translateX(26px);
+ transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+ border-radius: 34px;
+}
+
+.slider.round:before {
+ border-radius: 50%;
 }
