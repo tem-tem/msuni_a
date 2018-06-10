@@ -1,3 +1,7 @@
+<% content_for :title do %>
+  <title><%= @lecture.title %></title>
+<% end %>
+
 <div class="container">
   <div class="row justify-content-center">
 
@@ -83,9 +87,19 @@
 <script>
   $(document).ready(function(){
     $('#lecture_content').html(marked("<%= j @lecture.content %>"));
-    // $('p').each(function(){
-    //   var alt = $(this).children('img').attr('alt');
-    //   $(this).append("<div class='img-caption'>" + alt + "</div>");
-    // });
+
+    // var converter = new showdown.Converter(),
+    //     text      = "<%= j @lecture.content %>",
+    //     html      = converter.makeHtml(text);
+    //
+    // $('#lecture_content').html(html);
+
+    $('p').each(function(){
+      var alt = $(this).children('img').attr('alt');
+      if (alt) {
+
+        $(this).append("<div class='img-caption'>" + alt + "</div>");
+      }
+    });
   });
 </script>

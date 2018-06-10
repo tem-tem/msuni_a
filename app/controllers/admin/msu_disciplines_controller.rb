@@ -64,6 +64,7 @@ class Admin::MsuDisciplinesController < ApplicationController
     discipline.save!
   end
 
+
   private
   def discipline_params
     params.require(:msu_discipline).permit(:title)

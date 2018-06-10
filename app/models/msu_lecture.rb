@@ -8,4 +8,5 @@ class MsuLecture < ApplicationRecord
                 case_sensitive: false
             }
   validates :msu_discipline_id, presence: {message: 'Пропала дисциплина' }
+  default_scope { order(:order) }
 end

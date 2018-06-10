@@ -15,7 +15,7 @@ class Admin::MsuLecturesController < ApplicationController
   def create
     @discipline = MsuDiscipline.find(params[:msu_discipline_id])
     @lecture = @discipline.msu_lectures.build(lecture_params)
-
+    @lecture.order = @discipline.msu_lectures.count + 1
     if @lecture.save
       redirect_to([:edit, :admin, @discipline, @lecture])
       flash[:success] = 'Лекция создана'
@@ -79,6 +79,15 @@ class Admin::MsuLecturesController < ApplicationController
     lecture = MsuLecture.find(@id)
     lecture.visible = !lecture.visible
     lecture.save!
+  end
+
+  def reorder
+    new_order = params[:new_order]
+    new_order.each_with_index do |lecture_id, index|
+      lecture = MsuLecture.find(lecture_id.to_i)
+      lecture.order = index + 1
+      lecture.save!
+    end
   end
 
   private

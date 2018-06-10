@@ -14,8 +14,10 @@
 //= require turbolinks
 
 //= require simplemde.min
+//= require showdown.min
 //= require marked
 //= require jquery3
+//= require jquery-ui
 //= require popper
 //= require bootstrap-sprockets
 //= require_tree .
@@ -40,4 +42,3 @@ function copyImageLink(id) {
 }
 
 var currentDisciplineId = null;
-

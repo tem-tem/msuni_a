@@ -12,6 +12,7 @@
  *
  * require_tree .
  * require_self
+ * require jquery-ui
  */
 
 @import "simplemde.min";
@@ -35,7 +36,6 @@ body{
 
 p{
   word-wrap: break-word;
-  margin-bottom: 0;
 }
 
 a {
@@ -242,4 +242,19 @@ input:checked + .slider:before {
 
 .slider.round:before {
  border-radius: 50%;
+}
+
+pre{
+  margin-top: 1rem;
+  border-left: 3px solid $primary;
+  margin-left: 1rem;
+  padding-left: 1rem;
+}
+
+
+.edit-menu{
+  position: sticky;
+  top:0px;
+  background-color: $bg-color;
+  z-index: 2;
 }

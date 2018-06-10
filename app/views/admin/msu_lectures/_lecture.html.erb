@@ -1,27 +1,53 @@
 <div class="row lecture justify-content-center my-4" id="lecture-<%= lecture.id %>">
-      <%= link_to [:admin, lecture.msu_discipline, lecture],
-        class: "col-8",
-        style: "word-wrap:break-word; display: flex; flex-direction: column; justify-content: space-between; height: inherit;" do %>
-          <div class="title my-3">
-            <h5><%= lecture.title %></h5>
-          </div>
-          <!-- Даты -->
-          <div class="text-secondary">
-            <div class="row my-2">
-              <p class="col-6">Дата создания:</p><p class="col-6"> <%= lecture.created_at.strftime("%A, %d, %B, %Y, %R") %></p>
+  <div class="col-1 my-3 p-0" style="max-width: 36px;">
+      <span id="lectureBadge-<%= lecture.id %>" class="badge badge-info">
+        <%= lecture.order %>
+      </span>
+  </div>
+
+  <%= link_to [:admin, lecture.msu_discipline, lecture],
+    class: "col-7 border-left border-right",
+    style: "word-wrap:break-word; display: flex; flex-direction: column; justify-content: space-between; height: inherit;" do %>
+      <div class="title my-3">
+        <h5>
+          <%= lecture.title %>
+        </h5>
+      </div>
+      <!-- Даты -->
+        <div class="row text-secondary pb-3 pl-3">
+
+          <div class="col-6">
+            <div class="row">
+              Дата создания:
             </div>
-            <div class="row my-2">
-              <p class="col-6">Последнее изменение:</p><p class="col-6"> <%= lecture.updated_at.strftime("%A, %d, %B, %Y, %H:%M")%></p>
+            <div class="row">
+              <%= lecture.created_at.strftime("%A, %d, %B, %Y") %>
             </div>
           </div>
-        <% end %>
+
+          <div class="col-6">
+            <div class="row">
+              Последнее изменение:
+            </div>
+            <div class="row">
+              <%= time_ago_in_words(lecture.updated_at) %> назад
+            </div>
+          </div>
+
+        </div>
+      <!-- Даты конец -->
+
+    <% end %>
+
     <div class="col-4 ">
 
-        <div class="row my-3 justify-content-between mw-100">
-          <div class="my-auto">
+        <div class="d-block my-3 mw-100">
+          <div class="my-auto d-inline">
             Отображать на сайте
           </div>
-          <%= link_to admin_toggle_lecture_path(lecture.id), remote: true do %>
+          <%= link_to admin_toggle_lecture_path(lecture.id),
+            class:"d-inline",
+            remote: true do %>
             <label class="switch my-auto">
               <input type="checkbox" id="toggleLecture-<%= lecture.id %>" <%= lecture.visible ? 'checked' : '' %>>
               <span class="slider round"></span>
@@ -30,14 +56,21 @@
         </div>
 
         <%= link_to [:edit, :admin, lecture.msu_discipline, lecture],
-            class: "row my-3 mw-100" do %>
+            class: "d-block my-3 mw-100" do %>
+          <button type="button" class="btn btn-outline-secondary btn-block" disabled>
+            Открыть на сайте
+          </button>
+        <% end %>
+
+        <%= link_to [:edit, :admin, lecture.msu_discipline, lecture],
+            class: "d-block my-3 mw-100" do %>
           <button type="button" class="btn btn-outline-secondary btn-block" >
             Редактировать
           </button>
         <% end %>
 
         <%= link_to [:admin, lecture.msu_discipline, lecture],
-            class: "row my-3 mw-100",
+            class: "d-block my-3 mw-100",
             method: :delete,
             data: { confirm: 'Are you sure?' },
             remote: true do %>
