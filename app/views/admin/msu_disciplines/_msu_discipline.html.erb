@@ -1,43 +1,61 @@
 <div class="row justify-content-center">
-  <div class="col-10">
-    <div class="row py-5 border-bottom">
-    <div class="col-8">
-      <h1 id="active-discipline-title"><%= @discipline.title %></h1>
-    </div>
+  <div class="col-10" style="max-width: 800px;">
+      <div class="row py-5">
+      <div class="col-8">
+        <h1 id="active-discipline-title"><%= @discipline.title %></h1>
 
-    <div class="col-4 align-self-center">
-      <%= link_to [:new, :admin, @discipline, :msu_lecture],
+      </div>
+
+      <div class="col-4 align-self-center">
+        <div class="row my-3 justify-content-between mw-100">
+          <div class="my-auto">
+            Отображать на сайте
+          </div>
+          <%= link_to admin_toggle_discipline_path(@discipline.id), remote: true do %>
+          <label class="switch my-auto">
+            <input type="checkbox" id="toggleDiscipline-<%= @discipline.id %>" <%= @discipline.visible ? 'checked' : '' %>>
+            <span class="slider round"></span>
+          </label>
+          <% end %>
+        </div>
+        <%= link_to [:new, :admin, @discipline, :msu_lecture],
+        class: "row my-3 mw-100",
           remote: true do %>
-        <button type="button" class="btn btn-outline-primary btn-block"
+          <button type="button" class="btn btn-outline-primary btn-block"
           data-toggle="modal" data-target="#newLectureModal">
           Добавить лекцию
         </button>
-      <% end %>
+        <% end %>
 
-      <!-- Modal -->
-      <div class="modal fade bring-to-front" id="newLectureModal"
-           tabindex="-1"
-           role="dialog"
-           aria-labelledby="newLectureModal"
-           aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <div class="modal-title text-secondary" id="exampleModalLabel">Новая лекция</div>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body" id="newLectureModalBody">
+        <button type="button" class=" row my-3 mw-100 btn btn-outline-info btn-block"
+        data-toggle="modal" data-target="#orderLectureModal" >
+          Изменить порядок
+        </button>
 
-              <!-- Здесь форма -->
+        <!-- New Lecture Modal -->
+        <div class="modal fade bring-to-front" id="newLectureModal"
+             tabindex="-1"
+             role="dialog"
+             aria-labelledby="newLectureModal"
+             aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <div class="modal-title text-secondary" id="exampleModalLabel">Новая лекция</div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body" id="newLectureModalBody">
+
+                <!-- Здесь форма -->
+              </div>
             </div>
           </div>
         </div>
+        <!-- END New Lecture Modal -->
+
       </div>
-
-
-    </div>
     </div>
 
     <!-- Lectures list -->
@@ -46,23 +64,80 @@
           <% @discipline.msu_lectures.each do |l| %>
             <%= render partial: '/admin/msu_lectures/lecture', object: l %>
           <% end %>
+
+          <!-- Order Lecture Modal -->
+          <div class="modal fade bring-to-front" id="orderLectureModal"
+               tabindex="-1"
+               role="dialog"
+               aria-labelledby="orderLectureModal"
+               aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <div class="modal-title text-secondary" id="orderLectureModalLabel">Изменение порядка лекций</div>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body col-10 align-self-center" id="orderLectureModalBody">
+
+                  <ul id="orderLectureList">
+                    <% @discipline.msu_lectures.each do |l| %>
+                      <%= render partial: '/admin/msu_lectures/lecture_order', locals: {lecture: l} %>
+                    <% end %>
+                  </ul>
+
+                </div>
+                <div class="modal-footer">
+                 <button type="button" class="btn btn-primary" onclick="sendLecturesOrder()" >Сохранить изменения</button>
+               </div>
+              </div>
+            </div>
+          </div>
+          <!-- END Order Lecture Modal -->
+
         <% else %>
           <%= render partial: '/admin/empty' %>
         <% end %>
     </div>
     <!-- Lectures list end -->
 
-    <div class="row py-5 justify-content-center border-top">
-      <div class="col-4">
-        <%= link_to [:admin, @discipline],
-            method: :delete,
-            data: { confirm: 'Are you sure?' },
-            remote: true do %>
-          <button type="button" class="btn btn-outline-danger btn-block">
-            Удалить дисциплину
-          </button>
-        <% end %>
-      </div>
+    <div class="row py-5 justify-content-center">
+      <%= link_to [:admin, @discipline],
+          method: :delete,
+          class: "col-4",
+          data: { confirm: 'Are you sure?' },
+          remote: true do %>
+        <button type="button" class="btn btn-outline-danger btn-block">
+          Удалить дисциплину
+        </button>
+      <% end %>
     </div>
   </div>
 </div>
+
+<script>
+  $( function() {
+    $( "#orderLectureList" ).sortable();
+    $( "#orderLectureList" ).disableSelection();
+  } );
+
+  function sendLecturesOrder() {
+    var new_order = [];
+    var d_id = "<%= @discipline.id %>";
+    var url = "/admin/reorderlectures";
+
+    $( ".lectureLi" ).each( function() {
+      new_order.push( this.children['0'].value );
+    });
+
+    $.ajax({
+      url: url,
+      type: "GET",
+      data: {
+        new_order: new_order,
+        id: d_id
+      }
+    });
+  }
+</script>

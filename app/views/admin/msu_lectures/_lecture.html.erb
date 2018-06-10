@@ -1,32 +1,84 @@
-<div class="row justify-content-center my-4", id="lecture-<%= lecture.id %>">
-  <div class="col-12 row lecture">
-    <%= link_to [:admin, lecture.msu_discipline, lecture],
-        class: "col-8 align-self-center py-5" do %>
-      <div style="word-wrap:break-word;">
-        <h5><%= lecture.title %></h5>
-      </div>
-    <% end %>
-    <div class="col-4 align-self-center">
-
-        <div class="row my-3">
-          <%= link_to [:edit, :admin, lecture.msu_discipline, lecture] do %>
-            <button type="button" class="btn btn-outline-secondary btn-block" >
-              Редактировать
-            </button>
-          <% end %>
-        </div>
-
-        <div class="row my-3">
-          <%= link_to [:admin, lecture.msu_discipline, lecture],
-              method: :delete,
-              data: { confirm: 'Are you sure?' },
-              remote: true do %>
-            <button type="button" class="btn btn-outline-danger btn-block align-self-center">
-              Удалить
-            </button>
-          <% end %>
-        </div>
-
-      </div>
+<div class="row lecture justify-content-center my-4" id="lecture-<%= lecture.id %>">
+  <div class="col-1 my-3 p-0" style="max-width: 36px;">
+      <span id="lectureBadge-<%= lecture.id %>" class="badge badge-info">
+        <%= lecture.order %>
+      </span>
   </div>
+
+  <%= link_to [:admin, lecture.msu_discipline, lecture],
+    class: "col-7 border-left border-right",
+    style: "word-wrap:break-word; display: flex; flex-direction: column; justify-content: space-between; height: inherit;" do %>
+      <div class="title my-3">
+        <h5>
+          <%= lecture.title %>
+        </h5>
+      </div>
+      <!-- Даты -->
+        <div class="row text-secondary pb-3 pl-3">
+
+          <div class="col-6">
+            <div class="row">
+              Дата создания:
+            </div>
+            <div class="row">
+              <%= lecture.created_at.strftime("%A, %d, %B, %Y") %>
+            </div>
+          </div>
+
+          <div class="col-6">
+            <div class="row">
+              Последнее изменение:
+            </div>
+            <div class="row">
+              <%= time_ago_in_words(lecture.updated_at) %> назад
+            </div>
+          </div>
+
+        </div>
+      <!-- Даты конец -->
+
+    <% end %>
+
+    <div class="col-4 ">
+
+        <div class="d-block my-3 mw-100">
+          <div class="my-auto d-inline">
+            Отображать на сайте
+          </div>
+          <%= link_to admin_toggle_lecture_path(lecture.id),
+            class:"d-inline",
+            remote: true do %>
+            <label class="switch my-auto">
+              <input type="checkbox" id="toggleLecture-<%= lecture.id %>" <%= lecture.visible ? 'checked' : '' %>>
+              <span class="slider round"></span>
+            </label>
+          <% end %>
+        </div>
+
+        <%= link_to [:edit, :admin, lecture.msu_discipline, lecture],
+            class: "d-block my-3 mw-100" do %>
+          <button type="button" class="btn btn-outline-secondary btn-block" disabled>
+            Открыть на сайте
+          </button>
+        <% end %>
+
+        <%= link_to [:edit, :admin, lecture.msu_discipline, lecture],
+            class: "d-block my-3 mw-100" do %>
+          <button type="button" class="btn btn-outline-secondary btn-block" >
+            Редактировать
+          </button>
+        <% end %>
+
+        <%= link_to [:admin, lecture.msu_discipline, lecture],
+            class: "d-block my-3 mw-100",
+            method: :delete,
+            data: { confirm: 'Are you sure?' },
+            remote: true do %>
+          <button type="button" class="btn btn-outline-danger btn-block align-self-center">
+            Удалить
+          </button>
+        <% end %>
+
+      </div>
+
 </div>

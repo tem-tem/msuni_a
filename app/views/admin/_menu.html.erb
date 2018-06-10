@@ -1,30 +1,32 @@
 
 
-<div class="row menu border-bottom justify-content-center bring-to-front">
-  <%= link_to admin_path, class: "menu-link menu-link-#{current_controller?('static_pages')}" do %>
-    <div>
-      MSU Admin
-    </div>
-  <% end %>
-
-  <%= link_to [:admin, :msu_disciplines],
-            class: "menu-link menu-link-#{current_controller?('msu_disciplines')}" do %>
-    <div>
-      Дисциплины
-    </div>
-  <% end %>
-
-  <%= link_to [:admin, :msu_lectures],
-              class: "menu-link menu-link-#{current_controller?('msu_lectures')}" do %>
+<div class="menu">
+  <div class="row menu border-bottom justify-content-center bring-to-front">
+    <!-- <%= link_to admin_path, class: "menu-link menu-link-#{current_controller?('static_pages')}" do %>
       <div>
-        Лекции
+        MSU Admin
       </div>
-  <% end %>
+    <% end %> -->
 
-  <%= link_to [:admin, :msu_presentations],
-              class: "menu-link menu-link-#{current_controller?('msu_presentations')}" do %>
+    <%= link_to [:admin, :msu_disciplines],
+              class: "menu-link menu-link-#{current_controller?('msu_disciplines')}" do %>
       <div>
-        Презентации
+        Панель дисциплин
       </div>
-  <% end %>
+    <% end %>
+
+    <%= link_to [:admin, :msu_lectures],
+                class: "menu-link menu-link-#{current_controller?('msu_lectures')}" do %>
+        <div>
+          Лекции
+        </div>
+    <% end %>
+
+    <%= link_to [:admin, :msu_presentations],
+                class: "menu-link menu-link-#{current_controller?('msu_presentations')}" do %>
+        <div>
+          Презентации
+        </div>
+    <% end %>
+  </div>
 </div>

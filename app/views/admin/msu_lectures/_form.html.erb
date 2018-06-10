@@ -4,8 +4,8 @@
 
       <%= form_for [:admin, @lecture.msu_discipline, @lecture], remote: true do |f| %>
 
-        <div class="row my-3 pb-2 bring-to-front"
-             style="position: sticky;top: 70px; ">
+        <div class="row py-3 pl-3 my-3 edit-menu"
+             style="">
           <div class="btn-group" role="group" aria-label="Basic example">
             <%= f.submit "Сохранить",
               class: "btn btn-outline-success",
@@ -15,6 +15,10 @@
             <%= link_to "Завершить редактирование", [:admin, @lecture.msu_discipline, @lecture],
               onclick: "$('#lectureSave').click();",
               class: "btn btn-outline-primary" %>
+
+            <button type="button" class="btn btn-outline-primary" disabled>
+              Открыть лекцию на сайте
+            </button>
 
           </div>
         </div>
@@ -45,11 +49,11 @@
       <% end %>
     </div>
 
-    <div class="col-3 my-3">
+    <div class="col-3 py-3 my-3" style="height: 100vh;overflow: auto;position: sticky;top: 0px;">
       <%= link_to [:new, :admin, @lecture, :msu_image], remote: true do %>
-      <button type="button" class="btn btn-outline-primary btn-block" data-toggle="modal" data-target="#imagesUploadModal">
-        Добавить изображения
-      </button>
+        <button type="button" class="btn btn-outline-primary btn-block" data-toggle="modal" data-target="#imagesUploadModal">
+          Добавить изображения
+        </button>
       <% end %>
       <div class="my-3 border-top border-bottom">
         <div class="">
@@ -114,13 +118,13 @@
   <script>
     var simplemde = new SimpleMDE({
       element: $("#content_editor")[0],
-      spellChecker: false,
-      autosave: true
+      spellChecker: false
       });
 
     $(function () {
       $('[data-toggle="tooltip"]').tooltip()
     })
+
 
     jQuery.each(jQuery('textarea[data-autoresize]'), function() {
         var offset = this.offsetHeight - this.clientHeight;

@@ -35,6 +35,7 @@ gem 'wdm'
 gem "font-awesome-rails"
 gem 'simplemde-rails'
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 gem 'octicons_helper'
 gem 'rails-i18n'
 gem 'pdfjs_viewer-rails'

@@ -21,11 +21,7 @@
       <% end %>
     <% end %>
 
-    <div class="menu">
-      <% if admin? %>
-        <%= render partial: '/admin/menu' %>
-      <% end %>
-    </div>
+    <%= render partial: '/admin/menu' unless (params[:controller] == 'admin/msu_lectures' and params[:action] == 'edit') %>
 
     <%= yield %>
 

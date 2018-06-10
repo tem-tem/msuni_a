@@ -1,0 +1,16 @@
+var lecture_ids = [];
+
+$('#orderLectureModal').modal('hide');
+<% params[:new_order].each do |id| %>
+  lecture_ids.push("<%=j id %>");
+<% end %>
+
+for (var i = 0; i < lecture_ids.length; i++) {
+  $("#lectureBadge-" + lecture_ids[i]).html( i + 1 );
+  $("#lectureOrderBadge-" + lecture_ids[i]).html( i + 1 );
+  if (i > 0) {
+    current_l = $("#lecture-" + lecture_ids[i]);
+    previous_l = $("#lecture-" + lecture_ids[i-1]);
+    current_l.insertAfter(previous_l);
+  }
+}
