@@ -1,12 +1,117 @@
+<div class="col p-0 menu-left border-right">
 
+  <div class="menu-logo mb-4">
+    <div class="menu-item-container">
+        <%= octicon "squirrel",
+        :height => 42,
+        class: "button-icon mx-auto",
+          "aria-label": "Логотип" %>
+        <div class="menu-item-title">
+          <small>
+            <%= current_user.fullname %>
+          </small>
+        </div>
+    </div>
+  </div>
 
-<div class="menu">
+  <%= link_to [:admin, :msu_disciplines],
+            class: "menu-item menu-item-#{current_controller?('msu_disciplines')}" do %>
+    <div class="menu-item-container">
+        <%= octicon "device-desktop",
+        :height => 30,
+        class: "button-icon",
+          "aria-label": "Панель дисциплин" %>
+        <div class="menu-item-title">
+          Дисциплины
+        </div>
+    </div>
+  <% end %>
+
+  <%= link_to [:admin, :msu_lectures],
+    class: "menu-item menu-item-#{ (controller.controller_name == 'msu_lectures') and (controller.action_name == 'index') ? 'active' : 'disabled' }" do %>
+    <div class="menu-item-container">
+        <%= octicon "file",
+        :height => 30,
+        class: "button-icon",
+          "aria-label": "Все лекции" %>
+        <div class="menu-item-title">
+          Лекции
+        </div>
+    </div>
+  <% end %>
+
+  <%= link_to [:admin, :msu_presentations],
+    class: "menu-item menu-item-#{ (controller.controller_name == 'msu_presentations') and (controller.action_name == 'index') ? 'active' : 'disabled' }" do %>
+    <div class="menu-item-container">
+        <%= octicon "file-media",
+        :height => 30,
+        class: "button-icon",
+          "aria-label": "Все лекции" %>
+        <div class="menu-item-title">
+          Презентации
+        </div>
+    </div>
+  <% end %>
+
+  <div class="menu-item">
+    <div class="menu-item-container">
+        <%= octicon "device-camera-video",
+        :height => 30,
+        class: "button-icon",
+          "aria-label": "Видеоматериалы" %>
+        <div class="menu-item-title">
+          Видео
+        </div>
+
+    </div>
+  </div>
+
+  <div class="menu-item">
+    <div class="menu-item-container">
+        <%= octicon "book",
+        :height => 30,
+        class: "button-icon mx-auto",
+          "aria-label": "Книги" %>
+        <div class="menu-item-title">
+          Книги
+        </div>
+
+    </div>
+  </div>
+
+  <div class="menu-item border-top mt-4">
+    <div class="menu-item-container">
+        <%= octicon "organization",
+        :height => 30,
+        class: "button-icon mx-auto",
+          "aria-label": "Пользователи" %>
+        <div class="menu-item-title">
+          Пользователи
+        </div>
+
+    </div>
+  </div>
+
+  <%= link_to logout_path,
+      class: "menu-item",
+      method: :delete,
+      data: { confirm: 'Выйти?' } do %>
+    <div class="menu-item-container">
+        <%= octicon "sign-out",
+        :height => 30,
+        class: "button-icon mx-auto",
+          "aria-label": "Выйти" %>
+        <div class="menu-item-title">
+          Выйти
+        </div>
+
+    </div>
+  <% end %>
+
+</div>
+
+<!-- <div class="menu">
   <div class="row menu border-bottom justify-content-center bring-to-front">
-    <!-- <%= link_to admin_path, class: "menu-link menu-link-#{current_controller?('static_pages')}" do %>
-      <div>
-        MSU Admin
-      </div>
-    <% end %> -->
 
     <%= link_to [:admin, :msu_disciplines],
               class: "menu-link menu-link-#{current_controller?('msu_disciplines')}" do %>
@@ -29,4 +134,4 @@
         </div>
     <% end %>
   </div>
-</div>
+</div> -->

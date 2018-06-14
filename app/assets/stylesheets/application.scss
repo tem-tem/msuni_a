@@ -23,7 +23,7 @@
 $bg-color: #f9f9f9;
 $bg2-color: #f1f1f1;
 $menu-height: 60px;
-
+$menu-left-height: 100vh;
 
 h1, h2, h3, h4, h5, h6{
   font-family: 'PT Serif', serif;
@@ -45,6 +45,73 @@ a:hover {
   text-decoration: none;
   color: #000f14;
 }
+
+
+// left menu start
+
+.menu-left {
+  height:100vh;
+  max-width:100px;
+  position: sticky;
+  top: 0;
+  background: white;
+  overflow: auto;
+}
+
+.menu-logo {
+  width: inherit;
+  height: 120px;
+  position:relative;
+  display: block;
+  color: $primary;
+}
+.menu-logo {
+  fill: $primary;
+}
+
+.menu-item {
+  width: inherit;
+  height: 70px;
+  position:relative;
+  display: block;
+  color: #bad6ea;
+  font-size: 0.8em;
+}
+.menu-item .button-icon{
+  fill: #bad6ea;
+}
+
+.menu-item-active{
+  color: $primary;
+}
+.menu-item-active .button-icon {
+  fill: $primary;
+}
+
+.menu-item:hover{
+  color: #0b3a5c;
+}
+.menu-item:hover .button-icon{
+  fill: #0b3a5c;
+}
+
+.menu-item-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  text-align: center;
+}
+
+// left menu end
+
+
+.content-col {
+  min-height: $menu-left-height;
+}
+
+
+
 
 .menu{
   height: $menu-height;
@@ -79,7 +146,7 @@ a:hover {
 }
 
 .discipline-menu{
-  height: calc(100vh - $menu-height);
+  min-height: 100vh;
   overflow-y: auto;
 }
 

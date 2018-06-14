@@ -1,0 +1,8 @@
+var error = "<%= j flash.now[:danger] %>";
+
+if (error){
+  $("#form-errors").hide(100);
+  $("#form-errors").addClass("text-danger mb-3");
+  $("#form-errors").html(error);
+  $("#form-errors").show(200);
+}

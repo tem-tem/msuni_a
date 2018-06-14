@@ -8,7 +8,7 @@ $("#formDisciplineModalLabel").html("Новая дисциплина");
 $("#formDisciplineModalBody").html("<%= j render 'admin/msu_disciplines/form' %>");
 
 var error = "<%= j flash.now[:danger] %>";
-console.log(error);
+
 if (error){
   $("#discipline-errors").addClass("text-danger mb-3");
   $("#discipline-errors").html(error);

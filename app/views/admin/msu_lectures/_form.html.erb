@@ -1,7 +1,7 @@
+<div id="for-alert"></div>
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-9">
-
       <%= form_for [:admin, @lecture.msu_discipline, @lecture], remote: true do |f| %>
 
         <div class="row py-3 pl-3 my-3 edit-menu"
@@ -87,15 +87,14 @@
         <% if @lecture.msu_images.any? %>
           <div class="text-secondary text-right mt-2 mb-3"
                id="images-list">
-
-            <%= octicon "question",
+            <%= octicon "info",
                 :height => 18,
                 color: "secondary",
                 class: "button-icon mx-auto ml-2",
                 "aria-label": "Подсказчик",
                 "data-toggle": "tooltip",
                 "data-placement": "left",
-                "title": "Вставьте ссылку на изображение в редактор, чтобы добавить её в лекцию" %>
+                "title": "1. Скопируйте ссылку на изображение; 2. Вставьте ссылку в редактор лекции" %>
 
           </div>
           <% @lecture.msu_images.each do |img| %>
