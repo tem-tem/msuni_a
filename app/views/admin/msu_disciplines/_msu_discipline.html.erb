@@ -1,8 +1,8 @@
 <div class="row justify-content-center">
-  <div class="col-10" style="max-width: 800px;">
+  <div class="col-10" style="max-width: 800px; min-height: 100vh;">
       <div class="row py-5">
       <div class="col-8">
-        <h1 id="active-discipline-title"><%= @discipline.title %></h1>
+        <h1 id="active-discipline-title" style="word-break: break-all;"><%= @discipline.title %></h1>
 
       </div>
 
@@ -89,7 +89,7 @@
 
                 </div>
                 <div class="modal-footer">
-                 <button type="button" class="btn btn-primary" onclick="sendLecturesOrder()" >Сохранить изменения</button>
+                 <button type="button" class="btn btn-primary" id="newOrderButton" onclick="sendLecturesOrder()" >Сохранить изменения</button>
                </div>
               </div>
             </div>
