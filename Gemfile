@@ -27,9 +27,8 @@ gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
-
-gem 'sqlite3'
 gem 'bootstrap', '~> 4.0.0'
+gem 'pg'
 gem "font-awesome-rails"
 gem 'simplemde-rails'
 gem 'jquery-rails'
@@ -46,6 +45,9 @@ gem 'remotipart', '~> 1.2'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  # gem 'tiny_tds'
+  # gem 'activerecord-sqlserver-adapter'
+  # gem 'wdm'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
@@ -55,6 +57,7 @@ end
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console', '>= 3.3.0'
+  gem 'sendgrid-ruby'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

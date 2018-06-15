@@ -19,4 +19,6 @@ test:
 
 production:
   <<: *default
-  database: data-bat
+  database: msuniversity_production
+  username: msuniversity
+  password: <%= ENV['MSUNIVERSITY_DATABASE_PASSWORD'] %>
