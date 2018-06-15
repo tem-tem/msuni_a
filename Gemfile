@@ -29,7 +29,8 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 
 gem 'bootstrap', '~> 4.0.0'
-gem 'tiny_tds'
+# gem 'tiny_tds'
+gem 'pg'
 gem 'activerecord-sqlserver-adapter'
 gem 'wdm'
 gem "font-awesome-rails"

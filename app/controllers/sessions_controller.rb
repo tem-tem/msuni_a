@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
       f.js do
         if token == user.login_token
           sign_in user
-          remember(user)
+          # remember user
 
           flash[:info] = 'Здравствуйте, ' + user.fullname
           redirect_to [:admin, :msu_disciplines]
