@@ -30,8 +30,8 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'bootstrap', '~> 4.0.0'
 # gem 'tiny_tds'
+# gem 'activerecord-sqlserver-adapter'
 gem 'pg'
-gem 'activerecord-sqlserver-adapter'
 gem 'wdm'
 gem "font-awesome-rails"
 gem 'simplemde-rails'
