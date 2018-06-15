@@ -1,0 +1,18 @@
+
+<div id="errors" style="display:none;"></div>
+
+<%= form_for [:admin, @user] do |f| %>
+<div class="input-group mb-3">
+  <%= f.text_field :name,
+      class: "form-control",
+      id: "nameInput",
+      placeholder: "Логин" %>
+  <%= f.password_field :password,
+      class: "form-control",
+      id: "passwordInput",
+      placeholder: "Пароль" %>
+  <div class="input-group-append">
+    <%= f.submit "Создать",
+      class: "btn btn-outline-primary" %>
+  </div>
+<% end %>

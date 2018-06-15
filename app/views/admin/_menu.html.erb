@@ -66,7 +66,7 @@
     </div>
   </div>
 
-  <div class="menu-item">
+  <div class="menu-item border-bottom">
     <div class="menu-item-container">
         <%= octicon "book",
         :height => 30,
@@ -79,7 +79,8 @@
     </div>
   </div>
 
-  <div class="menu-item border-top mt-4">
+  <%= link_to [:admin, :msu_users],
+            class: "menu-item mt-4  menu-item-#{current_controller?('msu_users')}" do %>
     <div class="menu-item-container">
         <%= octicon "organization",
         :height => 30,
@@ -88,9 +89,8 @@
         <div class="menu-item-title">
           Пользователи
         </div>
-
     </div>
-  </div>
+  <% end %>
 
   <%= link_to logout_path,
       class: "menu-item",
