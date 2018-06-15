@@ -1,19 +1,13 @@
 
 default: &default
-  adapter: sqlserver
-  mode: dblib
-  azure: true
-  host: bat-server.database.windows.net
-  port: 1433
-  username: msuni
-  password: msehex4chiQ_CJcsL42p
-  database: data-bat
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 
 development:
   <<: *default
-  database: data-bat
+  adapter: sqlite3
+  database: db/development.sqlite3
+  pool: 5
+  timeout: 5000
 
 
 # Warning: The database defined as "test" will be erased and

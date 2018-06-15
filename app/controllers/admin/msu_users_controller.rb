@@ -1,5 +1,9 @@
 class Admin::MsuUsersController < ApplicationController
 
+  def index
+    
+  end
+
   def new
     @user = MsuUser.new
   end
