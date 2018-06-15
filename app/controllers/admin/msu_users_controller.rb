@@ -1,15 +1,22 @@
 class Admin::MsuUsersController < ApplicationController
 
+  def index
+    @users = MsuUser.all
+  end
+
   def new
     @user = MsuUser.new
   end
 
   def create
     @user = MsuUser.new(user_params)
-    unless @user.save
+    if @user.save
+      redirect_to [:admin, :msu_users]
+    else
       flash.now[:danger] = @user.error.full_messages.to_sentence
       render :new
     end
+
   end
 
   def destroy
@@ -24,6 +31,6 @@ class Admin::MsuUsersController < ApplicationController
 
   private
     def user_params
-      params.require(:msu_user).permit(:fullname, :email)
+      params.require(:msu_user).permit(:name, :password)
     end
 end

@@ -1,39 +1,36 @@
 class MsuUser < ApplicationRecord
 
+  attr_accessor :remember_token
+  validates :name, presence: true,
+                   uniqueness: true,
+                   length: {minimum: 3, maximum: 16}
+  validates :password, presence: true, length: {minimum: 8, maximum: 100}
 
-  def send_login_link
-    generate_login_token
+  has_secure_password
 
-    UserMailer.log_in(self).deliver_now
+  def MsuUser.digest(string)
+    cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
+    BCrypt::Engine.cost
+    BCrypt::Password.create(string, cost: cost)
   end
 
-  def generate_login_token
-    self.login_token = generate_token
-    self.token_generated_at = Time.now.utc
-    save!
+  def MsuUser.new_token
+    SecureRandom.urlsafe_base64
   end
 
-  def login_link
-    "http://localhost:3000/admin/auth?token=#{self.login_token}"
+  def remember
+    self.remember_token = MsuUser.new_token
+    update_attribute(:remember_digest, MsuUser.digest(remember_token))
   end
 
-  def login_token_expired?
-    Time.now.utc > (self.token_generated_at + token_validity)
+  def forget
+    update_attribute(:remember_digest, nil)
   end
 
-  def expire_token!
-    self.login_token = nil
-    save!
+  def authenticated?(attribute, token)
+    digest = self.send("#{attribute}_digest")
+    return false if digest.nil?
+    BCrypt::Password.new(digest).is_password?(token)
   end
 
-
-  private
-
-    def generate_token
-      100000 + SecureRandom.random_number(899999)
-    end
-
-    def token_validity
-      30.minutes
-    end
 end

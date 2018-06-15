@@ -1,0 +1,13 @@
+
+$('#newUserModal').modal({ backdrop: false });
+$('#newUserModalBody')
+  .html("<%= j render 'admin/msu_users/form' %>");
+
+  var error = "<%= j flash[:danger] %>";
+
+  if (error){
+    $("#errors").hide(50);
+    $("#errors").addClass("text-danger mb-3");
+    $("#errors").html(error);
+    $("#errors").show(200);
+  }

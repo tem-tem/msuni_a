@@ -1,0 +1,11 @@
+  <%= user.name %>
+  <%= user.admin ? 'Админ' : 'не админ' %>
+  <%= link_to [:admin, user],
+      class: "d-block my-3 mw-100",
+      method: :delete,
+      data: { confirm: 'Are you sure?' },
+      remote: true do %>
+    <button type="button" class="btn btn-outline-danger btn-block align-self-center">
+      Удалить пользователя
+    </button>
+  <% end %>
