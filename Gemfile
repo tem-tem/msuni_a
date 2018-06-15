@@ -29,10 +29,8 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 
 gem 'bootstrap', '~> 4.0.0'
-# gem 'tiny_tds'
-# gem 'activerecord-sqlserver-adapter'
+
 gem 'pg'
-gem 'wdm'
 gem "font-awesome-rails"
 gem 'simplemde-rails'
 gem 'jquery-rails'
@@ -49,6 +47,9 @@ gem 'remotipart', '~> 1.2'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  # gem 'tiny_tds'
+  # gem 'activerecord-sqlserver-adapter'
+  # gem 'wdm'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
