@@ -1,8 +1,7 @@
 class Admin::MsuPresentationsController < ApplicationController
 
   def index
-    @presentations = MsuPresentation.all
-    @presentations = @presentations.sort_by {|p| p.msu_lecture}
+    @presentations = MsuPresentation.all.sort_by {|p| p.msu_lecture}
   end
 
   def new

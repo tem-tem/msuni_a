@@ -2,19 +2,24 @@
   <title> Презентации | MSUniversity</title>
 <% end %>
 
-  <div class="row container">
-    <% if @presentations.any? %>
+<% if @presentations.any? %>
+  <% current_lecture = @presentations.first.msu_lecture.title %>
+  <% @presentations.each do |p| %>
+    <%= current_lecture %>
+    <% if current_lecture == p.msu_lecture.title %>
+    <div class="row container mt-3">
       <div class="col-3">
-        <% @presentations.each do |p| %>
-          <div class="presentations">
-            <%= p.msu_lecture.title %>
-            <%= render partial:'/admin/msu_presentations/presentation', object: p %>
-          </div>
-        <% end %>
-      </div>
-      <% else %>
-        <div class="text-secondary">
-          Презентаций нет
+        <div class="presentations">
+          <%= render partial:'/admin/msu_presentations/presentation', object: p %>
         </div>
+      </div>
+    </div>
+    <% else %>
+      <% current_lecture = p.msu_lecture.title %>
     <% end %>
+  <% end %>
+<% else %>
+  <div class="text-secondary">
+    Презентаций нет
   </div>
+<% end %>

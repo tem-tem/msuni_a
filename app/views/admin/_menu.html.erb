@@ -53,9 +53,9 @@
     </div>
   <% end %>
 
-  <div class="menu-item">
+  <div class="menu-item-disabled">
     <div class="menu-item-container">
-        <%= octicon "device-camera-video",
+        <%= octicon "beaker",
         :height => 30,
         class: "button-icon",
           "aria-label": "Видеоматериалы" %>
@@ -66,9 +66,9 @@
     </div>
   </div>
 
-  <div class="menu-item border-bottom">
+  <div class="menu-item-disabled border-bottom mb-2">
     <div class="menu-item-container">
-        <%= octicon "book",
+        <%= octicon "beaker",
         :height => 30,
         class: "button-icon mx-auto",
           "aria-label": "Книги" %>
@@ -79,10 +79,9 @@
     </div>
   </div>
 
-  <%= link_to [:admin, :msu_users],
-            class: "menu-item mt-4  menu-item-#{current_controller?('msu_users')}" do %>
+  <div class="menu-item-disabled mt-4">
     <div class="menu-item-container">
-        <%= octicon "organization",
+        <%= octicon "beaker",
         :height => 30,
         class: "button-icon mx-auto",
           "aria-label": "Пользователи" %>
@@ -90,7 +89,7 @@
           Пользователи
         </div>
     </div>
-  <% end %>
+  </div>
 
   <%= link_to logout_path,
       class: "menu-item",
@@ -109,29 +108,3 @@
   <% end %>
 
 </div>
-
-<!-- <div class="menu">
-  <div class="row menu border-bottom justify-content-center bring-to-front">
-
-    <%= link_to [:admin, :msu_disciplines],
-              class: "menu-link menu-link-#{current_controller?('msu_disciplines')}" do %>
-      <div>
-        Панель дисциплин
-      </div>
-    <% end %>
-
-    <%= link_to [:admin, :msu_lectures],
-                class: "menu-link menu-link-#{current_controller?('msu_lectures')}" do %>
-        <div>
-          Лекции
-        </div>
-    <% end %>
-
-    <%= link_to [:admin, :msu_presentations],
-                class: "menu-link menu-link-#{current_controller?('msu_presentations')}" do %>
-        <div>
-          Презентации
-        </div>
-    <% end %>
-  </div>
-</div> -->
