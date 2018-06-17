@@ -13,25 +13,20 @@
   <body>
   <% if admin? %>
     <% if flash.any? %>
-    <% flash.each do |key, message| %>
-    <%= render partial: 'admin/alert',
-    locals: {key: key, message: message} %>
+      <% flash.each do |key, message| %>
+        <%= render partial: 'admin/alert',
+        locals: {key: key, message: message} %>
+      <% end %>
     <% end %>
-    <% end %>
-  <div class="container-fluid row">
-
-
+  <div class="col">
     <% if menu? %>
       <%= render partial: '/admin/menu' %>
     <% end %>
 
-    <div class="col content-col">
+    <div class="col content-col p-0">
       <%= yield %>
     </div>
 
-    <div class="row footer">
-      <%= yield :footer %>
-    </div>
   </div>
 
     <script>

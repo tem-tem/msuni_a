@@ -28,7 +28,6 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 gem 'bootstrap', '~> 4.0.0'
-gem 'pg'
 gem "font-awesome-rails"
 gem 'simplemde-rails'
 gem 'jquery-rails'
@@ -48,6 +47,7 @@ group :development, :test do
   # gem 'tiny_tds'
   # gem 'activerecord-sqlserver-adapter'
   # gem 'wdm'
+  gem 'sqlite3'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
@@ -57,6 +57,7 @@ end
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console', '>= 3.3.0'
+  gem 'pg'
   gem 'sendgrid-ruby'
 end
 

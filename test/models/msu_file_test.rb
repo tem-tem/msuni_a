@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class MsuLectureBookTest < ActiveSupport::TestCase
+class MsuFileTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

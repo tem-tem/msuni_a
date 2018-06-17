@@ -1,4 +1,4 @@
-<div class="col p-0 menu-left border-right">
+<!-- <div class="col p-0 menu-left border-right">
 
   <div class="menu-logo mb-4">
     <div class="menu-item-container">
@@ -22,7 +22,7 @@
         class: "button-icon",
           "aria-label": "Панель дисциплин" %>
         <div class="menu-item-title">
-          Дисциплины
+          Панель управления
         </div>
     </div>
   <% end %>
@@ -108,29 +108,51 @@
     </div>
   <% end %>
 
-</div>
+</div> -->
+
+<nav class="row navbar navbar-light navbar-expand-lg border-bottom">
+  <div class="navbar-brand"><%= current_user.name %></div>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item <%= current_controller?('msu_disciplines') %>">
+
+        <%= link_to [:admin, :msu_disciplines],
+                  class: "nav-link" do %>
+          Панель дисциплин
+        <% end %>
+      </li>
+      <li class="nav-item <%= current_controller?('msu_users') %>">
+        <%= link_to [:admin, :msu_users],
+                  class: "nav-link" do %>
+          Пользователи
+        <% end %>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Выйти</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
 
 <!-- <div class="menu">
-  <div class="row menu border-bottom justify-content-center bring-to-front">
+  <div class="row menu border-bottom justify-content-between bring-to-front">
 
     <%= link_to [:admin, :msu_disciplines],
               class: "menu-link menu-link-#{current_controller?('msu_disciplines')}" do %>
       <div>
-        Панель дисциплин
+        Панель администратора
       </div>
     <% end %>
 
-    <%= link_to [:admin, :msu_lectures],
-                class: "menu-link menu-link-#{current_controller?('msu_lectures')}" do %>
-        <div>
-          Лекции
-        </div>
-    <% end %>
 
     <%= link_to [:admin, :msu_presentations],
                 class: "menu-link menu-link-#{current_controller?('msu_presentations')}" do %>
         <div>
-          Презентации
+          <%= current_user.name %>
         </div>
     <% end %>
   </div>
