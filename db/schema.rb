@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180617183514) do
+ActiveRecord::Schema.define(version: 20180619141919) do
 
   create_table "msu_books", force: :cascade do |t|
     t.string "title"
@@ -28,12 +28,12 @@ ActiveRecord::Schema.define(version: 20180617183514) do
 
   create_table "msu_files", force: :cascade do |t|
     t.string "name"
-    t.string "type"
     t.string "file"
     t.string "link"
     t.integer "msu_discipline_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "filetype"
     t.index ["msu_discipline_id"], name: "index_msu_files_on_msu_discipline_id"
   end
 

@@ -18,19 +18,25 @@
 @import "simplemde.min";
 @import "bootstrap";
 
-@import url('https://fonts.googleapis.com/css?family=PT+Sans|PT+Serif:700');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:700,900|Roboto&subset=cyrillic-ext');
 
 $bg-color: #f9f9f9;
 $bg2-color: #f1f1f1;
 $menu-height: 60px;
 $menu-left-height: 100vh;
 
-h1, h2, h3, h4, h5, h6{
-  font-family: 'PT Serif', serif;
+h1, h2, h3{
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+}
+
+h4, h5, h6{
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
 }
 
 body{
-  font-family: 'PT Sans', sans-serif;
+  font-family: 'Roboto', sans-serif;
   background-color: $bg-color;
 }
 
@@ -169,17 +175,22 @@ a:hover {
   border-left: 4px solid $primary;
 }
 
-.discipline-button{
+.card-botton{
   display: flex;
   flex-direction: column;
   justify-content: center;
   fill: $dark;
 }
-
-.discipline-button:hover{
+.card-botton-primary:hover{
   background-color: $primary;
   fill: $light;
 }
+.card-botton-danger:hover{
+  background-color: $danger;
+  fill: $light;
+}
+
+
 .discipline-menu-header{
   background-color: $bg2-color;
 }

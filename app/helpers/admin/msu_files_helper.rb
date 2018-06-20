@@ -1,0 +1,2 @@
+module Admin::MsuFilesHelper
+end

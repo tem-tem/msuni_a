@@ -1,0 +1,57 @@
+<div class="my-3 lecture d-flex justify-content-between" style="overflow: hidden">
+  <div class="d-flex">
+    <div class="border-right p-3">
+      <span class="badge badge-info">
+        <%= index %>
+      </span>
+    </div>
+
+    <div class="m-3 d-flex flex-column align-items-start">
+      <h5 class="title mb-auto">
+        <%= book.name %>
+      </h5>
+      <div class="text-secondary">
+        Дата добавления: <%= book.created_at.strftime("%A, %d, %B, %Y") %>
+      </div>
+    </div>
+  </div>
+  <div class="buttons border-left d-flex flex-column">
+    <% if book.file? %>
+      <%= link_to book.file.url,
+          "data-toggle": "tooltip",
+          "data-placement": "left",
+          "title": "#{book.file_identifier}" do %>
+        <div class="h-100 p-3 border-bottom d-flex align-items-middle card-botton card-botton-primary">
+          <%= octicon "arrow-down",
+              :height => 24,
+              class: "button-icon m-auto",
+              "aria-label": "Скачать" %>
+        </div>
+      <% end %>
+    <% end %>
+    <% if book.link? %>
+      <a href="<%= book.link %>" target="_blank"
+          data-toggle= "tooltip"
+          data-placement = "left"
+          title = "<%= book.link %>">
+        <div class="h-100 p-3 border-bottom d-flex align-items-middle card-botton card-botton-primary">
+          <%= octicon "link-external",
+          :height => 24,
+          class: "button-icon m-auto",
+            "aria-label": "Открыть" %>
+          </div>
+      </a>
+    <% end %>
+    <%= link_to [:admin, book.msu_discipline, book],
+        method: :delete,
+        data: { confirm: 'Are you sure?' },
+        remote: true do %>
+        <div class="h-100 p-3 d-flex align-items-middle card-botton card-botton-danger">
+          <%= octicon "trashcan",
+          :height => 24,
+          class: "button-icon m-auto",
+            "aria-label": "Открыть" %>
+          </div>
+    <% end %>
+  </div>
+</div>

@@ -1,6 +1,7 @@
 
-$('#newLectureModal').modal({ backdrop: false });
-$('#newLectureModalBody')
+$('#itemModal').modal({ backdrop: false });
+$('#itemModalLabel').html('Новая лекция');
+$('#itemModalBody')
   .html("<%= j render 'admin/msu_lectures/new_form' %>");
 
   var error = "<%= j flash[:danger] %>";

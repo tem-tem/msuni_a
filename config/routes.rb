@@ -19,25 +19,23 @@ Rails.application.routes.draw do
 
     resources :msu_disciplines do
       resources :msu_lectures
+      resources :msu_files
     end
-
-    get 'msu_discipline/:id/toggle', to: 'msu_disciplines#toggle', as: 'toggle_discipline'
-    get 'msu_lecture/:id/toggle', to: 'msu_lectures#toggle', as: 'toggle_lecture'
-
-    get '/reorderlectures', to: 'msu_lectures#reorder'
 
     resources :msu_lectures do
       resources :msu_presentations
       resources :msu_images
     end
 
-    get 'upload', to: 'msu_presentations#upload'
-
     resources :msu_lectures, only: :index
     resources :msu_presentations, only: :index
-
     resources :msu_users, only: [:index, :new, :create, :destroy]
 
+    get 'msu_discipline/:id/toggle', to: 'msu_disciplines#toggle', as: 'toggle_discipline'
+    get 'msu_lecture/:id/toggle', to: 'msu_lectures#toggle', as: 'toggle_lecture'
+
+    get '/reorderlectures', to: 'msu_lectures#reorder'
+    get 'upload', to: 'msu_presentations#upload'
   end
 
 end

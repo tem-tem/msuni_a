@@ -99,29 +99,6 @@
             <% end %>
           </div>
 
-          <!-- New Lecture Modal -->
-          <div class="modal fade bring-to-front" id="newLectureModal"
-               tabindex="-1"
-               role="dialog"
-               aria-labelledby="newLectureModal"
-               aria-hidden="true">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <div class="modal-title text-secondary" id="exampleModalLabel">Новая лекция</div>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body" id="newLectureModalBody">
-
-                  <!-- Здесь форма -->
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- END New Lecture Modal -->
-
           <!-- Lectures list -->
           <div id="lectures">
               <% if @discipline.msu_lectures.any? %>
@@ -169,9 +146,32 @@
         </div>
 
         <div class="tab-pane fade"
+             href="nav-books"
              id="nav-books"
              role="tabpanel"
-             aria-labelledby="nav-books-tab">книги</div>
+             aria-labelledby="nav-books-tab">
+
+          <div class="my-3 d-flex justify-content-end"
+               role="group"
+               aria-label="Lectures navigation">
+            <%= link_to [:new, :admin, @discipline, :msu_file, filetype: 'book'],
+                      class: "btn btn-outline-primary btn-sm",
+                      type: "button",
+                      "data-toggle": "modal",
+                      "data-target": "#itemModal",
+                      remote: true do %>
+                Добавить книгу
+            <% end %>
+          </div>
+
+          <% if @discipline.msu_files.where(filetype: 'book').any? %>
+            <% @discipline.msu_files.where(filetype: 'book').each_with_index do |book, index| %>
+              <%= render partial: 'admin/msu_files/book', locals: {book: book, index: index + 1} %>
+            <% end %>
+          <% end %>
+
+        </div>
+
         <div class="tab-pane fade"
              id="nav-videos"
              role="tabpanel"
@@ -202,6 +202,28 @@
       <!-- END Nav content -->
 
   </div>
+
+  <!-- New Lecture Modal -->
+  <div class="modal fade bring-to-front" id="itemModal"
+       tabindex="-1"
+       role="dialog"
+       aria-labelledby="itemModal"
+       aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="modal-title text-secondary" id="itemModalLabel">Новая лекция</div>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" id="itemModalBody">
+          <!-- Здесь форма -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- END New Lecture Modal -->
 
 <script>
   $( function() {
