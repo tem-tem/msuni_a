@@ -1,57 +1,79 @@
-<div class="my-3 lecture d-flex justify-content-between" style="overflow: hidden">
-  <div class="d-flex">
+<div class="my-3 lecture d-flex justify-content-between">
+  <div class="d-flex w-75">
     <div class="border-right p-3">
       <span class="badge badge-info">
         <%= index %>
       </span>
     </div>
 
-    <div class="m-3 d-flex flex-column align-items-start">
-      <h5 class="title mb-auto">
+    <div class="p-3 d-flex flex-column justify-content-between w-100">
+      <h5 class="title mb-3">
         <%= book.name %>
       </h5>
-      <div class="text-secondary">
-        Дата добавления: <%= book.created_at.strftime("%A, %d, %B, %Y") %>
+      <div>
+        <% if book.file? %>
+          <div class="text-secondary">
+            Файл: <%= book.file_identifier %>
+          </div>
+        <% end %>
+        <div class="text-secondary">
+          Дата добавления: <%= book.created_at.strftime("%A, %d, %B, %Y") %>
+        </div>
       </div>
     </div>
   </div>
-  <div class="buttons border-left d-flex flex-column">
+
+  <div class="border-left d-flex flex-column w-25">
+    <%= link_to [:edit, :admin, book.msu_discipline, book],
+        remote: true,
+        class: "h-100 p-2 border-bottom card-btn-row card-btn-row-primary justify-content-start" do %>
+        <%= octicon "pencil",
+        height: 20,
+        width: 20,
+        class: "button-icon mr-3 my-auto",
+          "aria-label": "Редактировать" %>
+        <small class="my-auto">Редактировать</small>
+    <% end %>
+
     <% if book.file? %>
       <%= link_to book.file.url,
-          "data-toggle": "tooltip",
-          "data-placement": "left",
-          "title": "#{book.file_identifier}" do %>
-        <div class="h-100 p-3 border-bottom d-flex align-items-middle card-botton card-botton-primary">
+          class: "h-100 p-2 border-bottom card-btn-row card-btn-row-primary justify-content-start" do %>
           <%= octicon "arrow-down",
-              :height => 24,
-              class: "button-icon m-auto",
-              "aria-label": "Скачать" %>
-        </div>
+          width: 20,
+          height: 20,
+          class: "button-icon mr-3 my-auto",
+            "aria-label": "Скачать" %>
+          <small class="my-auto">Скачать</small>
       <% end %>
     <% end %>
+
     <% if book.link? %>
       <a href="<%= book.link %>" target="_blank"
           data-toggle= "tooltip"
           data-placement = "left"
-          title = "<%= book.link %>">
-        <div class="h-100 p-3 border-bottom d-flex align-items-middle card-botton card-botton-primary">
+          title = "<%= book.link %>"
+          class="h-100 p-2 border-bottom card-btn-row card-btn-row-primary justify-content-start">
           <%= octicon "link-external",
-          :height => 24,
-          class: "button-icon m-auto",
+          width: 20,
+          height: 20,
+          class: "button-icon mr-3 my-auto",
             "aria-label": "Открыть" %>
-          </div>
+          <small class="my-auto">Открыть ссылку</small>
       </a>
     <% end %>
+
     <%= link_to [:admin, book.msu_discipline, book],
         method: :delete,
+        class: "h-100 p-2 d-flex align-items-middle card-btn-row card-btn-row-danger justify-content-start",
         data: { confirm: 'Are you sure?' },
         remote: true do %>
-        <div class="h-100 p-3 d-flex align-items-middle card-botton card-botton-danger">
           <%= octicon "trashcan",
-          :height => 24,
-          class: "button-icon m-auto",
+          width: 20,
+          height: 20,
+          class: "button-icon mr-3 my-auto",
             "aria-label": "Открыть" %>
-          </div>
+          <small class="my-auto">Удалить</small>
     <% end %>
+
   </div>
 </div>

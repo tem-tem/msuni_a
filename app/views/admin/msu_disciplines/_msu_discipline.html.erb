@@ -11,7 +11,7 @@
               remote: true,
               "data-toggle": "tooltip",
               "data-placement": "right",
-              "title": "Отображать на сайте"  do %>
+              "title": "Доступно  на сайте"  do %>
           <label class="switch my-auto">
             <input type="checkbox" id="toggleDiscipline-<%= @discipline.id %>" <%= @discipline.visible ? 'checked' : '' %>>
             <span class="slider round"></span>
@@ -45,7 +45,14 @@
               href="#nav-lectures"
               role="tab"
               aria-controls="nav-lectures"
-              aria-selected="true">Лекции</a>
+              aria-selected="true">
+                Лекции
+                <%  if @discipline.msu_lectures.any?  %>
+                  <span class="ml-2 badge badge-pill badge-secondary">
+                    <%= @discipline.msu_lectures.count%>
+                  </span>
+                <% end %>
+              </a>
           <a class="nav-item nav-link"
               id="nav-books-tab"
               data-toggle="tab"
@@ -80,68 +87,7 @@
              role="tabpanel"
              aria-labelledby="nav-lectures-tab">
 
-          <div class="my-3 btn-group d-flex justify-content-end"
-               role="group"
-               aria-label="Lectures navigation">
-            <button type="button"
-                    class="btn btn-outline-info btn-sm"
-                    data-toggle="modal"
-                    data-target="#orderLectureModal" >
-              Изменить порядок
-            </button>
-            <%= link_to [:new, :admin, @discipline, :msu_lecture],
-                      class: "btn btn-outline-primary btn-sm",
-                      type: "button",
-                      "data-toggle": "modal",
-                      "data-target": "#newLectureModal",
-                      remote: true do %>
-                Новая лекция
-            <% end %>
-          </div>
-
-          <!-- Lectures list -->
-          <div id="lectures">
-              <% if @discipline.msu_lectures.any? %>
-                <% @discipline.msu_lectures.each do |l| %>
-                  <%= render partial: '/admin/msu_lectures/lecture', object: l %>
-                <% end %>
-
-                <!-- Order Lecture Modal -->
-                <div class="modal fade bring-to-front" id="orderLectureModal"
-                     tabindex="-1"
-                     role="dialog"
-                     aria-labelledby="orderLectureModal"
-                     aria-hidden="true">
-                  <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <div class="modal-title text-secondary" id="orderLectureModalLabel">Изменение порядка лекций</div>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                      </div>
-                      <div class="modal-body col-10 align-self-center" id="orderLectureModalBody">
-
-                        <ul id="orderLectureList">
-                          <% @discipline.msu_lectures.each do |l| %>
-                            <%= render partial: '/admin/msu_lectures/lecture_order', locals: {lecture: l} %>
-                          <% end %>
-                        </ul>
-
-                      </div>
-                      <div class="modal-footer">
-                       <button type="button" class="btn btn-primary" id="newOrderButton" onclick="sendLecturesOrder()" >Сохранить изменения</button>
-                     </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- END Order Lecture Modal -->
-
-              <% else %>
-                <%= render partial: '/admin/empty' %>
-              <% end %>
-          </div>
-          <!-- Lectures list end -->
+          <%= render partial: 'admin/msu_lectures/lectures', locals: {discipline: @discipline} %>
 
         </div>
 
@@ -176,27 +122,14 @@
              id="nav-videos"
              role="tabpanel"
              aria-labelledby="nav-videos-tab">видосы</div>
+
         <div class="tab-pane fade"
              id="nav-presentations"
              role="tabpanel"
              aria-labelledby="nav-presentations-tab">
 
-          <% if @discipline.msu_lectures.any? %>
-            <% @discipline.msu_lectures.each do |lec| %>
-              <% if lec.msu_presentations.any? %>
-              <small class="row col-6 my-4 text-secondary">
-                <%= lec.title %>
-              </small>
-              <div class="row border-bottom">
-                  <% lec.msu_presentations.each do |p| %>
-                    <div class="col-4">
-                      <%= render partial:'/admin/msu_presentations/presentation', object: p %>
-                    </div>
-                  <% end %>
-              </div>
-              <% end %>
-            <% end %>
-          <% end %>
+           <%= render partial: 'admin/msu_presentations/presentations', locals: {discipline: @discipline} %>
+
         </div>
       </div>
       <!-- END Nav content -->

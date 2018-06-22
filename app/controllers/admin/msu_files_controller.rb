@@ -20,6 +20,32 @@ class Admin::MsuFilesController < ApplicationController
     end
   end
 
+  def edit
+    @file = MsuFile.find(params[:id])
+    @discipline = @file.msu_discipline
+    params[:filetype] = @file.filetype
+    respond_to do |f|
+      f.js
+    end
+  end
+
+  def update
+    @file = MsuFile.find(params[:id])
+    @discipline = @file.msu_discipline
+    params[:filetype] = @file.filetype
+    @file.update(file_params)
+
+    if @file.save
+      redirect_to [:admin, @discipline, anchor: 'nav-books']
+    else
+      respond_to do |f|
+        f.js
+        flash.now[:danger] = @file.errors.full_messages.to_sentence
+        render :edit
+      end
+    end
+  end
+
   def destroy
     file = MsuFile.find(params[:id])
     discipline = file.msu_discipline

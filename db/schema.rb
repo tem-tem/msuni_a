@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180619141919) do
+ActiveRecord::Schema.define(version: 20180622181050) do
 
   create_table "msu_books", force: :cascade do |t|
     t.string "title"
@@ -72,8 +72,7 @@ ActiveRecord::Schema.define(version: 20180619141919) do
     t.integer "msu_lecture_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "pdf_filename"
-    t.string "pptx_filename"
+    t.string "pdf"
     t.index ["msu_lecture_id"], name: "index_msu_presentations_on_msu_lecture_id"
   end
 

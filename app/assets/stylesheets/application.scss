@@ -181,13 +181,33 @@ a:hover {
   justify-content: center;
   fill: $dark;
 }
+.card-botton:hover{
+  color: $light;
+  fill: $light;
+}
 .card-botton-primary:hover{
   background-color: $primary;
-  fill: $light;
 }
 .card-botton-danger:hover{
   background-color: $danger;
+}
+
+.card-btn-row{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  fill: $dark;
+  color: $dark;
+}
+.card-btn-row:hover{
+  color: $light;
   fill: $light;
+}
+.card-btn-row-primary:hover{
+  background-color: $primary;
+}
+.card-btn-row-danger:hover{
+  background-color: $danger;
 }
 
 
@@ -201,9 +221,7 @@ a:hover {
 }
 
 .lecture{
-  // background-color: white;
-  // box-shadow: 0px 15px 60px rgba(0, 0, 0, 0.03);
-  // border-left: 4px solid $bg2-color;
+  overflow: hidden;
   -webkit-transition: box-shadow 0.2s, border-left 0.2s; /* For Safari 3.1 to 6.0 */
   transition: box-shadow 0.4s, border-left 0.2s;
   border-radius: 10px;
@@ -331,4 +349,15 @@ pre{
   top:0px;
   background-color: $bg-color;
   z-index: 2;
+}
+
+.nav-tabs .nav-item{
+  color: $secondary;
+  border: none;
+  border-bottom: 5px solid transparent;
+}
+.nav-tabs .nav-item.active{
+  background: none;
+  border-bottom: 5px solid #007bff;
+  color: #007bff;
 }

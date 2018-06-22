@@ -1,7 +1,7 @@
 
 $('#lecture-<%= @lecture.id %>').remove();
 $('#lecture-order-<%= @lecture.id %>').remove();
-$("#discipline-<%=j @lecture.msu_discipline.id.to_s %>-name span")
+$("#nav-lecture-tab span")
   .text("<%=j @lecture.msu_discipline.msu_lectures.count.to_s %>");
 
 $('#newOrderButton').click();

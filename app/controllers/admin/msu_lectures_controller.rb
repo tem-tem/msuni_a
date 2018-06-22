@@ -83,10 +83,12 @@ class Admin::MsuLecturesController < ApplicationController
 
   def reorder
     new_order = params[:new_order]
-    new_order.each_with_index do |lecture_id, index|
-      lecture = MsuLecture.find(lecture_id.to_i)
-      lecture.order = index + 1
-      lecture.save!
+    if new_order
+      new_order.each_with_index do |lecture_id, index|
+        lecture = MsuLecture.find(lecture_id.to_i)
+        lecture.order = index + 1
+        lecture.save!
+      end
     end
   end
 

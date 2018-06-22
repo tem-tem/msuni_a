@@ -1,0 +1,16 @@
+<% if @discipline.msu_lectures.any? %>
+  <% @discipline.msu_lectures.each do |lec| %>
+    <% if lec.msu_presentations.any? %>
+    <small class="row col-6 my-4 text-secondary">
+      <%= lec.title %>
+    </small>
+    <div class="row py-3 border-bottom">
+        <% lec.msu_presentations.each do |p| %>
+          <div class="col-4">
+            <%= render partial:'/admin/msu_presentations/presentation', object: p %>
+          </div>
+        <% end %>
+    </div>
+    <% end %>
+  <% end %>
+<% end %>

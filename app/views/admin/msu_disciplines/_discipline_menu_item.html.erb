@@ -5,11 +5,6 @@
               id: "discipline-#{ discipline.id }-link" do %>
     <p id="discipline-<%= discipline.id %>-name">
       <%= discipline.title %>
-      <%  if discipline.msu_lectures.any?  %>
-        <span class="ml-2 badge badge-pill badge-secondary">
-          <%= discipline.msu_lectures.count%>
-        </span>
-      <% end %>
     </p>
   <% end %>
 
