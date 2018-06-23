@@ -1,5 +1,17 @@
 Rails.application.routes.draw do
 
+  namespace :admin do
+    get 'msu_videos/new'
+  end
+
+  namespace :admin do
+    get 'msu_videos/create'
+  end
+
+  namespace :admin do
+    get 'msu_videos/destroy'
+  end
+
   default_url_options host: "localhost:3000"
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
@@ -20,6 +32,7 @@ Rails.application.routes.draw do
     resources :msu_disciplines do
       resources :msu_lectures
       resources :msu_files
+      resources :msu_videos, only: [:new, :create, :destroy, :parse]
     end
 
     resources :msu_lectures do

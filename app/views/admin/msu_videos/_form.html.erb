@@ -1,0 +1,15 @@
+<div id="errors" style="display:none;"></div>
+
+<%= form_for [:admin, @video.msu_discipline, @video], remote: true  do |f| %>
+  <div class="input-group mb-3">
+    <%= f.text_field :link,
+                     class: 'form-control',
+                     id: 'input-discipline-name',
+                     placeholder: 'Ссылка на видео',
+                     'aria-label' => 'Ссылка на видео',
+                     'aria-describedby' => 'basic-addon2' %>
+    <div class="input-group-append">
+      <%= f.button "Добавить", class: 'btn btn-outline-primary', remote: true %>
+    </div>
+  </div>
+<% end %>

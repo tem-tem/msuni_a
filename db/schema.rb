@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180622181050) do
+ActiveRecord::Schema.define(version: 20180623151546) do
 
   create_table "msu_books", force: :cascade do |t|
     t.string "title"
@@ -85,6 +85,19 @@ ActiveRecord::Schema.define(version: 20180622181050) do
     t.datetime "updated_at", null: false
     t.string "password_digest"
     t.index ["name"], name: "index_msu_users_on_name", unique: true
+  end
+
+  create_table "msu_videos", force: :cascade do |t|
+    t.string "link"
+    t.string "title"
+    t.string "thumbnail"
+    t.string "description"
+    t.string "duration"
+    t.integer "msu_discipline_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "video_id"
+    t.index ["msu_discipline_id"], name: "index_msu_videos_on_msu_discipline_id"
   end
 
 end

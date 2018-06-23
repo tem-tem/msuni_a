@@ -1,0 +1,21 @@
+<div class="card lecture image-card">
+    <div class="text-center image-delete-button">
+      <%= link_to [:admin, video.msu_discipline, video],
+          method: :delete,
+          style: "box-shadow: 0 10px 30px rgba(0,0,0,0.5)",
+          data: { confirm: 'Are you sure?' },
+          remote: true do %>
+        <button type="button" class="btn btn-danger">
+          Удалить
+        </button>
+      <% end %>
+    </div>
+    <img class="card-img-top" src="<%= video.thumbnail %>" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title"><%= video.title %></h5>
+      <p class="card-text"><%= video.description[0,144] %>...</p>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted"><%= video.created_at.strftime("%A, %d, %B, %Y") %></small>
+    </div>
+  </div>

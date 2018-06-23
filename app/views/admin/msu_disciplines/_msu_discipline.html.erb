@@ -121,7 +121,30 @@
         <div class="tab-pane fade"
              id="nav-videos"
              role="tabpanel"
-             aria-labelledby="nav-videos-tab">видосы</div>
+             aria-labelledby="nav-videos-tab">
+
+           <div class="my-3 d-flex justify-content-end"
+                role="group"
+                aria-label="Videos navigation">
+             <%= link_to [:new, :admin, @discipline, :msu_video],
+                       class: "btn btn-outline-primary btn-sm",
+                       type: "button",
+                       "data-toggle": "modal",
+                       "data-target": "#itemModal",
+                       remote: true do %>
+                 Добавить видео
+             <% end %>
+           </div>
+
+           <% if @discipline.msu_videos.any? %>
+             <div class="card-columns">
+               <% @discipline.msu_videos.each do |v| %>
+                 <%= render partial: 'admin/msu_videos/video', locals: {video: v} %>
+               <% end %>
+             </div>
+           <% end %>
+
+        </div>
 
         <div class="tab-pane fade"
              id="nav-presentations"

@@ -5,5 +5,6 @@ class MsuDiscipline < ApplicationRecord
             }
   has_many :msu_lectures, dependent: :destroy
   has_many :msu_files, dependent: :destroy
+  has_many :msu_videos, dependent: :destroy
 
 end

@@ -1,57 +1,7 @@
 
-<div class="container my-3">
-  <div class="col-xl-6 col-kg-8 mx-auto  border rounded m-5">
-    <div class="row border-bottom">
-      <%= link_to url_for(:back),
-      class: "col-auto row align-items-center border-right mx-auto" do %>
-      <div>
-        <%= octicon "arrow-left",
-        height: 36,
-        color: "secondary",
-        "aria-label": "Отмена" %>
-      </div>
-      <div class="mx-3">
-        Отмена
-      </div>
-      <% end %>
-
-      <div class="py-4 mx-auto text-center">
-        Укажите файлы презентации к лекции <%= @lecture.title %>
-      </div>
-    </div>
-
-
-    <%= form_for [:admin, @lecture, @presentation] do |f| %>
-    <div class="row border-bottom">
-      <div class="col-6 py-3 border-right">
-        <div class="pdf-label py-3 text-center font-weight-bold">
-          <h4>
-            PDF файл
-          </h4>
-          <div class="text-secondary font-weight-light">
-            можно смотреть онлайн
-          </div>
-        </div>
-        <%= f.file_field :pdf, accept: ".pdf", class: "my-3" %>
-      </div>
-
-      <div class="col-6 py-3">
-        <div class="pptx-label py-3 text-center font-weight-bold">
-          <h4>
-            Power Point файл
-          </h4>
-          <div class="text-secondary font-weight-light">
-            можно скачать
-          </div>
-        </div>
-        <%= f.file_field :pptx, accept: ".pptx, .ppt", class: "my-3" %>
-      </div>
-    </div>
-    <div class="row my-5">
-      <%= f.submit "Загрузить файлы", class: "btn btn-outline-primary mx-auto" %>
-    </div>
-    <% end %>
-
-  </div>
-
-</div>
+<%= form_for [:admin, @lecture, @presentation] do |f| %>
+  <%= f.file_field :pdf,
+      accept: ".pdf",
+      class: "my-3",
+      onchange: "this.form.submit()" %>
+<% end %>

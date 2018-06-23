@@ -7,16 +7,36 @@
       </span>
     </div>
 
-    <%= link_to [:admin, lecture.msu_discipline, lecture],
-    class: "p-3 d-flex flex-column justify-content-between w-100",
-      style: "word-wrap:break-word;" do %>
+    <%= link_to [:admin, lecture],
+        class: "p-3 d-flex flex-column justify-content-between w-100",
+        style: "word-wrap:break-word;" do %>
       <div class="title mb-3">
         <h5>
           <%= lecture.title %>
         </h5>
+        <div class="text-secondary d-flex flex-column">
+          <div class="d-flex">
+            <% if lecture.msu_presentations.any? %>
+            <div class="mr-2">
+              Презентаци<%= lecture.msu_presentations.count > 1 ? 'и' : 'я' %>:
+            </div>
+            <div>
+                <% lps = lecture.msu_presentations.map {|lp| lp.title} %>
+                <%= lps.to_sentence %>
+            </div>
+            <% else %>
+            <div class="d-flex align-items-center">
+              <div class="mr-2">
+                Презентации нет
+              </div>
+            </div>
+            <% end %>
+          </div>
+
+        </div>
       </div>
       <!-- Даты -->
-      <div class="text-secondary d-flex">
+      <div class="text-secondary d-flex border-top pt-2">
 
         <div class="col-6">
           <div class="row">
@@ -39,7 +59,7 @@
       </div>
       <!-- Даты конец -->
 
-      <% end %>
+    <% end %>
   </div>
 
     <div class="d-flex flex-column border-left w-25">
