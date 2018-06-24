@@ -12,22 +12,21 @@
 
   <body>
   <% if admin? %>
-  <div class="container-fluid">
-
     <% if flash.any? %>
       <% flash.each do |key, message| %>
         <%= render partial: 'admin/alert',
-                 locals: {key: key, message: message} %>
+        locals: {key: key, message: message} %>
       <% end %>
     <% end %>
+  <div class="col">
+    <% if menu? %>
+      <%= render partial: '/admin/menu' %>
+    <% end %>
 
-    <%= render partial: '/admin/menu' unless (params[:controller] == 'admin/msu_lectures' and params[:action] == 'edit') %>
-
-    <%= yield %>
-
-    <div class="row footer">
-      <%= yield :footer %>
+    <div class="col content-col p-0">
+      <%= yield %>
     </div>
+
   </div>
 
     <script>

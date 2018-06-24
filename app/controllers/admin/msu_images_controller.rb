@@ -18,7 +18,7 @@ class Admin::MsuImagesController < ApplicationController
       if new_image.save
         @new_images.push(new_image)
       else
-        flash[:danger] = 'Некоторые файлы не загрузились'
+        flash[:danger] = 'Некоторые файлы не удалось загрузить'
       end
     end
 

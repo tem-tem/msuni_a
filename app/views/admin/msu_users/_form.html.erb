@@ -1,0 +1,29 @@
+
+<div id="errors" style="display:none;"></div>
+
+<%= form_for [:admin, @user], remote: true do |f| %>
+<div class="input-group mb-3">
+  <%= f.text_field :name,
+      class: "form-control",
+      id: "nameInput",
+      placeholder: "Логин" %>
+  <%= f.password_field :password,
+      class: "form-control",
+      id: "passwordInput",
+      placeholder: "Пароль" %>
+</div>
+
+  <div class="d-flex align-items-center ml-auto">
+    <div class="mr-3">
+      Админ
+    </div>
+    <label class="switch my-auto">
+      <%= f.check_box :admin %>
+      <span class="slider round"></span>
+    </label>
+  </div>
+
+  <%= f.submit "Создать",
+    class: "btn btn-outline-primary ml-auto d-flex mt-2",
+    remote: true %>
+<% end %>

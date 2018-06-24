@@ -1,0 +1,14 @@
+$('#itemModal').modal();
+$('#itemModalLabel').html('Новое видео');
+$('#itemModalBody')
+  .html('<%= j render "admin/msu_videos/form" %>');
+
+var error = "<%= j flash[:danger] %>",
+    errorHolder = $("#errors");
+
+if (error){
+  errorHolder.hide(50);
+  errorHolder.addClass("text-danger mb-3");
+  errorHolder.html(error);
+  errorHolder.show(200);
+}

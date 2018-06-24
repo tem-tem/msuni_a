@@ -13,34 +13,33 @@
   <%= link_to [:new, :admin, :msu_discipline],
       id: 'new_discipline',
       remote: true,
-      class: "col-2 discipline-button d-flex align-items-center justify-content-center" do %>
+      class: "col-2 card-botton card-botton-primary d-flex align-items-center justify-content-center" do %>
     <%= octicon "plus",
         height: 36,
         "aria-label": "Добавить дисциплину",
         "data-toggle": "modal",
         "data-target": "#newDisciplineModal"  %>
   <% end %>
+</div>
 
-  <div class="modal fade bring-to-front" id="formDisciplineModal"
-       tabindex="-1"
-       role="dialog"
-       aria-labelledby="formDisciplineModal"
-       aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <div class="modal-title text-secondary" id="formDisciplineModalLabel"></div>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body" id="formDisciplineModalBody">
-          <!-- Здесь форма -->
-        </div>
+<div class="modal fade bring-to-front" id="formDisciplineModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="formDisciplineModal"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title text-secondary" id="formDisciplineModalLabel"></div>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="formDisciplineModalBody">
+        <!-- Здесь форма -->
       </div>
     </div>
   </div>
-
 </div>
 
   <!-- Disciplines list -->

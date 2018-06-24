@@ -18,9 +18,8 @@ class Admin::MsuLecturesController < ApplicationController
     @lecture.order = @discipline.msu_lectures.count + 1
     if @lecture.save
       redirect_to([:edit, :admin, @discipline, @lecture])
-      flash[:success] = 'Лекция создана'
     else
-      flash.now[:danger] = @lecture.errors.full_messages.to_sentence
+      flash[:danger] = @lecture.errors.full_messages.to_sentence
       render :new
     end
 
@@ -35,21 +34,19 @@ class Admin::MsuLecturesController < ApplicationController
   end
 
   def edit
-    @lecture = MsuLecture.find(params[:id])
+      @lecture = MsuLecture.find(params[:id])
   end
 
   def update
     respond_to do |format|
       @lecture = MsuLecture.find(params[:id])
       @lecture.update(lecture_params)
-
       if @lecture.valid?
         flash.now[:success] = 'Лекция сохранена'
-        format.js
       else
-        flash[:danger] = @lecture.errors.full_messages.to_sentence
-        render :edit
+        flash.now[:danger] = @lecture.errors.full_messages.to_sentence
       end
+      format.js
     end
 
   end
@@ -66,13 +63,16 @@ class Admin::MsuLecturesController < ApplicationController
     end
   end
 
-  def save
-    lecture = MsuLecture.find(params[:msu_lecture_id])
-    lecture.update(lecture_params)
-    respond_to do |format|
-      f.js
-    end
-  end
+  # def save
+  #   lecture = MsuLecture.find(params[:msu_lecture_id])
+  #   unless lecture.update(lecture_params)
+  #     flash.now[:danger] = lecture.errors.full_messages.to_sentence
+  #   end
+  #
+  #   respond_to do |format|
+  #     f.js
+  #   end
+  # end
 
   def toggle
     @id = params[:id]
@@ -83,10 +83,12 @@ class Admin::MsuLecturesController < ApplicationController
 
   def reorder
     new_order = params[:new_order]
-    new_order.each_with_index do |lecture_id, index|
-      lecture = MsuLecture.find(lecture_id.to_i)
-      lecture.order = index + 1
-      lecture.save!
+    if new_order
+      new_order.each_with_index do |lecture_id, index|
+        lecture = MsuLecture.find(lecture_id.to_i)
+        lecture.order = index + 1
+        lecture.save!
+      end
     end
   end
 

@@ -1,0 +1,11 @@
+<%= form_tag "/admin", style: "max-width: 400px; margin: 10% auto;" do %>
+  <div class="form-group">
+    <div class="input-group">
+      <input type="text" name="name" class="form-control form-control-lg" id="nameInput" aria-describedby="nameHelp" placeholder="Логин">
+      <input type="password" name="password" class="form-control form-control-lg" id="passwordInput" aria-describedby="passwordHelp" placeholder="Пароль">
+      <div class="input-group-append">
+        <button class="btn btn-outline-primary" type="submit">Войти</button>
+      </div>
+    </div>
+  </div>  
+<% end %>

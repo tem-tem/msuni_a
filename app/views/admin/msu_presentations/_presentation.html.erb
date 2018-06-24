@@ -1,40 +1,39 @@
-<div class="py-2 my-3 col lecture">
+<div class="m-3 d-flex flex-column lecture">
 
-  <div class="row justify-content-center my-3">
+  <h6 class="m-0 p-2 d-flex justify-content-center py-3 border-bottom"
+      style="text-align: center;word-break: break-all;">
     <%= presentation.title %>
-  </div>
+  </h6>
 
-  <div class="row justify-content-center my-3">
-    <div class="col-4">
-      <%= link_to pdfjs.full_path(file: "msu_presentations/#{presentation.pdf_filename}"),
+  <div class="d-flex">
+    <%= link_to pdfjs.full_path(file: presentation.pdf.url),
+    class: "p-3 w-100 border-right card-botton card-botton-primary justify-content-between",
+    target: "_blank" do %>
+      <%= octicon "link-external",
+      height: 16,
+      class: "m-auto",
+        "aria-label": "Открыть" %>
+    <% end %>
+
+    <%= link_to presentation.pdf.url,
+      class: "p-3 w-100 border-right card-botton card-botton-primary justify-content-between",
+      download: "#{presentation.pdf.url}",
       target: "_blank" do %>
-      <button type="button" class="btn btn-block btn-outline-secondary align-self-center">
-        PDF
-      </button>
-      <% end %>
-    </div>
+        <%= octicon "arrow-down",
+        height: 20,
+        class: "m-auto",
+          "aria-label": "Скачать" %>
+    <% end %>
 
-    <div class="col-4">
-      <%= link_to "/pdfjs/msu_presentations/#{presentation.pptx_filename}", download: presentation.title do %>
-      <button type="button" class="btn btn-block btn-outline-secondary align-self-center">
-        PPTX
-      </button>
+    <%= link_to [:admin, presentation.msu_lecture, presentation],
+        class: "p-3 w-100 card-botton card-botton-danger justify-content-between",
+        method: :delete,
+        data: { confirm: 'Are you sure?' } do %>
+      <%= octicon "trashcan",
+      height: 16,
+      class: "m-auto",
+        "aria-label": "Удалить" %>
       <% end %>
-    </div>
-
-    <div class="col-4">
-      <%= link_to [:admin, presentation.msu_lecture, presentation],
-      method: :delete,
-      data: { confirm: 'Are you sure?' } do %>
-      <button type="button" class="btn btn-outline-danger align-self-center">
-        <%= octicon "trashcan",
-        height: 18,
-        fill: '#dc3545',
-        class: "text-danger",
-          "aria-label": "Удалить" %>
-        </button>
-        <% end %>
-      </div>
   </div>
 
 </div>

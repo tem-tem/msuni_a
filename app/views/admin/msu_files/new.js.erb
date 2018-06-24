@@ -1,0 +1,14 @@
+$('#itemModal').modal();
+$('#itemModalLabel').html('Новая книга');
+$('#itemModalBody')
+  .html('<%= j render "admin/msu_files/#{params[:filetype]}_form" %>');
+
+var error = "<%= j flash[:danger] %>",
+    errorHolder = $("#errors");
+
+if (error){
+  errorHolder.hide(50);
+  errorHolder.addClass("text-danger mb-3");
+  errorHolder.html(error);
+  errorHolder.show(200);
+}

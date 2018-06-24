@@ -1,0 +1,57 @@
+<div class="modal fade bring-to-front" id="newUserModal"
+     tabindex="-1"
+     role="dialog"
+     aria-labelledby="newUserModal"
+     aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title text-secondary" id="newUserModalLabel">
+          Новый пользователь
+        </div>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="newUserModalBody">
+        <!-- Форма создания нового пользователя -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="mx-auto mt-5" style="width: 800px">
+  <div class="text-muted mb-3">
+    * Только <span class="badge badge-pill badge-info">Админ</span> имеет доступ к этой странице
+  </div>
+  <table class="table container">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Логин</th>
+        <th scope="col">
+          <%= link_to [:new, :admin, :msu_user],
+          id: 'new_user',
+          remote: true,
+          class: "d-flex justify-content-end",
+            "aria-label": "Добавить пользователя",
+            "data-toggle": "modal",
+            "data-target": "#newUserModal" do %>
+            <%= octicon "plus",
+            width: 20,
+            height: 20,
+            class: "button-icon mr-3 my-auto",
+              "aria-label": "Добавить" %>
+              <small class="my-auto">Добавить</small>
+
+              <% end %>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each_with_index do |u, i| %>
+      <%= render partial: 'admin/msu_users/user', locals: {user: u, index: i + 1} %>
+      <% end %>
+    </tbody>
+  </table>
+</div>

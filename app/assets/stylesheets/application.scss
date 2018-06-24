@@ -18,19 +18,25 @@
 @import "simplemde.min";
 @import "bootstrap";
 
-@import url('https://fonts.googleapis.com/css?family=PT+Sans|PT+Serif:700');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:700,900|Roboto&subset=cyrillic-ext');
 
 $bg-color: #f9f9f9;
 $bg2-color: #f1f1f1;
 $menu-height: 60px;
+$menu-left-height: 100vh;
 
+h1, h2, h3{
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+}
 
-h1, h2, h3, h4, h5, h6{
-  font-family: 'PT Serif', serif;
+h4, h5, h6{
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
 }
 
 body{
-  font-family: 'PT Sans', sans-serif;
+  font-family: 'Roboto', sans-serif;
   background-color: $bg-color;
 }
 
@@ -46,11 +52,74 @@ a:hover {
   color: #000f14;
 }
 
-.menu{
-  height: $menu-height;
+
+// left menu start
+
+.menu-left {
+  height:100vh;
+  max-width:100px;
   position: sticky;
   top: 0;
-  z-index: 2;
+  background: white;
+  overflow: auto;
+}
+
+.menu-logo {
+  width: inherit;
+  height: 120px;
+  position:relative;
+  display: block;
+  color: $primary;
+}
+.menu-logo {
+  fill: $primary;
+}
+
+.menu-item {
+  width: inherit;
+  height: 70px;
+  position:relative;
+  display: block;
+  color: #bad6ea;
+  font-size: 0.8em;
+}
+.menu-item .button-icon{
+  fill: #bad6ea;
+}
+
+.menu-item-active{
+  color: $primary;
+}
+.menu-item-active .button-icon {
+  fill: $primary;
+}
+
+.menu-item:hover{
+  color: #0b3a5c;
+}
+.menu-item:hover .button-icon{
+  fill: #0b3a5c;
+}
+
+.menu-item-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  text-align: center;
+}
+
+// left menu end
+
+
+.content-col {
+  min-height: $menu-left-height;
+}
+
+
+.menu{
+  height: $menu-height;
+  top: 0;
   background-color: $bg-color;
 }
 .menu-link{
@@ -79,7 +148,7 @@ a:hover {
 }
 
 .discipline-menu{
-  height: calc(100vh - $menu-height);
+  min-height: 100vh;
   overflow-y: auto;
 }
 
@@ -106,17 +175,42 @@ a:hover {
   border-left: 4px solid $primary;
 }
 
-.discipline-button{
+.card-botton{
   display: flex;
   flex-direction: column;
   justify-content: center;
   fill: $dark;
 }
-
-.discipline-button:hover{
-  background-color: $primary;
+.card-botton:hover{
+  color: $light;
   fill: $light;
 }
+.card-botton-primary:hover{
+  background-color: $primary;
+}
+.card-botton-danger:hover{
+  background-color: $danger;
+}
+
+.card-btn-row{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  fill: $dark;
+  color: $dark;
+}
+.card-btn-row:hover{
+  color: $light;
+  fill: $light;
+}
+.card-btn-row-primary:hover{
+  background-color: $primary;
+}
+.card-btn-row-danger:hover{
+  background-color: $danger;
+}
+
+
 .discipline-menu-header{
   background-color: $bg2-color;
 }
@@ -127,9 +221,7 @@ a:hover {
 }
 
 .lecture{
-  // background-color: white;
-  // box-shadow: 0px 15px 60px rgba(0, 0, 0, 0.03);
-  // border-left: 4px solid $bg2-color;
+  overflow: hidden;
   -webkit-transition: box-shadow 0.2s, border-left 0.2s; /* For Safari 3.1 to 6.0 */
   transition: box-shadow 0.4s, border-left 0.2s;
   border-radius: 10px;
@@ -257,4 +349,15 @@ pre{
   top:0px;
   background-color: $bg-color;
   z-index: 2;
+}
+
+.nav-tabs .nav-item{
+  color: $secondary;
+  border: none;
+  border-bottom: 5px solid transparent;
+}
+.nav-tabs .nav-item.active{
+  background: none;
+  border-bottom: 5px solid #007bff;
+  color: #007bff;
 }

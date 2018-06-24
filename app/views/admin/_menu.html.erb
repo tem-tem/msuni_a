@@ -1,32 +1,33 @@
+<nav class="row navbar navbar-light navbar-expand-lg border-bottom">
+  <div class="navbar-brand"><%= current_user.name %></div>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item <%= current_controller?('msu_disciplines') %>">
 
-
-<div class="menu">
-  <div class="row menu border-bottom justify-content-center bring-to-front">
-    <!-- <%= link_to admin_path, class: "menu-link menu-link-#{current_controller?('static_pages')}" do %>
-      <div>
-        MSU Admin
-      </div>
-    <% end %> -->
-
-    <%= link_to [:admin, :msu_disciplines],
-              class: "menu-link menu-link-#{current_controller?('msu_disciplines')}" do %>
-      <div>
-        Панель дисциплин
-      </div>
-    <% end %>
-
-    <%= link_to [:admin, :msu_lectures],
-                class: "menu-link menu-link-#{current_controller?('msu_lectures')}" do %>
-        <div>
-          Лекции
-        </div>
-    <% end %>
-
-    <%= link_to [:admin, :msu_presentations],
-                class: "menu-link menu-link-#{current_controller?('msu_presentations')}" do %>
-        <div>
-          Презентации
-        </div>
-    <% end %>
+        <%= link_to [:admin, :msu_disciplines],
+                  class: "nav-link" do %>
+          Панель дисциплин
+        <% end %>
+      </li>
+      <% if current_user.admin %>
+        <li class="nav-item <%= current_controller?('msu_users') %>">
+          <%= link_to [:admin, :msu_users],
+                    class: "nav-link" do %>
+            Пользователи
+          <% end %>
+        </li>
+      <% end %>
+      <li class="nav-item">
+        <%= link_to '/logout',
+            method: :delete,
+            data: { confirm: 'Are you sure?' },
+            class: "nav-link" do %>
+          Выйти
+        <% end %>
+      </li>
+    </ul>
   </div>
-</div>
+</nav>

@@ -1,1 +1,7 @@
-$("#lectureSave").val("ds");
+<% if flash.any? %>
+  <% flash.each do |key, message| %>
+  $("#for-alert").html("<%=j render partial: 'admin/alert', locals: {key: key, message: message} %>");
+    <% end %>
+<% end %>
+$(".alert").alert();
+setTimeout(function(){ $(".alert").alert('close'); }, 5000);
