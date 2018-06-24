@@ -19,7 +19,7 @@ class Admin::MsuLecturesController < ApplicationController
     if @lecture.save
       redirect_to([:edit, :admin, @discipline, @lecture])
     else
-      flash.now[:danger] = @lecture.errors.full_messages.to_sentence
+      flash[:danger] = @lecture.errors.full_messages.to_sentence
       render :new
     end
 

@@ -14,8 +14,20 @@
     <div class="card-body">
       <h5 class="card-title"><%= video.title %></h5>
       <p class="card-text"><%= video.description[0,144] %>...</p>
+      <%= link_to video.link,
+          target: "_blank",
+          class: "h-100 p-2 card-btn-row card-btn-row-primary justify-content-start" do %>
+          <%= octicon "link-external",
+          width: 20,
+          height: 20,
+          class: "button-icon mr-3 my-auto",
+            "aria-label": "Скачать" %>
+          <small class="my-auto">Открыть на youtube</small>
+      <% end %>
     </div>
     <div class="card-footer">
-      <small class="text-muted"><%= video.created_at.strftime("%A, %d, %B, %Y") %></small>
+      <small class="text-muted">
+        <%= video.created_at.strftime("%A, %d, %B, %Y") %>
+      </small>
     </div>
   </div>

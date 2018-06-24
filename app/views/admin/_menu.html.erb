@@ -1,115 +1,3 @@
-<!-- <div class="col p-0 menu-left border-right">
-
-  <div class="menu-logo mb-4">
-    <div class="menu-item-container">
-        <%= octicon "squirrel",
-        :height => 42,
-        class: "button-icon mx-auto",
-          "aria-label": "Логотип" %>
-        <div class="menu-item-title">
-          <small>
-            <%= current_user.name %>
-          </small>
-        </div>
-    </div>
-  </div>
-
-  <%= link_to [:admin, :msu_disciplines],
-            class: "menu-item menu-item-#{current_controller?('msu_disciplines')}" do %>
-    <div class="menu-item-container">
-        <%= octicon "device-desktop",
-        :height => 30,
-        class: "button-icon",
-          "aria-label": "Панель дисциплин" %>
-        <div class="menu-item-title">
-          Панель управления
-        </div>
-    </div>
-  <% end %>
-
-  <%= link_to [:admin, :msu_lectures],
-    class: "menu-item menu-item-#{ (controller.controller_name == 'msu_lectures') and (controller.action_name == 'index') ? 'active' : 'disabled' }" do %>
-    <div class="menu-item-container">
-        <%= octicon "file",
-        :height => 30,
-        class: "button-icon",
-          "aria-label": "Все лекции" %>
-        <div class="menu-item-title">
-          Лекции
-        </div>
-    </div>
-  <% end %>
-
-  <%= link_to [:admin, :msu_presentations],
-    class: "menu-item menu-item-#{ (controller.controller_name == 'msu_presentations') and (controller.action_name == 'index') ? 'active' : 'disabled' }" do %>
-    <div class="menu-item-container">
-        <%= octicon "file-media",
-        :height => 30,
-        class: "button-icon",
-          "aria-label": "Все лекции" %>
-        <div class="menu-item-title">
-          Презентации
-        </div>
-    </div>
-  <% end %>
-
-  <div class="menu-item">
-    <div class="menu-item-container">
-        <%= octicon "device-camera-video",
-        :height => 30,
-        class: "button-icon",
-          "aria-label": "Видеоматериалы" %>
-        <div class="menu-item-title">
-          Видео
-        </div>
-
-    </div>
-  </div>
-
-  <div class="menu-item border-bottom">
-    <div class="menu-item-container">
-        <%= octicon "book",
-        :height => 30,
-        class: "button-icon mx-auto",
-          "aria-label": "Книги" %>
-        <div class="menu-item-title">
-          Книги
-        </div>
-
-    </div>
-  </div>
-
-  <%= link_to [:admin, :msu_users],
-            class: "menu-item mt-4  menu-item-#{current_controller?('msu_users')}" do %>
-    <div class="menu-item-container">
-        <%= octicon "organization",
-        :height => 30,
-        class: "button-icon mx-auto",
-          "aria-label": "Пользователи" %>
-        <div class="menu-item-title">
-          Пользователи
-        </div>
-    </div>
-  <% end %>
-
-  <%= link_to logout_path,
-      class: "menu-item",
-      method: :delete,
-      data: { confirm: 'Выйти?' } do %>
-    <div class="menu-item-container">
-        <%= octicon "sign-out",
-        :height => 30,
-        class: "button-icon mx-auto",
-          "aria-label": "Выйти" %>
-        <div class="menu-item-title">
-          Выйти
-        </div>
-
-    </div>
-  <% end %>
-
-</div> -->
-
 <nav class="row navbar navbar-light navbar-expand-lg border-bottom">
   <div class="navbar-brand"><%= current_user.name %></div>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -124,36 +12,22 @@
           Панель дисциплин
         <% end %>
       </li>
-      <li class="nav-item <%= current_controller?('msu_users') %>">
-        <%= link_to [:admin, :msu_users],
-                  class: "nav-link" do %>
-          Пользователи
-        <% end %>
-      </li>
+      <% if current_user.admin %>
+        <li class="nav-item <%= current_controller?('msu_users') %>">
+          <%= link_to [:admin, :msu_users],
+                    class: "nav-link" do %>
+            Пользователи
+          <% end %>
+        </li>
+      <% end %>
       <li class="nav-item">
-        <a class="nav-link" href="#">Выйти</a>
+        <%= link_to '/logout',
+            method: :delete,
+            data: { confirm: 'Are you sure?' },
+            class: "nav-link" do %>
+          Выйти
+        <% end %>
       </li>
     </ul>
   </div>
 </nav>
-
-
-<!-- <div class="menu">
-  <div class="row menu border-bottom justify-content-between bring-to-front">
-
-    <%= link_to [:admin, :msu_disciplines],
-              class: "menu-link menu-link-#{current_controller?('msu_disciplines')}" do %>
-      <div>
-        Панель администратора
-      </div>
-    <% end %>
-
-
-    <%= link_to [:admin, :msu_presentations],
-                class: "menu-link menu-link-#{current_controller?('msu_presentations')}" do %>
-        <div>
-          <%= current_user.name %>
-        </div>
-    <% end %>
-  </div>
-</div> -->

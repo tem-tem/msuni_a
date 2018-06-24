@@ -1,17 +1,5 @@
 Rails.application.routes.draw do
 
-  namespace :admin do
-    get 'msu_videos/new'
-  end
-
-  namespace :admin do
-    get 'msu_videos/create'
-  end
-
-  namespace :admin do
-    get 'msu_videos/destroy'
-  end
-
   default_url_options host: "localhost:3000"
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
@@ -24,7 +12,7 @@ Rails.application.routes.draw do
 
   get    '/admin',        to: 'sessions#new'
   post   '/admin',        to: 'sessions#create'
-  post    '/admin/auth',  to: 'sessions#auth'
+  post   '/admin/auth',   to: 'sessions#auth'
   delete '/logout',       to: 'sessions#destroy'
 
   namespace :admin do

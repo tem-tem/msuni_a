@@ -3,13 +3,16 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception
   include SessionsHelper
+  include ApplicationHelper
 
   private
 
   def require_login
-    unless logged_in?
-      flash[:danger] = "Доступ запрещен. Пожалуйста, войдите"
-      redirect_to admin_path
+    unless (logged_in?)
+      if admin?
+        flash[:danger] = "Доступ запрещен. Пожалуйста, войдите"
+        redirect_to admin_path
+      end
     end
   end
 end

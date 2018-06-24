@@ -1,6 +1,4 @@
 class Admin::MsuVideosController < ApplicationController
-  require 'openssl'
-  OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
 
   def new
     discipline = MsuDiscipline.find(params[:msu_discipline_id])
@@ -68,7 +66,7 @@ class Admin::MsuVideosController < ApplicationController
       base_url = 'https://www.googleapis.com/youtube/v3/videos?'
       part = 'part=snippet,contentDetails'
       id = "id=#{video_id}"
-      key = 'key=' + api_key.to_s
+      key = 'key=' + Rails.application.secrets.YT_SECRET.to_s
       url = [base_url + part, id, key].join('&')
 
       uri = URI(url)
@@ -92,8 +90,4 @@ class Admin::MsuVideosController < ApplicationController
     end
   end
 
-  private
-    def api_key
-      key = 'AIzaSyDCFcU-KENluskGR4NyUNsQseQ01k1tdGs'
-    end
 end

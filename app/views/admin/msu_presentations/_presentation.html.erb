@@ -9,7 +9,20 @@
     <%= link_to pdfjs.full_path(file: presentation.pdf.url),
     class: "p-3 w-100 border-right card-botton card-botton-primary justify-content-between",
     target: "_blank" do %>
-      <small class="m-auto">PDF</small>
+      <%= octicon "link-external",
+      height: 16,
+      class: "m-auto",
+        "aria-label": "Открыть" %>
+    <% end %>
+
+    <%= link_to presentation.pdf.url,
+      class: "p-3 w-100 border-right card-botton card-botton-primary justify-content-between",
+      download: "#{presentation.pdf.url}",
+      target: "_blank" do %>
+        <%= octicon "arrow-down",
+        height: 20,
+        class: "m-auto",
+          "aria-label": "Скачать" %>
     <% end %>
 
     <%= link_to [:admin, presentation.msu_lecture, presentation],
@@ -17,7 +30,7 @@
         method: :delete,
         data: { confirm: 'Are you sure?' } do %>
       <%= octicon "trashcan",
-      height: 20,
+      height: 16,
       class: "m-auto",
         "aria-label": "Удалить" %>
       <% end %>

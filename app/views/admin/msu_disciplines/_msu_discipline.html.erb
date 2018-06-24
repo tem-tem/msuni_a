@@ -59,14 +59,28 @@
               href="#nav-books"
               role="tab"
               aria-controls="nav-books"
-              aria-selected="true">Книги</a>
+              aria-selected="true">
+              Книги
+              <% if @discipline.msu_files.where(filetype: 'book').any? %>
+                <span class="ml-2 badge badge-pill badge-secondary">
+                  <%= @discipline.msu_files.where(filetype: 'book').count%>
+                </span>
+              <% end %>
+            </a>
           <a class="nav-item nav-link"
               id="nav-videos-tab"
               data-toggle="tab"
               href="#nav-videos"
               role="tab"
               aria-controls="nav-videos"
-              aria-selected="true">Видеоматериалы</a>
+              aria-selected="true">
+              Видеоматериалы
+              <%  if @discipline.msu_videos.any?  %>
+                <span class="ml-2 badge badge-pill badge-secondary">
+                  <%= @discipline.msu_videos.count%>
+                </span>
+              <% end %>
+            </a>
           <a class="nav-item nav-link"
               id="nav-presentations-tab"
               data-toggle="tab"
@@ -182,6 +196,10 @@
   <!-- END New Lecture Modal -->
 
 <script>
+  var url = document.location.toString();
+  if (url.match('#')) {
+      $('.nav-tabs a[href="#' + url.split('#')[1] + '"]').tab('show');
+  }
   $( function() {
     $( "#orderLectureList" ).sortable();
     $( "#orderLectureList" ).disableSelection();
