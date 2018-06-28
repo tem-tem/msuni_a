@@ -38,6 +38,7 @@ gem 'pdfjs_viewer-rails'
 gem 'sprockets-rails'
 gem 'carrierwave', '~> 1.0'
 gem 'remotipart', '~> 1.2'
+gem 'pg'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -57,8 +58,6 @@ end
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console', '>= 3.3.0'
-  gem 'pg'
-  gem 'sendgrid-ruby'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
