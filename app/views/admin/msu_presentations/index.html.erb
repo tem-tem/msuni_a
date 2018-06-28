@@ -1,0 +1,25 @@
+<% content_for :title do %>
+  <title> Презентации | MSUniversity</title>
+<% end %>
+
+<% if @presentations.any? %>
+  <% current_lecture = @presentations.first.msu_lecture.title %>
+  <% @presentations.each do |p| %>
+    <%= current_lecture %>
+    <% if current_lecture == p.msu_lecture.title %>
+    <div class="row container mt-3">
+      <div class="col-3">
+        <div class="presentations">
+          <%= render partial:'/admin/msu_presentations/presentation', object: p %>
+        </div>
+      </div>
+    </div>
+    <% else %>
+      <% current_lecture = p.msu_lecture.title %>
+    <% end %>
+  <% end %>
+<% else %>
+  <div class="text-secondary">
+    Презентаций нет
+  </div>
+<% end %>

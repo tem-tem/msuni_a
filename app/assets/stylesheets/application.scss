@@ -62,7 +62,7 @@ a:hover {
   position: sticky;
   top: 0;
   background: white;
-  overflow: auto;
+  overflow-y: auto;
 }
 
 .menu-logo {
@@ -76,6 +76,18 @@ a:hover {
   fill: $primary;
 }
 
+.menu-item-disabled {
+  width: inherit;
+  height: 70px;
+  position:relative;
+  display: block;
+  color: #bad6ea;
+  font-size: 0.8em;
+}
+.menu-item-disabled .button-icon{
+  fill: #bad6ea;
+}
+
 .menu-item {
   width: inherit;
   height: 70px;
@@ -84,6 +96,7 @@ a:hover {
   color: #bad6ea;
   font-size: 0.8em;
 }
+
 .menu-item .button-icon{
   fill: #bad6ea;
 }
@@ -346,7 +359,6 @@ pre{
 
 
 .edit-menu{
-  position: sticky;
   top:0px;
   background-color: $bg-color;
   z-index: 2;
