@@ -24,6 +24,7 @@ $bg-color: #f9f9f9;
 $bg2-color: #f1f1f1;
 $menu-height: 60px;
 $menu-left-height: 100vh;
+$primary: rgb(0, 124, 190);
 
 h1, h2, h3{
   font-family: 'Montserrat', sans-serif;
@@ -358,6 +359,101 @@ pre{
 }
 .nav-tabs .nav-item.active{
   background: none;
-  border-bottom: 5px solid #007bff;
-  color: #007bff;
+  border-bottom: 5px solid $primary;
+  color: $primary;
 }
+
+
+.client-menu {
+  height: 64px;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+}
+.discipline-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 100%;
+  display: flex;
+  width: 400px;
+  justify-content: center;
+  border-left: 1px solid #ededed;
+  border-right: 1px solid #ededed;
+}
+.discipline-center:hover{
+  background-color: $primary;
+  color: white;
+}
+
+.discipline-title-client {
+  margin: 20px 0;
+  line-height: 1;
+  text-align: center;
+  letter-spacing: -0.05em;
+  font-weight: 900;
+  font-family: Montserrat, sans-serif;
+}
+
+@media only screen and (max-width: 600px) {
+  .discipline-center {
+    width: 100%;
+  }
+  .discipline-title-client {
+    font-size: 1.6em;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .discipline-center {
+    left: 0;
+    transform: none;
+    border-left: none;
+    width: 80%;
+  }
+  .logos {
+    opacity: 0;
+  }
+  .discipline-title-client {
+    font-size: 1.8em;
+  }
+
+}
+
+@media only screen and (min-width: 768px) {
+  .uni-logo{
+    display: none;
+  }
+  .discipline-title-client {
+    font-size: 2.2em;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .uni-logo{
+    display: block;
+  }
+  .discipline-title-client {
+    font-size: 2.7em;
+  }
+}
+
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {}

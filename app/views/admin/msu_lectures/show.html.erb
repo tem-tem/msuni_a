@@ -124,12 +124,21 @@
 
 <script>
   $(document).ready(function(){
-    $('#lecture_content').html(marked("<%= j @lecture.content %>"));
+  //   $('#lecture_content').html(marked("<%= j @lecture.content %>"));
+
+    var text = "<%= j @lecture.content %>",
+        target = document.getElementById('lecture_content'),
+        converter = new showdown.Converter({
+          headerLevelStart: 3,
+          simpleLineBreaks: true
+        }),
+        html = converter.makeHtml(text);
+
+    target.innerHTML = html;
 
     $('p').each(function(){
       var alt = $(this).children('img').attr('alt');
       if (alt) {
-
         $(this).append("<div class='img-caption'>" + alt + "</div>");
       }
     });

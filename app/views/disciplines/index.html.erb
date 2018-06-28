@@ -1,0 +1,12 @@
+<div class="disciplines-client" style="text-align: center;letter-spacing: -0.08em;max-width: 800px;margin: 0 auto;">
+
+  <% if @disciplines %>
+    <% @disciplines.each do |d| %>
+      <%= render partial: 'discipline', object: d %>
+    <% end %>
+  <% else %>
+    <div class="no-disciplines">
+      Дисциплины недоступны
+    </div>
+  <% end %>
+</div>
