@@ -1,0 +1,15 @@
+<% i = 0 %>
+<% lectures.each do |l| %>
+  <% if l.visible %>
+    <%= link_to l_id_path(discipline_id: l.msu_discipline_id,
+      id: l.id),
+      class: "client-lecture py-4 #{'border-top' if i==0}" do %>
+    <div class="l-order">
+      <%= i = i + 1 %>
+    </div>
+    <div class="client-lecture-title">
+      <%= l.title %>
+    </div>
+    <% end %>
+  <% end %>
+<% end %>

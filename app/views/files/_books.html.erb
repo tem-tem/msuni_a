@@ -1,0 +1,34 @@
+<% books.each do |book| %>
+  <div class="book-client pt-4 pb-2 border-top">
+
+    <div class="book-title">
+      <%= book.name %>
+    </div>
+
+    <div class="book-bottons">
+      <% if book.file? %>
+        <%= link_to book.file.url, class: 'book-botton blue-shadow' do %>
+          <%= octicon "arrow-down",
+            width: 20,
+            height: 20,
+            class: "button-icon",
+            "aria-label": "Скачать" %>
+          <small class="mr-1">Скачать</small>
+        <% end %>
+      <% end %>
+
+      <% if book.link? %>
+        <%= link_to book.link,
+            target: '_blank',
+            class: 'book-botton blue-shadow' do %>
+          <%= octicon "link-external",
+            width: 20,
+            height: 20,
+            class: "button-icon",
+            "aria-label": "Открыть" %>
+        <% end %>
+      <% end %>
+    </div>
+
+  </div>
+<% end %>

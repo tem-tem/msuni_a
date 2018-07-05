@@ -25,6 +25,7 @@ $bg2-color: #f1f1f1;
 $menu-height: 60px;
 $menu-left-height: 100vh;
 $primary: rgb(0, 124, 190);
+$text-color: #1d1d1d;
 
 h1, h2, h3{
   font-family: 'Montserrat', sans-serif;
@@ -362,6 +363,7 @@ pre{
   top:0px;
   background-color: $bg-color;
   z-index: 2;
+  position: sticky;
 }
 
 .nav-tabs .nav-item{
@@ -387,18 +389,55 @@ pre{
 }
 .discipline-center {
   position: absolute;
+  top: 20px;
   left: 50%;
   transform: translateX(-50%);
   height: 100%;
   display: flex;
   width: 400px;
   justify-content: center;
-  border-left: 1px solid #ededed;
-  border-right: 1px solid #ededed;
+  overflow: hidden;
+  line-height: 0.9em;
+  font-size: 0.9em;
+  font-weight: 700;
+  font-family: 'Montserrat',sans-serif;
+  transition: all ease-out 0.2s;
+  flex-direction: column;
+  border-radius: 50px;
+  box-shadow: 0 10px 200px rgba(1,1,1,0.2), 0 5px 40px rgba(0, 0, 0, 0.13);
 }
+
+.discipline-name {
+  top: 50%;
+  position: absolute;
+  align-self: center;
+  text-align: center;
+  transform: translateY(-50%);
+  transition: all ease-out 0.2s;
+}
+
+.disciplines-text {
+  text-align: center;
+  top: 5rem;
+  position: absolute;
+  transition: all ease-out 0.2s;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translate(-50%, -50%);
+}
+
 .discipline-center:hover{
   background-color: $primary;
   color: white;
+  box-shadow: 0 10px 100px rgb(157, 201, 239), 0 10px 20px rgba(28, 114, 188, 0.35);
+}
+
+.discipline-center:hover .discipline-name {
+  top: -4rem;
+}
+
+.discipline-center:hover .disciplines-text {
+  top: 50%;
 }
 
 .discipline-title-client {
@@ -408,6 +447,115 @@ pre{
   letter-spacing: -0.05em;
   font-weight: 900;
   font-family: Montserrat, sans-serif;
+}
+
+.l-order {
+  position: absolute;
+  border: 1px solid #dee2e6;
+  color: #a4a4a4;
+  border-radius: 60px;
+  padding-right: 0.45em;
+  font-size: 0.9em;
+  transition: all cubic-bezier(.25,.46,.45,.94) 0.3s;
+}
+
+.l-order::before {
+    content: ' ';
+    padding-left: 0.45em;
+  }
+.client-lecture {
+  display: flex;
+  align-items: flex-start;
+}
+.client-lecture:hover .l-order {
+  background: #007cbe;
+  border-color: #007cbe;
+  color: white;
+  box-shadow: 0 5px 20px rgba(0, 123, 189, 0.67);
+}
+
+.client-lecture-title {
+  padding-left: 2em;
+  color: $dark;
+}
+
+// BOOKS CLIENTS START
+
+.book-title {
+  margin-bottom: 10px;
+}
+.book-bottons {
+  justify-content: flex-end;
+  display: flex;
+}
+
+.book-botton {
+  align-items: center;
+  display: flex;
+  padding: 8px;
+  margin: 5px;
+  border: 1px solid #dee2e6;
+  color: #a4a4a4;
+  border-radius: 50px;
+}
+
+.book-botton .button-icon {
+  fill: #a4a4a4;
+}
+
+.book-botton:hover .button-icon {
+  fill: white;
+}
+
+
+// BOOKS CLIENT END
+
+.blue-shadow {
+  transition: all cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s;
+}
+.blue-shadow:hover {
+  background: #007cbe;
+  border-color: #007cbe;
+  color: white;
+  box-shadow: 0 5px 20px rgba(0, 123, 189, 0.67);
+}
+
+.blue-shadow:active {
+  background: #0063A5;
+  box-shadow: 0 3px 10px rgba(0, 123, 189, 0.6);
+}
+
+.card {
+  background: none;
+  transition: all cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.1s;
+}
+
+.card:hover {
+  background: white;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+}
+
+.card-columns {
+  @include media-breakpoint-only(xl) {
+    -webkit-column-count: 3; /* Chrome, Safari, Opera */
+    -moz-column-count: 3; /* Firefox */
+    column-count: 3;
+  }
+  @include media-breakpoint-only(lg) {
+    -webkit-column-count: 2; /* Chrome, Safari, Opera */
+    -moz-column-count: 2; /* Firefox */
+    column-count: 2;
+  }
+  @include media-breakpoint-only(md) {
+    -webkit-column-count: 2; /* Chrome, Safari, Opera */
+    -moz-column-count: 2; /* Firefox */
+    column-count: 2;
+  }
+  @include media-breakpoint-only(sm) {
+    -webkit-column-count: 1; /* Chrome, Safari, Opera */
+    -moz-column-count: 1; /* Firefox */
+    column-count: 1;
+  }
 }
 
 @media only screen and (max-width: 600px) {

@@ -1,1 +1,58 @@
-<%= render partial: 'discipline_menu', locals: {discipline: @discipline } %>
+<div class="card-columns">
+
+<% if @discipline.msu_lectures.any? %>
+  <div class="card">
+    <div class="card-body">
+      <h3 class="py-3">
+        Лекции
+      </h3>
+      <%= render partial: '/lectures/lectures',
+      object: @discipline.msu_lectures %>
+    </div>
+  </div>
+<% end %>
+
+<% if @discipline.msu_lectures.any? %>
+  <div class="card">
+    <div class="card-body">
+      <h3 class="py-3">
+        Презентации
+      </h3>
+      <% @discipline.msu_lectures.each do |lec| %>
+        <% if lec.msu_presentations.any? %>
+          <div class="book-client pt-4 pb-2 border-top">
+            <div class="book-title">
+              <%= lec.title %>
+            </div>
+            <%= render partial: '/presentations/presentations',
+                object: lec.msu_presentations %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+<% if @discipline.msu_files.where(filetype: 'book').any? %>
+  <div class="card">
+    <div class="card-body">
+      <h3 class="py-3">
+        Книги
+      </h3>
+      <%= render partial: '/files/books',
+          object: @discipline.msu_files.where(filetype: 'book') %>
+    </div>
+  </div>
+<% end %>
+
+<%  if @discipline.msu_videos.any?  %>
+  <div class="card">
+    <div class="card-body">
+      <h3 class="py-3 border-bottom">
+        Видео
+      </h3>
+    </div>
+  </div>
+<% end %>
+
+</div>

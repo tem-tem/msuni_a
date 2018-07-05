@@ -1,5 +1,4 @@
-<nav class="client-menu"
-     style="border-bottom: 1px solid #ededed;">
+<nav class="client-menu">
   <div class="logos" style="display: flex; width: 25%;max-height: 100%;">
     <%= link_to 'https://www.mirea.ru/',
         target: '_blank',
@@ -21,13 +20,18 @@
         class: "button-icon mx-auto" %>
   </div>
   <%= link_to root_path,
-      class:"discipline-center", style:"line-height: 0.9em;font-size: 0.9em;font-weight: 700;font-family: 'Montserrat',sans-serif;" do %>
-    <div style='align-self: center; text-align: center;'>
+      class:"discipline-center" do %>
       <% if @d_title %>
+      <div class="discipline-name">
         <%= @d_title %>
+      </div>
+      <div class="disciplines-text">
+        Дисциплины
+      </div>
       <% else %>
+      <div style="text-align: center">
         Выберите дисцилину
+      </div>
       <% end %>
-    </div>
   <% end %>
 </nav>
