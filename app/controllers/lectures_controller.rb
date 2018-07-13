@@ -5,11 +5,10 @@ class LecturesController < ApplicationController
   end
 
   def show
-    @lecture = MsuLecture.where(visible: true).find(params[:id])
-    if @lecture
+    if @lecture = MsuLecture.where(visible: true).find(params[:id])
       @d_title = @lecture.msu_discipline.title
     else
-      redirect_to root_path
+      redirect_to d_path(@lecture.msu_discipline.id)
     end
   end
 end

@@ -78,7 +78,8 @@
           <% end %>
         </div>
 
-        <%= link_to [:edit, :admin, lecture.msu_discipline, lecture],
+        <%= link_to l_id_path(discipline_id: lecture.msu_discipline.id, id: lecture.id),
+            target: "_blank",
             class: "h-100 p-2 border-bottom card-btn-row card-btn-row-primary justify-content-start" do %>
             <%= octicon "link-external",
                 width: 20,

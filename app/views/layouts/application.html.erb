@@ -43,9 +43,7 @@
     <%= yield :page_scripts %>
   <% else %>
     <%= render partial: '/menu' %>
-    <div class="container" style="top: 4rem; position: relative;">
-      <%= yield %>
-    </div>
+    <%= yield %>
   <% end %>
   </body>
 </html>

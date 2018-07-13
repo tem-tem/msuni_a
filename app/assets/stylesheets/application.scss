@@ -369,14 +369,32 @@ pre{
 .nav-tabs .nav-item{
   color: $secondary;
   border: none;
-  border-bottom: 5px solid transparent;
+  border-bottom: 1px solid transparent;
 }
 .nav-tabs .nav-item.active{
   background: none;
-  border-bottom: 5px solid $primary;
+  border-bottom: 1px solid $primary;
   color: $primary;
 }
-
+.nav-tabs .nav-link:hover{
+  color: #007cbe;
+}
+.nav-item .badge {
+    background-color: rgba(1, 1, 1, 0);
+    border: 1px solid;
+    color: #6c757d8f;
+}
+.nav-tabs .nav-link:hover .badge {
+    background-color: transparent;
+    color: #007cbe;
+    border: 1px solid;
+    opacity: 0.6;
+}
+.nav-item.active .badge {
+    background-color: transparent;
+    color: #007cbe;
+    border: 1px solid;
+}
 
 .client-menu {
   height: 64px;
@@ -479,6 +497,35 @@ pre{
   color: $dark;
 }
 
+
+.presentation-title {
+    width: 100px;
+    overflow: hidden;
+}
+.presentation-client:hover {
+    border: 1px solid #bbbec1;
+}
+.presentation-client {
+    border: 1px solid #e9ecef;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 10px -10px;
+}
+
+.client-video .thumbnail {
+  width: 160px;
+  height: 90px;
+  object-fit: cover;
+}
+.client-video{
+  display: flex;
+  margin: 30px 0;
+  position: relative
+}
+.client-video:hover {
+  box-shadow: 0 10px 30px rgba(1, 1, 1, 0.07);
+}
+
 // BOOKS CLIENTS START
 
 .book-title {
@@ -535,6 +582,43 @@ pre{
   box-shadow: 0 5px 10px rgba(0,0,0,0.1);
 }
 
+.btn-icon-wrap{
+  position:relative;
+}
+.btn-icon-wrap::before {
+    content: ' ';
+    margin-right: 16px;
+}
+.btn-icon{
+  top: 48%;
+  transform: translateY(-50%);
+  position: absolute;
+  left: 5px;
+}
+.btn-primary-icon .btn-icon {
+  fill: $primary;
+}
+.btn-danger-icon .btn-icon {
+  fill: $danger;
+}
+.btn-danger-icon:hover .btn-icon {
+  fill: #a71540;
+}
+.btn-primary-icon:hover .btn-icon {
+  fill: #1637ff;
+}
+
+.video-duration {
+    position: absolute;
+    top: 2%;
+    left: 3%;
+    background: $bg-color;
+    padding: 2px 7px;
+    border-radius: 10px;
+    opacity: 0.9;
+}
+
+
 .card-columns {
   @include media-breakpoint-only(xl) {
     -webkit-column-count: 3; /* Chrome, Safari, Opera */
@@ -568,12 +652,12 @@ pre{
 }
 
 @media only screen and (max-width: 768px) {
-  .discipline-center {
-    left: 0;
-    transform: none;
-    border-left: none;
-    width: 80%;
-  }
+  // .discipline-center {
+  //   left: 0;
+  //   transform: none;
+  //   border-left: none;
+  //   width: 80%;
+  // }
   .logos {
     opacity: 0;
   }

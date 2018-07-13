@@ -1,0 +1,18 @@
+<div class="videos">
+  <% videos.each do |video| %>
+  <%= link_to video.link,
+      class: "client-video",
+      target: '_blank'   do %>
+    <%= image_tag(video.thumbnail, class: "thumbnail") %>
+    <small class="video-duration">
+      <%= video.duration %>
+    </small>
+    <div
+      class="video-title ml-2"
+      style="line-height: 1.35rem;"
+      title="<%=video.title if video.title.length > 40 %>" >
+      <%= video.title[0,40] %><%= '...' if video.title.length > 40 %>
+    </div>
+  <% end %>
+  <% end %>
+</div>

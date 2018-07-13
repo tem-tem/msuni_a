@@ -36,9 +36,8 @@ Rails.application.routes.draw do
       resources :msu_presentations
       resources :msu_images
     end
-
+    get 'add_presentation', to: 'msu_presentations#new', as: 'presentation_no_l'
     resources :msu_lectures, only: :index
-    resources :msu_presentations, only: :index
     resources :msu_users, only: [:index, :new, :create, :destroy]
 
     get 'msu_discipline/:id/toggle', to: 'msu_disciplines#toggle', as: 'toggle_discipline'

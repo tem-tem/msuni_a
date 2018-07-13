@@ -2,7 +2,7 @@
   <title><%= @lecture.title %></title>
 <% end %>
 
-<div class="modal fade bring-to-front" id="presModal"
+<div class="modal fade bring-to-front" id="itemModal"
      tabindex="-1"
      role="dialog"
      aria-labelledby="presModal"
@@ -10,12 +10,12 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <div class="modal-title text-secondary" id="presModalLabel">Новая презентация</div>
+        <h6 class="modal-title text-secondary" id="presModalLabel">Новая презентация</h6>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body" id="presModalBody">
+      <div class="modal-body" id="itemModalBody">
         <!-- Здесь форма -->
       </div>
     </div>
@@ -30,34 +30,34 @@
       <div class="btn-toolbar justify-content-between my-3">
         <div class="btn-group">
           <%= link_to [:admin, @lecture.msu_discipline],
-              class: "btn btn-outline-primary btn-sm d-flex" do %>
+              class: "btn btn-outline-primary btn-sm btn-primary-icon btn-icon-wrap" do %>
             <%= octicon "arrow-left",
                 width: 20,
                 height: 20,
-                class: "button-icon mr-2 my-auto",
-                  "aria-label": "Открыть" %>
+                class: "btn-icon",
+                  "aria-label": "Вернуться" %>
             К дисциплине
           <% end %>
 
           <%= link_to [:edit, :admin, @lecture.msu_discipline, @lecture],
-              class: "btn btn-outline-primary btn-sm d-flex" do %>
+              class: "btn btn-outline-primary btn-sm btn-primary-icon btn-icon-wrap" do %>
               <%= octicon "pencil",
                   height: 16,
                   width: 16,
-                  class: "button-icon mr-2 my-auto",
+                  class: "btn-icon",
                     "aria-label": "Редактировать" %>
-              Редактировать лекцию
+              Редактировать
           <% end %>
         </div>
 
         <%= link_to [:admin, @lecture.msu_discipline, @lecture],
             method: :delete,
             data: { confirm: 'Are you sure?' },
-            class: "btn btn-outline-danger btn-sm d-flex" do %>
+            class: "btn btn-outline-danger btn-sm btn-danger-icon btn-icon-wrap" do %>
             <%= octicon "trashcan",
                 width: 16,
                 height: 16,
-                class: "button-icon mr-2 my-auto",
+                class: "btn-icon",
                   "aria-label": "Открыть" %>
             Удалить лекцию
         <% end %>
@@ -93,15 +93,14 @@
     <div class="col-3">
       <div class="my-3">
         <%= link_to [:new, :admin, @lecture, :msu_presentation],
-          type: "button",
-          class: "btn btn-outline-secondary btn-sm d-flex justify-content-center ",
+          class: "btn btn-block btn-outline-primary btn-sm btn-primary-icon btn-icon-wrap justify-content-center ",
           "data-toggle": "modal",
           "data-target": "#presModal",
           remote: true do %>
           <%= octicon "plus",
               width: 16,
               height: 16,
-              class: "button-icon mr-2 my-auto",
+              class: "btn-icon",
                 "aria-label": "Открыть" %>
           Добавить презентацию
         <% end %>

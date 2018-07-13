@@ -3,12 +3,12 @@
     <%= link_to 'https://www.mirea.ru/',
         target: '_blank',
         class: 'uni-logo',
-        style: 'margin-right: 20px;padding-right: 20px;border-right: 1px solid #c0c0c0;' do %>
+        style: 'margin-right: 20px;padding-right: 20px;border-right: 1px solid #c0c0c0; margin-left: 60px;' do %>
       <%= image_tag 'uni_logo.png', height: '48px' %>
     <% end %>
     <%= link_to root_path,
         class: "msu-logo",
-        style: "display: flex; width: 50%;" do %>
+        style: "margin-left: 200px; position: absolute;" do %>
       <%= image_tag 'msuniversity.svg', width: '100%' %>
     <% end %>
 
@@ -19,7 +19,7 @@
         width: 24,
         class: "button-icon mx-auto" %>
   </div>
-  <%= link_to root_path,
+  <!-- <%= link_to root_path,
       class:"discipline-center" do %>
       <% if @d_title %>
       <div class="discipline-name">
@@ -33,5 +33,5 @@
         Выберите дисцилину
       </div>
       <% end %>
-  <% end %>
+  <% end %> -->
 </nav>

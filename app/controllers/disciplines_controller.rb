@@ -5,8 +5,7 @@ class DisciplinesController < ApplicationController
   end
 
   def show
-    @discipline = MsuDiscipline.where(visible: true).find(params[:id])
-    if @discipline
+    if @discipline = MsuDiscipline.where(visible: true).find(params[:id])
       @d_title = @discipline.title
     else
       redirect_to root_path

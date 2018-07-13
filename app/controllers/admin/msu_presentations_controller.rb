@@ -14,8 +14,8 @@ class Admin::MsuPresentationsController < ApplicationController
     @presentation.pdf = pdf
 
     if @presentation.save
-      redirect_to([:admin, @lecture.msu_discipline, @lecture])
-      flash[:success] = @presentation.title + ' загружен'
+      redirect_back(fallback_location: [:admin, @lecture.msu_discipline, anchor: 'nav-presentations'])
+      flash[:success] = @presentation.title + ' - загружен успешно'
     else
       flash[:danger] = @presentation.errors.full_messages.to_sentence
       render :new
@@ -25,7 +25,7 @@ class Admin::MsuPresentationsController < ApplicationController
   def destroy
     @presentation = MsuPresentation.find(params[:id])
     if @presentation.destroy
-      flash[:success] = 'Файлы удалены'
+      flash[:success] = 'Презентация удалена'
     else
       flash[:danger] = @presentation.errors.full_messages.to_sentence
     end

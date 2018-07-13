@@ -3,7 +3,7 @@ $('#formDisciplineModal').on('shown.bs.modal', function() {
   $('#input-discipline-name').focus();
 });
 
-$('#formDisciplineModal').modal({ backdrop: false });
+$('#formDisciplineModal').modal();
 $("#formDisciplineModalLabel").html("Новая дисциплина");
 $("#formDisciplineModalBody").html("<%= j render 'admin/msu_disciplines/form' %>");
 

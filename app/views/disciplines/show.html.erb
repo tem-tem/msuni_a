@@ -1,58 +1,64 @@
-<div class="card-columns">
-
-<% if @discipline.msu_lectures.any? %>
-  <div class="card">
-    <div class="card-body">
-      <h3 class="py-3">
-        Лекции
-      </h3>
-      <%= render partial: '/lectures/lectures',
-      object: @discipline.msu_lectures %>
+<div class="container-fluid">
+  <h1 class="discipline-main-title">
+    <%= @discipline.title %>
+  </h1>
+  <div class="card-columns">
+    <% if @discipline.msu_lectures.any? %>
+    <div class="card">
+      <div class="card-body">
+        <h3 class="py-3">
+          Лекции
+        </h3>
+        <%= render partial: '/lectures/lectures',
+        object: @discipline.msu_lectures %>
+      </div>
     </div>
-  </div>
-<% end %>
+    <% end %>
 
-<% if @discipline.msu_lectures.any? %>
-  <div class="card">
-    <div class="card-body">
-      <h3 class="py-3">
-        Презентации
-      </h3>
-      <% @discipline.msu_lectures.each do |lec| %>
+    <% if @discipline.msu_lectures.any? %>
+    <div class="card">
+      <div class="card-body">
+        <h3 class="py-3">
+          Презентации
+        </h3>
+        <% @discipline.msu_lectures.each do |lec| %>
         <% if lec.msu_presentations.any? %>
-          <div class="book-client pt-4 pb-2 border-top">
-            <div class="book-title">
-              <%= lec.title %>
-            </div>
-            <%= render partial: '/presentations/presentations',
-                object: lec.msu_presentations %>
+        <div class="book-client py-4 border-top">
+          <div class="book-title">
+            <%= lec.title %>
           </div>
+          <%= render partial: '/presentations/presentations',
+          object: lec.msu_presentations %>
+        </div>
         <% end %>
-      <% end %>
+        <% end %>
+      </div>
     </div>
-  </div>
-<% end %>
+    <% end %>
 
-<% if @discipline.msu_files.where(filetype: 'book').any? %>
-  <div class="card">
-    <div class="card-body">
-      <h3 class="py-3">
-        Книги
-      </h3>
-      <%= render partial: '/files/books',
-          object: @discipline.msu_files.where(filetype: 'book') %>
+    <% if @discipline.msu_files.where(filetype: 'book').any? %>
+    <div class="card">
+      <div class="card-body">
+        <h3 class="py-3">
+          Книги
+        </h3>
+        <%= render partial: '/files/books',
+        object: @discipline.msu_files.where(filetype: 'book') %>
+      </div>
     </div>
-  </div>
-<% end %>
+    <% end %>
 
-<%  if @discipline.msu_videos.any?  %>
-  <div class="card">
-    <div class="card-body">
-      <h3 class="py-3 border-bottom">
-        Видео
-      </h3>
+    <%  if @discipline.msu_videos.any?  %>
+    <div class="card">
+      <div class="card-body">
+        <h3 class="py-3">
+          Видео
+        </h3>
+        <%= render partial: '/videos/videos',
+        object: @discipline.msu_videos %>
+      </div>
     </div>
-  </div>
-<% end %>
+    <% end %>
 
+  </div>
 </div>
