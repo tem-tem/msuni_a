@@ -1,44 +1,42 @@
-<% if @lecture.prev %>
-  <%= link_to l_id_path(discipline_id: @lecture.msu_discipline.id, id: @lecture.prev.id) do %>
-  prev
-  <% end %>
-<% end %>
+<div class="col-md-8 col-lg-9 col-xl-7 main-wrap">
+  <%= render partial: '/navigation', locals: {discipline: @lecture.msu_discipline, lecture: @lecture} %>
+  <main>
+    <h1 style="margin-bottom: 30px;">
+      <%= @lecture.title %>
+    </h1>
 
-<% if @lecture.next %>
-  <%= link_to l_id_path(discipline_id: @lecture.msu_discipline.id, id: @lecture.next.id) do %>
-  next
-  <% end %>
-<% end %>
+    <div class="nav-wrap">
+      <% if @lecture.prev %>
+        <%= link_to l_id_path(discipline_id: @lecture.msu_discipline.id, id: @lecture.prev.id),
+            class: "book-botton blue-shadow",
+            title: "#{@lecture.prev.title}" do %>
+        <%= octicon "chevron-left",
+            width: 32,
+            height: 32,
+            "aria-label": "Предыдущая лекция" %>
+        <% end %>
+      <% end %>
 
-<% if @lecture.msu_presentations.any? %>
-  <div data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="cursor: pointer; display: flex;    left: 80px;    position: absolute;    flex-direction: column;     align-items: center; top: 170px; fill: #007cbe; color: #007cbe;">
-    <%= octicon "file-media",
-        width: 36,
-        height: 36,
-        "aria-label": "Файлы" %>
-    <div>
-      Файлы
+      <% if @lecture.next %>
+        <%= link_to l_id_path(discipline_id: @lecture.msu_discipline.id, id: @lecture.next.id),
+            class: "book-botton blue-shadow ml-auto",
+            title: "#{@lecture.next.title}" do %>
+        <%= octicon "chevron-right",
+            width: 32,
+            height: 32,
+            "aria-label": "Следующая лекция" %>
+        <% end %>
+      <% end %>
     </div>
-  </div>
-  <div class="dropdown-menu dropdown-menu-left">
-    <div class="card-body">
-      <div class="presentations">
-        <%= render partial: '/presentations/presentations',
-        object: @lecture.msu_presentations %>
-      </div>
-    </div>
-  </div>
-<% end %>
 
-<div class="col-md-8 col-lg-9 col-xl-7", style="max-width: 680px; margin: 100px 0 0 200px;">
-  <h1 style="margin-bottom: 30px;">
-    <%= @lecture.title %>
-  </h1>
-  <div id="lecture_content"
-       class="">
-    <%= @lecture.content %>
-  </div>
+    <div id="lecture_content"
+         style="margin-top: 50px">
+      <%= @lecture.content %>
+    </div>
+  </main>
+
 </div>
+
 
 <script>
   $(document).ready(function(){

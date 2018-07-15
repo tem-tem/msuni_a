@@ -1,0 +1,104 @@
+
+<div class="right-nav-toggler book-botton blue-shadow" onclick="showNav()">
+  <%= octicon "three-bars",
+      style: '',
+      width: 32,
+      height: 32,
+      "aria-label": "Меню" %>
+</div>
+
+<div id="rightNav" class="right-nav">
+  <div class="nav-header" style="display: flex; align-items: start">
+
+    <%= link_to d_path(discipline.id),
+        class: 'discipline-link' do %>
+        <h5 class="discipline-title" style="padding: 18px;">
+          <%= discipline.title %>
+        </h5>
+    <% end %>
+
+    <div class="book-botton blue-shadow ml-auto" onclick="hideNav()">
+      <%= octicon "x",
+          style: '',
+          width: 32,
+          height: 32,
+          "aria-label": "Закрыть" %>
+    </div>
+  </div>
+
+
+
+
+  <nav class="mx-auto" style="max-width: 800px;">
+    <div class="nav nav-tabs border-0"
+          id="nav-tab"
+          role="tablist">
+      <a class="nav-item nav-link active py-3"
+          id="nav-presentations-tab"
+          data-toggle="tab"
+          href="#nav-presentations"
+          role="tab"
+          aria-controls="nav-presentations"
+          aria-selected="true">
+            <small>
+              Презентации
+            </small>
+      </a>
+      <a class="nav-item nav-link py-3"
+          id="nav-lecture-tab"
+          data-toggle="tab"
+          href="#nav-lectures"
+          role="tab"
+          aria-controls="nav-lectures"
+          aria-selected="true">
+            <small>
+              Лекции
+            </small>
+      </a>
+    </div>
+  </nav>
+  <!-- END Nav menu -->
+
+  <div class="d-flex flex-column mx-auto" style="max-width:800px;    padding: 40px 20px;">
+  <!-- Nav content -->
+  <div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane fade"
+         id="nav-lectures"
+         role="tabpanel"
+         aria-labelledby="nav-lectures-tab">
+
+      <%= render partial: '/lectures/lectures',
+          object: discipline.msu_lectures %>
+
+    </div>
+
+    <div class="tab-pane fade show active"
+         id="nav-presentations"
+         role="tabpanel"
+         aria-labelledby="nav-presentations-tab">
+
+        <%= render partial: '/presentations/presentations',
+           object: lecture.msu_presentations %>
+
+    </div>
+  </div>
+  <!-- END Nav content -->
+
+
+  </div>
+</div>
+
+<script>
+
+  function showNav() {
+    if (window.innerWidth <= 400) {
+      document.getElementById("rightNav").style.width = "100vw";
+    } else {
+      document.getElementById("rightNav").style.width = "400px";
+    }
+  }
+
+  function hideNav() {
+    document.getElementById("rightNav").style.width = "0px";
+  }
+</script>

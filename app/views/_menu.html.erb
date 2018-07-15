@@ -2,23 +2,21 @@
   <div class="logos" style="display: flex; width: 25%;max-height: 100%;">
     <%= link_to 'https://www.mirea.ru/',
         target: '_blank',
-        class: 'uni-logo',
-        style: 'margin-right: 20px;padding-right: 20px;border-right: 1px solid #c0c0c0; margin-left: 60px;' do %>
+        class: 'uni-logo' do %>
       <%= image_tag 'uni_logo.png', height: '48px' %>
     <% end %>
     <%= link_to root_path,
-        class: "msu-logo",
-        style: "margin-left: 200px; position: absolute;" do %>
+        class: "msu-logo" do %>
       <%= image_tag 'msuniversity.svg', width: '100%' %>
     <% end %>
 
   </div>
-  <div class="search" style="display: flex">
+  <!-- <div class="search" style="display: flex">
     <%= octicon "search",
         height: 24,
         width: 24,
         class: "button-icon mx-auto" %>
-  </div>
+  </div> -->
   <!-- <%= link_to root_path,
       class:"discipline-center" do %>
       <% if @d_title %>
