@@ -116,9 +116,11 @@
               <% if @discipline.msu_lectures.any? %>
                 <% pc = 0 %>
                 <% @discipline.msu_lectures.each {|l| pc += l.msu_presentations.count} %>
+                <% if pc > 0 %>
                 <span class="ml-2 badge badge-pill badge-secondary">
-                  <%= pc if pc > 0 %>
+                  <%= pc %>
                 </span>
+                <% end %>
               <% end %>
             </a>
         </div>

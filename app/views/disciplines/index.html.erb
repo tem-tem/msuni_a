@@ -1,12 +1,14 @@
-<div class="disciplines-client" style="text-align: center;letter-spacing: -0.08em;max-width: 800px;margin: 0 auto;">
-
+<div class="main-wrap" style="padding: 0 1rem;">
   <% if @disciplines %>
+    <small class="no-disciplines">
+      Дисциплины
+    </small>
     <% @disciplines.each do |d| %>
       <%= render partial: 'discipline', object: d %>
     <% end %>
   <% else %>
     <div class="no-disciplines">
-      Дисциплины недоступны
+      Скоро здесь будут дисциплины
     </div>
   <% end %>
 </div>

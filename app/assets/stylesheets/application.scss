@@ -464,7 +464,6 @@ pre{
 .discipline-title-client {
   margin: 20px 0;
   line-height: 1;
-  text-align: center;
   letter-spacing: -0.05em;
   font-weight: 900;
   font-family: Montserrat, sans-serif;
@@ -638,10 +637,21 @@ pre{
 .right-nav-toggler {
   position: fixed;
   right: 0;
-  margin-top: 5px;
+  margin-top: 13px;
   top: 0;
   background-color: $bg-color;
   z-index: 1;
+}
+.closure {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background: #212529;
+  z-index: 1;
+  opacity: 0;
+  transition: 0.3s;
 }
 
 .main-wrap {
@@ -655,17 +665,21 @@ pre{
   position: absolute;
   width: 200px;
   top: 15px;
+  fill: $primary;
 }
-
 .uni-logo {
   opacity: 0.2;
   transition: 0.3s;
 }
-
 .uni-logo:hover {
   opacity: 1;
 }
-
+.disciplines-link {
+  position: absolute;
+  top: 10px;
+  padding: 12px 30px;
+  margin: 0;
+}
 
 
 
@@ -727,15 +741,27 @@ pre{
   }
 }
 
-/* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 768px) {
-
+@media only screen and (max-width: 500px) {
   .msu-logo {
-    margin-left: 0px;
+    margin-left: calc(50vw - 60px);
   }
-  .uni-logo {
+  .msu-logo #niversity {
     display: none;
   }
+}
+@media only screen and (min-width: 500px) {
+  .msu-logo {
+    margin-left: calc(50vw - 115px);
+  }
+  .msu-logo #niversity {
+    display: block;
+  }
+}
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 768px) {
+  // .uni-logo {
+  //   display: none;
+  // }
   .main-wrap{
     margin-left: 0px;
   }
@@ -752,6 +778,9 @@ pre{
   }
   .main-wrap{
     margin-left: 100px;
+  }
+  .disciplines-link {
+    left: 350px;
   }
 }
 
@@ -781,5 +810,8 @@ pre{
   }
   .main-wrap{
     margin-left: 200px;
+  }
+  .disciplines-link {
+    left: 450px;
   }
 }
