@@ -1,8 +1,11 @@
+<div class="menu-header" style="">
+    <h4 class="title" style="margin: 0 auto;">
+      Дисциплины
+    </h4>
+</div>
+
 <div class="main-wrap" style="padding: 0 1rem;">
   <% if @disciplines %>
-    <small class="no-disciplines">
-      Дисциплины
-    </small>
     <% @disciplines.each do |d| %>
       <%= render partial: 'discipline', object: d %>
     <% end %>

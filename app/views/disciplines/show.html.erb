@@ -1,8 +1,95 @@
-<div class="container-fluid">
-  <h1 class="discipline-main-title">
+<div class="menu-header" style="">
+  <%= link_to root_path,
+      class: "go-back" do %>
+    <%= octicon "chevron-left",
+          style: 'margin-right: 5px',
+          width: 20,
+          height: 20,
+          "aria-label": "Меню" %>
+    <div class="title">
+      Дисциплины
+    </div>
+  <% end %>
+</div>
+
+<div class="container-fluid main-wrap">
+  <h1 class="discipline-main-title" style="margin-bottom: 1em">
     <%= @discipline.title %>
   </h1>
-  <div class="card-columns">
+
+  <nav class="mx-auto" style="border-bottom: 1px solid #e9ecef;">
+    <div class="nav nav-tabs border-0"
+          id="nav-tab"
+          role="tablist">
+      <a class="nav-item nav-link active py-3"
+          id="nav-lecture-tab"
+          data-toggle="tab"
+          href="#nav-lectures"
+          role="tab"
+          aria-controls="nav-lectures"
+          aria-selected="true">
+            <small>
+              Лекции
+            </small>
+      </a>
+      <a class="nav-item nav-link py-3"
+          id="nav-books-tab"
+          data-toggle="tab"
+          href="#nav-books"
+          role="tab"
+          aria-controls="nav-books"
+          aria-selected="true">
+            <small>
+              Книги
+            </small>
+        </a>
+      <a class="nav-item nav-link py-3"
+          id="nav-videos-tab"
+          data-toggle="tab"
+          href="#nav-videos"
+          role="tab"
+          aria-controls="nav-videos"
+          aria-selected="true">
+            <small>
+              Видео
+            </small>
+        </a>
+    </div>
+  </nav>
+  <!-- END Nav menu -->
+
+  <div class="d-flex flex-column mx-auto" style="max-width:800px; min-height: 400px; padding: 40px 0px;">
+  <!-- Nav content -->
+  <div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane show active fade"
+         id="nav-lectures"
+         role="tabpanel"
+         aria-labelledby="nav-lectures-tab">
+
+      <%= render partial: '/lectures/lectures',
+          object: @discipline.msu_lectures %>
+
+    </div>
+
+    <div class="tab-pane fade"
+         href="nav-books"
+         id="nav-books"
+         role="tabpanel"
+         aria-labelledby="nav-books-tab">
+      <%= render partial: '/files/books',
+          object: @discipline.msu_files.where(filetype: 'book') %>
+    </div>
+
+    <div class="tab-pane fade"
+         id="nav-videos"
+         role="tabpanel"
+         aria-labelledby="nav-videos-tab">
+      <%= render partial: '/videos/videos',
+         object: @discipline.msu_videos %>
+    </div>
+  </div>
+  <!-- END Nav content -->
+  <!-- <div class="card-columns">
     <% if @discipline.msu_lectures.any? %>
     <div class="card">
       <div class="card-body">
@@ -60,5 +147,5 @@
     </div>
     <% end %>
 
-  </div>
+  </div> -->
 </div>

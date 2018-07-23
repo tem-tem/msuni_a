@@ -398,7 +398,7 @@ pre{
 
 .client-menu {
   height: 64px;
-  position: sticky;
+  // position: sticky;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -462,11 +462,13 @@ pre{
 }
 
 .discipline-title-client {
-  margin: 20px 0;
   line-height: 1;
   letter-spacing: -0.05em;
-  font-weight: 900;
   font-family: Montserrat, sans-serif;
+  border-bottom: 1px solid #e9ecef;
+  height: 64px;
+  display: flex;
+  align-items: center;
 }
 
 .l-order {
@@ -681,7 +683,44 @@ pre{
   margin: 0;
 }
 
-
+.menu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  background: #f9f9f9;
+  position: -webkit-sticky;
+  top: 0;
+  z-index: 1;
+  height: 64px;
+}
+.menu-header .go-back {
+  display: flex;
+  align-items: center;
+  width: 65%;
+  font-size: 0.8em;
+  height: inherit;
+}
+.menu-header .title {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+.menu-header .title.discipline-name::after {
+  content: ' ';
+  width: 50px;
+  position: absolute;
+  height: 100%;
+  right: 0;
+  background: -webkit-linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgb(249, 249, 249) 100%);
+  background: -o-linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgb(249, 249, 249) 100%);
+  background: -moz-linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgb(249, 249, 249) 100%);
+  background: -ms-linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgb(249, 249, 249) 100%);
+  background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgb(249, 249, 249) 100%);
+}
 
 .nav-wrap {
   display: none;

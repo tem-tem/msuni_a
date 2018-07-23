@@ -1,3 +1,27 @@
+<div class="menu-header" style="">
+  <%= link_to d_path(@lecture.msu_discipline.id),
+      class: "go-back" do %>
+    <%= octicon "chevron-left",
+          style: 'margin-right: 5px',
+          width: 20,
+          height: 20,
+          "aria-label": "Меню" %>
+    <div class="title discipline-name" style="">
+      <%= @lecture.msu_discipline.title %>
+    </div>
+  <% end %>
+  <div class="mobile-menu-toggle book-botton blue-shadow" onclick="showNav()">
+    <%= octicon "three-bars",
+        style: '',
+        width: 20,
+        height: 20,
+        "aria-label": "Меню" %>
+      <small class="ml-1 mr-1" style="">
+        Меню
+      </small>
+  </div>
+</div>
+
 <div class="col-md-8 col-lg-9 col-xl-7 main-wrap" id="main-wrap">
   <%= render partial: '/navigation', locals: {discipline: @lecture.msu_discipline, lecture: @lecture} %>
   <main>
