@@ -11,7 +11,7 @@
 </div> -->
 
 <div id="rightNav" class="right-nav">
-  <div class="nav-header" style="display: flex; align-items: start; padding: 8px;     top: 0;    position: sticky;    background: #f9f9f9;   position: -webkit-sticky; z-index: 1">
+  <div class="nav-header" style="display: flex; align-items: start; padding: 8px;     top: 0;    position: sticky;    background: #f9f9f9;   position: -webkit-sticky; z-index: 1; height: 64px;    border-bottom: 1px solid #e9ecef;">
 
     <%= link_to root_path,
         class: 'book-botton blue-shadow' do %>
@@ -34,110 +34,14 @@
     </div>
   </div>
 
-  <%= link_to d_path(discipline.id),
-      class: 'discipline-link' do %>
-      <h3 class="discipline-title" style="padding: 18px;">
-        <%= discipline.title %>
-      </h3>
-  <% end %>
-
-
-  <nav class="mx-auto" style="max-width: 800px;">
-    <div class="nav nav-tabs border-0"
-          id="nav-tab"
-          role="tablist">
-      <a class="nav-item nav-link active py-3"
-          id="nav-presentations-tab"
-          data-toggle="tab"
-          href="#nav-presentations"
-          role="tab"
-          aria-controls="nav-presentations"
-          aria-selected="true">
-            <small>
-              Презентации
-            </small>
-      </a>
-      <a class="nav-item nav-link py-3"
-          id="nav-lecture-tab"
-          data-toggle="tab"
-          href="#nav-lectures"
-          role="tab"
-          aria-controls="nav-lectures"
-          aria-selected="true">
-            <small>
-              Лекции
-            </small>
-      </a>
-      <a class="nav-item nav-link py-3"
-          id="nav-books-tab"
-          data-toggle="tab"
-          href="#nav-books"
-          role="tab"
-          aria-controls="nav-books"
-          aria-selected="true">
-            <small>
-              Книги
-            </small>
-        </a>
-      <a class="nav-item nav-link py-3"
-          id="nav-videos-tab"
-          data-toggle="tab"
-          href="#nav-videos"
-          role="tab"
-          aria-controls="nav-videos"
-          aria-selected="true">
-            <small>
-              Видео
-            </small>
-        </a>
-    </div>
-  </nav>
-  <!-- END Nav menu -->
-
-  <div class="d-flex flex-column mx-auto" style="max-width:800px;    padding: 40px 20px;">
-  <!-- Nav content -->
-  <div class="tab-content" id="nav-tabContent">
-    <div class="tab-pane fade"
-         id="nav-lectures"
-         role="tabpanel"
-         aria-labelledby="nav-lectures-tab">
-
-      <%= render partial: '/lectures/lectures',
-          object: discipline.msu_lectures %>
-
-    </div>
-
-    <div class="tab-pane fade show active"
-         id="nav-presentations"
-         role="tabpanel"
-         aria-labelledby="nav-presentations-tab">
-
-        <%= render partial: '/presentations/presentations',
-           object: lecture.msu_presentations %>
-
-    </div>
-
-    <div class="tab-pane fade"
-         href="nav-books"
-         id="nav-books"
-         role="tabpanel"
-         aria-labelledby="nav-books-tab">
-      <%= render partial: '/files/books',
-          object: discipline.msu_files.where(filetype: 'book') %>
-    </div>
-
-    <div class="tab-pane fade"
-         id="nav-videos"
-         role="tabpanel"
-         aria-labelledby="nav-videos-tab">
-      <%= render partial: '/videos/videos',
-         object: discipline.msu_videos %>
-    </div>
+  <div class="lectures-nav" style="padding: 15px">
+    <small class="text-muted">
+      Навигация по лекциям
+    </small>
+    <%= render partial: '/lectures/lectures_mini',
+               locals: {lectures: discipline.msu_lectures } %>
   </div>
-  <!-- END Nav content -->
 
-
-  </div>
 </div>
 
 <script>

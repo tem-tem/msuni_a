@@ -7,6 +7,7 @@ class LecturesController < ApplicationController
   def show
     if @lecture = MsuLecture.where(visible: true).find(params[:id])
       @d_title = @lecture.msu_discipline.title
+      @current_lecture_id = @lecture.id
     else
       redirect_to d_path(@lecture.msu_discipline.id)
     end

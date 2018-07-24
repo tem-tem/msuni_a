@@ -1,9 +1,9 @@
-<div class="menu-header" style="">
+<% content_for :menu do %>
   <%= link_to d_path(@lecture.msu_discipline.id),
       class: "go-back" do %>
     <%= octicon "chevron-left",
           style: 'margin-right: 5px',
-          width: 20,
+          width: 10,
           height: 20,
           "aria-label": "Меню" %>
     <div class="title discipline-name" style="">
@@ -20,6 +20,14 @@
         Меню
       </small>
   </div>
+<% end %>
+
+<div class="lectures-nav desktop">
+  <small class="text-muted">
+    Навигация по лекциям
+  </small>
+  <%= render partial: '/lectures/lectures_mini',
+             locals: {lectures: @lecture.msu_discipline.msu_lectures } %>
 </div>
 
 <div class="col-md-8 col-lg-9 col-xl-7 main-wrap" id="main-wrap">

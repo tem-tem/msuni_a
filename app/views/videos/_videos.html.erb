@@ -8,10 +8,9 @@
       <%= video.duration %>
     </small>
     <div
-      class="video-title ml-2"
-      style="line-height: 1.35rem;"
-      title="<%=video.title if video.title.length > 40 %>" >
-      <%= video.title[0,40] %><%= '...' if video.title.length > 40 %>
+      class="video-title"
+      style="line-height: 1.35rem;">
+      <%= video.title %>
     </div>
   <% end %>
   <% end %>
