@@ -12,14 +12,16 @@
           <%= l.title %>
         </div>
       <% end %>
-<!--
-      <% if l.msu_presentations.any? %>
+      <% if @current_lecture_id == l.id %>
 
-        <%= render partial: '/presentations/presentations',
-            object: l.msu_presentations %>
+        <% if l.msu_presentations.any? %>
 
-      <% end %> -->
+          <%= render partial: '/presentations/presentations',
+              object: l.msu_presentations %>
 
+        <% end %>
+
+      <% end %>
 
   <% end %>
 <% end %>

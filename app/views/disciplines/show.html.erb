@@ -1,3 +1,9 @@
+<% content_for :title do %>
+  <title>
+    <%= @discipline.title %> |  MSUniversity
+  </title>
+<% end %>
+
 <% content_for :menu do %>
   <%= link_to root_path,
       class: "go-back" do %>

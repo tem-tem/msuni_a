@@ -773,8 +773,9 @@ border-bottom: 1px solid #e9ecef
   float: right;
   width: 420px;
   top: 64px;
-  padding-top: 20px;
-  padding-right: 20px;
+  overflow: auto;
+  max-height: calc(100vh - 64px);
+  padding: 20px;
 }
 
 .card-columns {

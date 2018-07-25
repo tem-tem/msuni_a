@@ -1,3 +1,9 @@
+<% content_for :title do %>
+  <title>
+    <%= @lecture.title %> |  MSUniversity
+  </title>
+<% end %>
+
 <% content_for :menu do %>
   <%= link_to d_path(@lecture.msu_discipline.id),
       class: "go-back" do %>
