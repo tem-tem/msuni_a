@@ -1,33 +1,39 @@
 <div class="card lecture image-card">
-    <div class="text-center image-delete-button">
+    <img class="card-img-top" src="<%= video.thumbnail %>" alt="Card image cap"
+        style="height: 139px; object-fit: cover;">
+    <div class="video-duration">
+      <%= video.duration %>
+    </div>
+    <div class="card-body">
+      <%= link_to video.link,
+          target: "_blank",
+          class: "btn btn-sm btn-outline-primary mb-3 btn-primary-icon btn-icon-wrap" do %>
+          <%= octicon "link-external",
+          width: 16,
+          height: 16,
+          class: "btn-icon mr-1 my-auto",
+            "aria-label": "Открыть" %>
+            Открыть
+      <% end %>
+      <div class="card-title"><%= video.title %></div>
+      <small class="card-text text-secondary"><%= video.description[0,144] %>...</small>
+    </div>
+    <div class="card-footer d-flex justify-content-between align-items-center">
+      <small class="text-muted">
+        <%= video.created_at.strftime("%-d %B %Y") %>
+      </small>
       <%= link_to [:admin, video.msu_discipline, video],
           method: :delete,
-          style: "box-shadow: 0 10px 30px rgba(0,0,0,0.5)",
           data: { confirm: 'Are you sure?' },
           remote: true do %>
-        <button type="button" class="btn btn-danger">
+        <button type="button" class="btn btn-sm btn-outline-danger btn-danger-icon btn-icon-wrap">
+          <%= octicon "trashcan",
+          width: 16,
+          height: 16,
+          class: "btn-icon mr-1 my-auto",
+            "aria-label": "Открыть" %>
           Удалить
         </button>
       <% end %>
-    </div>
-    <img class="card-img-top" src="<%= video.thumbnail %>" alt="Card image cap">
-    <div class="card-body">
-      <h5 class="card-title"><%= video.title %></h5>
-      <p class="card-text"><%= video.description[0,144] %>...</p>
-      <%= link_to video.link,
-          target: "_blank",
-          class: "h-100 p-2 card-btn-row card-btn-row-primary justify-content-start" do %>
-          <%= octicon "link-external",
-          width: 20,
-          height: 20,
-          class: "button-icon mr-3 my-auto",
-            "aria-label": "Скачать" %>
-          <small class="my-auto">Открыть на youtube</small>
-      <% end %>
-    </div>
-    <div class="card-footer">
-      <small class="text-muted">
-        <%= video.created_at.strftime("%A, %d, %B, %Y") %>
-      </small>
     </div>
   </div>

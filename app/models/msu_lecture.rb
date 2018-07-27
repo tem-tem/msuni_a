@@ -9,4 +9,20 @@ class MsuLecture < ApplicationRecord
             }
   validates :msu_discipline_id, presence: {message: 'Пропала дисциплина' }
   default_scope { order(:order) }
+
+  def visible_lectures
+    self.msu_discipline.msu_lectures.where(visible: true)
+  end
+
+  def next
+    if visible_lectures.maximum("order") > self.order
+      visible_lectures.select {|l| l if l.order > self.order}.map {|l| l}.first
+    end
+  end
+
+  def prev
+    if visible_lectures.minimum("order") < self.order
+      visible_lectures.select {|l| l if l.order < self.order}.map {|l| l}.last
+    end
+  end
 end

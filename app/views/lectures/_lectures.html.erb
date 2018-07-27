@@ -1,0 +1,27 @@
+<% i = 0 %>
+<% lectures.each do |l| %>
+  <% if l.visible %>
+    <div class="presentation-client">
+
+      <%= link_to l_id_path(discipline_id: l.msu_discipline_id,
+        id: l.id),
+        class: "client-lecture py-3" do %>
+        <div class="l-order">
+          <%= i = i + 1 %>
+        </div>
+        <div class="client-lecture-title">
+          <%= l.title %>
+        </div>
+      <% end %>
+
+      <% if l.msu_presentations.any? %>
+
+        <%= render partial: '/presentations/presentations',
+            object: l.msu_presentations %>
+
+      <% end %>
+
+    </div>
+
+  <% end %>
+<% end %>

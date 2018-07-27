@@ -13,6 +13,7 @@
 //= require rails-ujs
 //= require turbolinks
 
+//= require showdown.min
 //= require simplemde.min
 //= require marked
 //= require jquery3

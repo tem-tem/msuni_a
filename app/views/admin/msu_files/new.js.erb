@@ -1,4 +1,7 @@
 $('#itemModal').modal();
+$('#itemModal').on('shown.bs.modal', function() {
+  $('#msu_file_name').focus();
+});
 $('#itemModalLabel').html('Новая книга');
 $('#itemModalBody')
   .html('<%= j render "admin/msu_files/#{params[:filetype]}_form" %>');

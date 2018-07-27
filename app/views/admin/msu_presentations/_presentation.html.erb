@@ -1,9 +1,13 @@
-<div class="m-3 d-flex flex-column lecture">
+<div class="card" style="overflow:hidden;">
 
-  <h6 class="m-0 p-2 d-flex justify-content-center py-3 border-bottom"
-      style="text-align: center;word-break: break-all;">
-    <%= presentation.title %>
-  </h6>
+  <div class="m-0 p-2 py-3 border-bottom" style="text-align: center;">
+    <h6>
+      <%= presentation.title %>
+    </h6>
+    <small>
+      <%= presentation.msu_lecture.title %>
+    </small>
+  </div>
 
   <div class="d-flex">
     <%= link_to pdfjs.full_path(file: presentation.pdf.url),

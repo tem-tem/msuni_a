@@ -5,6 +5,13 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarText">
     <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <%= link_to root_path,
+            target: "_blank",
+            class: "nav-link" do %>
+          MSUniversity
+        <% end %>
+      </li>
       <li class="nav-item <%= current_controller?('msu_disciplines') %>">
 
         <%= link_to [:admin, :msu_disciplines],

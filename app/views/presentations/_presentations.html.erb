@@ -1,0 +1,40 @@
+<div style="margin-left: 2em;    color: #6c757d; ">
+  <small>
+      Презентации:
+  </small>
+</div>
+
+<% presentations.each do |p| %>
+  <div class="" style="display: flex; justify-content: space-between; align-items: center; margin-left: 2em;    padding: 10px 0;    border-top: 1px solid #e9ecef;">
+    <small class="presentation-title">
+      <%= p.title %>
+    </small>
+    <div class="book-bottons">
+      <%= link_to pdfjs.full_path(file: p.pdf.url),
+          class: 'book-botton blue-shadow',
+          target: '_blank' do %>
+        <%= octicon "link-external",
+          width: 20,
+          height: 20,
+          class: "button-icon",
+          "aria-label": "Скачать" %>
+        <small class="ml-1 mr-1">
+          Отрыть
+        </small>
+      <% end %>
+
+      <%= link_to p.pdf.url,
+          class: 'book-botton blue-shadow',
+          download: p.pdf.url do %>
+        <%= octicon "arrow-down",
+          width: 20,
+          height: 20,
+          class: "button-icon",
+          "aria-label": "Скачать" %>
+        <small class="mr-1">
+          Скачать
+        </small>
+      <% end %>
+    </div>
+  </div>
+<% end %>

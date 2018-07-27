@@ -1,4 +1,6 @@
 class Admin::MsuVideosController < ApplicationController
+  require 'openssl'
+  OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
 
   def new
     discipline = MsuDiscipline.find(params[:msu_discipline_id])
@@ -46,7 +48,7 @@ class Admin::MsuVideosController < ApplicationController
       iso8601 = data['items'].first['contentDetails']['duration']
       md = /PT(?:([0-9]*)H)*(?:([0-9]*)M)*(?:([0-9.]*)S)*/.match(iso8601)
       hours = md[1]
-      minutes = md[2]
+      minutes = md[2] ? md[2] : '00'
       seconds = md[3] ? md[3] : '00'
       duration = [hours, minutes, seconds].reject(&:blank?).join(':')
       video[:duration] = duration
