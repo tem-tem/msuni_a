@@ -45,8 +45,8 @@ gem 'pg'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  # gem 'tiny_tds'
-  # gem 'activerecord-sqlserver-adapter'
+  gem 'tiny_tds'
+  gem 'activerecord-sqlserver-adapter'
   # gem 'wdm'
   gem 'sqlite3'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
