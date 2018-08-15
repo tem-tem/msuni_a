@@ -1,0 +1,22 @@
+<% content_for :title do %>
+  <title>
+    MSUniversity
+  </title>
+<% end %>
+<% content_for :menu do %>
+  <h4 class="">
+    Дисциплины
+  </h4>
+<% end %>
+
+<div class="main-wrap" style="padding: 0 1rem;">
+  <% if @disciplines %>
+    <% @disciplines.each do |d| %>
+      <%= render partial: 'discipline', object: d %>
+    <% end %>
+  <% else %>
+    <div class="no-disciplines">
+      Скоро здесь будут дисциплины
+    </div>
+  <% end %>
+</div>

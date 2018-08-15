@@ -1,126 +1,286 @@
-<div class="row justify-content-center">
-  <div class="col-10" style="max-width: 800px; min-height: 100vh;">
-      <div class="row py-5">
-      <div class="col-8">
-        <h1 id="active-discipline-title"><%= @discipline.title %></h1>
 
-      </div>
+  <div class="discipline-head w-100 border-bottom" style="background-color: #f9f9f9">
 
-      <div class="col-4 align-self-center">
-        <div class="row my-3 justify-content-between mw-100">
-          <div class="my-auto">
-            Отображать на сайте
-          </div>
-          <%= link_to admin_toggle_discipline_path(@discipline.id), remote: true do %>
-          <label class="switch my-auto">
-            <input type="checkbox" id="toggleDiscipline-<%= @discipline.id %>" <%= @discipline.visible ? 'checked' : '' %>>
-            <span class="slider round"></span>
-          </label>
+    <div class="d-flex flex-column mx-auto"
+         style="max-width: 800px">
+       <div class="d-flex justify-content-between">
+         <%= link_to admin_toggle_discipline_path(@discipline.id),
+             remote: true,
+             class: "mr-3 d-flex",
+             "data-toggle": "tooltip",
+             "data-placement": "left",
+             "title": "Доступно  на сайте"  do %>
+         <label class="switch my-auto">
+           <input type="checkbox" id="toggleDiscipline-<%= @discipline.id %>" <%= @discipline.visible ? 'checked' : '' %>>
+           <span class="slider round"></span>
+         </label>
+         <% end %>
+
+        <div class="my-3 btn-group"
+             role="group"
+             aria-label="Lectures navigation">
+          <%= link_to [:edit, :admin, discipline],
+              remote: true,
+              class: "btn btn-outline-secondary btn-sm" do %>
+            Переименовать
           <% end %>
-        </div>
-        <%= link_to [:new, :admin, @discipline, :msu_lecture],
-        class: "row my-3 mw-100",
-          remote: true do %>
-          <button type="button" class="btn btn-outline-primary btn-block"
-          data-toggle="modal" data-target="#newLectureModal">
-          Добавить лекцию
-        </button>
-        <% end %>
-
-        <button type="button" class=" row my-3 mw-100 btn btn-outline-info btn-block"
-        data-toggle="modal" data-target="#orderLectureModal" >
-          Изменить порядок
-        </button>
-
-        <!-- New Lecture Modal -->
-        <div class="modal fade bring-to-front" id="newLectureModal"
-             tabindex="-1"
-             role="dialog"
-             aria-labelledby="newLectureModal"
-             aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <div class="modal-title text-secondary" id="exampleModalLabel">Новая лекция</div>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body" id="newLectureModalBody">
-
-                <!-- Здесь форма -->
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- END New Lecture Modal -->
-
-      </div>
-    </div>
-
-    <!-- Lectures list -->
-    <div id="lectures">
-        <% if @discipline.msu_lectures.any? %>
-          <% @discipline.msu_lectures.each do |l| %>
-            <%= render partial: '/admin/msu_lectures/lecture', object: l %>
+          <%= link_to d_path(@discipline.id),
+              target: '_blank',
+              class: "btn btn-outline-secondary btn-sm" do %>
+            Открыть на сайте
           <% end %>
+          <%= link_to [:admin, @discipline],
+              method: :delete,
+              class: "btn btn-outline-danger btn-sm",
+                data: { confirm: 'Are you sure?' },
+                remote: true do %>
+            Удалить дисциплину
+            <% end %>
+        </div>
+       </div>
 
-          <!-- Order Lecture Modal -->
-          <div class="modal fade bring-to-front" id="orderLectureModal"
-               tabindex="-1"
-               role="dialog"
-               aria-labelledby="orderLectureModal"
-               aria-hidden="true">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <div class="modal-title text-secondary" id="orderLectureModalLabel">Изменение порядка лекций</div>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body col-10 align-self-center" id="orderLectureModalBody">
-
-                  <ul id="orderLectureList">
-                    <% @discipline.msu_lectures.each do |l| %>
-                      <%= render partial: '/admin/msu_lectures/lecture_order', locals: {lecture: l} %>
-                    <% end %>
-                  </ul>
-
-                </div>
-                <div class="modal-footer">
-                 <button type="button" class="btn btn-primary" id="newOrderButton" onclick="sendLecturesOrder()" >Сохранить изменения</button>
-               </div>
-              </div>
-            </div>
-          </div>
-          <!-- END Order Lecture Modal -->
-
-        <% else %>
-          <%= render partial: '/admin/empty' %>
-        <% end %>
-    </div>
-    <!-- Lectures list end -->
-
-    <div class="row py-5 justify-content-center">
-      <%= link_to [:admin, @discipline],
-          method: :delete,
-          class: "col-4",
-          data: { confirm: 'Are you sure?' },
-          remote: true do %>
-        <button type="button" class="btn btn-outline-danger btn-block">
-          Удалить дисциплину
-        </button>
-      <% end %>
+      <div class="py-4">
+        <h6 id="active-discipline-title">
+          <%= @discipline.title %>
+        </h6>
+      </div>
     </div>
   </div>
-</div>
+
+  <div class="discipline-head w-100 border-bottom" style="background-color: white">
+      <!-- Nav menu -->
+      <nav class="mx-auto" style="max-width: 800px;">
+        <div class="nav nav-tabs border-0"
+              id="nav-tab"
+              role="tablist">
+          <a class="nav-item nav-link active py-3"
+              id="nav-lecture-tab"
+              data-toggle="tab"
+              href="#nav-lectures"
+              role="tab"
+              aria-controls="nav-lectures"
+              aria-selected="true">
+                <small>
+                  Лекции
+                </small>
+                <%  if @discipline.msu_lectures.any?  %>
+                  <span class="ml-2 badge badge-pill badge-secondary">
+                    <%= @discipline.msu_lectures.count%>
+                  </span>
+                <% end %>
+              </a>
+          <a class="nav-item nav-link py-3"
+              id="nav-books-tab"
+              data-toggle="tab"
+              href="#nav-books"
+              role="tab"
+              aria-controls="nav-books"
+              aria-selected="true">
+                <small>
+                  Книги
+                </small>
+              <% if @discipline.msu_files.where(filetype: 'book').any? %>
+                <span class="ml-2 badge badge-pill badge-secondary">
+                  <%= @discipline.msu_files.where(filetype: 'book').count%>
+                </span>
+              <% end %>
+            </a>
+          <a class="nav-item nav-link py-3"
+              id="nav-videos-tab"
+              data-toggle="tab"
+              href="#nav-videos"
+              role="tab"
+              aria-controls="nav-videos"
+              aria-selected="true">
+
+                <small>
+                  Видео
+                </small>
+              <%  if @discipline.msu_videos.any?  %>
+                <span class="ml-2 badge badge-pill badge-secondary">
+                  <%= @discipline.msu_videos.count%>
+                </span>
+              <% end %>
+            </a>
+          <a class="nav-item nav-link py-3"
+              id="nav-presentations-tab"
+              data-toggle="tab"
+              href="#nav-presentations"
+              role="tab"
+              aria-controls="nav-presentations"
+              aria-selected="true">
+
+                <small>
+                  Презентации
+                </small>
+              <% if @discipline.msu_lectures.any? %>
+                <% pc = 0 %>
+                <% @discipline.msu_lectures.each {|l| pc += l.msu_presentations.count} %>
+                <% if pc > 0 %>
+                <span class="ml-2 badge badge-pill badge-secondary">
+                  <%= pc %>
+                </span>
+                <% end %>
+              <% end %>
+            </a>
+        </div>
+      </nav>
+    <!-- END Nav menu -->
+  </div>
+
+  <div class="d-flex flex-column mx-auto" style="max-width:800px;">
+      <!-- Nav content -->
+      <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active"
+             id="nav-lectures"
+             role="tabpanel"
+             aria-labelledby="nav-lectures-tab">
+
+          <%= render partial: 'admin/msu_lectures/lectures', locals: {discipline: @discipline} %>
+
+        </div>
+
+        <div class="tab-pane fade"
+             href="nav-books"
+             id="nav-books"
+             role="tabpanel"
+             aria-labelledby="nav-books-tab">
+
+          <div class="my-3 d-flex justify-content-end"
+               role="group"
+               aria-label="Lectures navigation">
+            <%= link_to [:new, :admin, @discipline, :msu_file, filetype: 'book'],
+                      class: "btn btn-outline-primary btn-sm btn-primary-icon btn-icon-wrap",
+                      "data-toggle": "modal",
+                      "data-target": "#itemModal",
+                      remote: true do %>
+                <%= octicon "plus",
+                width: 16,
+                height: 16,
+                class: "btn-icon mr-1 my-auto",
+                  "aria-label": "Открыть" %>
+                Добавить книгу
+            <% end %>
+          </div>
+
+          <% if @discipline.msu_files.where(filetype: 'book').any? %>
+            <% @discipline.msu_files.where(filetype: 'book').each_with_index do |book, index| %>
+              <%= render partial: 'admin/msu_files/book', locals: {book: book, index: index + 1} %>
+            <% end %>
+          <% end %>
+
+        </div>
+
+        <div class="tab-pane fade"
+             id="nav-videos"
+             role="tabpanel"
+             aria-labelledby="nav-videos-tab">
+
+           <div class="my-3 d-flex justify-content-end"
+                role="group"
+                aria-label="Videos navigation">
+             <%= link_to [:new, :admin, @discipline, :msu_video],
+                       class: "btn btn-outline-primary btn-sm btn-primary-icon btn-icon-wrap",
+                       "data-toggle": "modal",
+                       "data-target": "#itemModal",
+                       remote: true do %>
+                 <%= octicon "plus",
+                 width: 16,
+                 height: 16,
+                 class: "btn-icon mr-1 my-auto",
+                   "aria-label": "Открыть" %>
+                 Добавить видео
+             <% end %>
+           </div>
+
+           <% if @discipline.msu_videos.any? %>
+             <div class="card-columns my-4">
+               <% @discipline.msu_videos.each do |v| %>
+                 <%= render partial: 'admin/msu_videos/video', locals: {video: v} %>
+               <% end %>
+             </div>
+           <% end %>
+
+        </div>
+
+        <div class="tab-pane fade"
+             id="nav-presentations"
+             role="tabpanel"
+             aria-labelledby="nav-presentations-tab">
+
+          <div class="my-3 d-flex justify-content-end"
+              role="group"
+              aria-label="Videos navigation">
+            <button class="btn btn-sm btn-outline-primary dropdown-toggle"
+                    id="dropdownMenu2"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false">
+              Добавить презентацию
+            </button>
+
+            <div class="dropdown-menu dropdown-menu-right"
+                 aria-labelledby="dropdownMenu2"
+                 style="box-shadow: 0 10px 50px rgba(0,0,0,0.2)">
+              <h6 class="dropdown-header border-bottom mb-2">Выберите лекцию</h6>
+              <% @discipline.msu_lectures.each do |l| %>
+                <%= link_to [:new, :admin, l, :msu_presentation],
+                    class: 'dropdown-item',
+                    title: l.title,
+                    remote: true do %>
+                    <% l.title[0,40] %>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+           <% if @discipline.msu_lectures.any? %>
+             <div class="card-columns mt-4">
+               <%= render partial: 'admin/msu_presentations/presentations',
+                   locals: {discipline: @discipline} %>
+             </div>
+           <% end %>
+
+        </div>
+      </div>
+      <!-- END Nav content -->
+
+  </div>
+
+  <!-- New Lecture Modal -->
+  <div class="modal fade bring-to-front" id="itemModal"
+       tabindex="-1"
+       role="dialog"
+       aria-labelledby="itemModal"
+       aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h6 class="modal-title text-secondary" id="itemModalLabel">Новая лекция</h6>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" id="itemModalBody">
+          <!-- Здесь форма -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- END New Lecture Modal -->
 
 <script>
+  var url = document.location.toString();
+  if (url.match('#')) {
+      $('.nav-tabs a[href="#' + url.split('#')[1] + '"]').tab('show');
+  }
   $( function() {
     $( "#orderLectureList" ).sortable();
     $( "#orderLectureList" ).disableSelection();
   } );
+
+  $(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+  })
 
   function sendLecturesOrder() {
     var new_order = [];

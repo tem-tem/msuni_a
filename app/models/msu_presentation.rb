@@ -1,9 +1,7 @@
 class MsuPresentation < ApplicationRecord
   belongs_to :msu_lecture
+  default_scope { order("created_at DESC") }
 
-  validates :pdf_filename, presence: true,
-            uniqueness: true
+  mount_uploader :pdf, AttachmentUploader
 
-  validates :pptx_filename, presence: true,
-            uniqueness: true
 end

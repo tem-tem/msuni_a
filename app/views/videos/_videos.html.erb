@@ -1,0 +1,17 @@
+<div class="videos">
+  <% videos.each do |video| %>
+  <%= link_to video.link,
+      class: "client-video",
+      target: '_blank'   do %>
+    <%= image_tag(video.thumbnail, class: "thumbnail") %>
+    <small class="video-duration">
+      <%= video.duration %>
+    </small>
+    <div
+      class="video-title"
+      style="line-height: 1.35rem;">
+      <%= video.title %>
+    </div>
+  <% end %>
+  <% end %>
+</div>

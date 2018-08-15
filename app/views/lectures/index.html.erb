@@ -1,0 +1,9 @@
+<% if @lectures %>
+  <% @lectures.each do |l| %>
+    <%= render partial: 'lecture_item', object: l %>
+  <% end %>
+<% else %>
+  <div class="no-lectures">
+    Лекций по этой дисциплине пока нет
+  </div>
+<% end %>

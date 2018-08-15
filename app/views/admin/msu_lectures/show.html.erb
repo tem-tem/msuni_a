@@ -2,15 +2,71 @@
   <title><%= @lecture.title %></title>
 <% end %>
 
+<div class="modal fade bring-to-front" id="itemModal"
+     tabindex="-1"
+     role="dialog"
+     aria-labelledby="presModal"
+     aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h6 class="modal-title text-secondary" id="presModalLabel">Новая презентация</h6>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="itemModalBody">
+        <!-- Здесь форма -->
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="container">
   <div class="row justify-content-center">
 
-
     <div class="col-xl-8 col-lg-9 col-md-11 col-sm-12 col-xs-12">
+
+      <div class="btn-toolbar justify-content-between my-3">
+        <div class="btn-group">
+          <%= link_to [:admin, @lecture.msu_discipline],
+              class: "btn btn-outline-primary btn-sm btn-primary-icon btn-icon-wrap" do %>
+            <%= octicon "arrow-left",
+                width: 20,
+                height: 20,
+                class: "btn-icon",
+                  "aria-label": "Вернуться" %>
+            К дисциплине
+          <% end %>
+
+          <%= link_to [:edit, :admin, @lecture.msu_discipline, @lecture],
+              class: "btn btn-outline-primary btn-sm btn-primary-icon btn-icon-wrap" do %>
+              <%= octicon "pencil",
+                  height: 16,
+                  width: 16,
+                  class: "btn-icon",
+                    "aria-label": "Редактировать" %>
+              Редактировать
+          <% end %>
+        </div>
+
+        <%= link_to [:admin, @lecture.msu_discipline, @lecture],
+            method: :delete,
+            data: { confirm: 'Are you sure?' },
+            class: "btn btn-outline-danger btn-sm btn-danger-icon btn-icon-wrap" do %>
+            <%= octicon "trashcan",
+                width: 16,
+                height: 16,
+                class: "btn-icon",
+                  "aria-label": "Открыть" %>
+            Удалить лекцию
+        <% end %>
+
+      </div>
 
       <div class="row">
         <div class="col">
-          <h1 class="huge-lecture-title my-5">
+          <h1 class="my-5">
             <%= @lecture.title %>
           </h1>
         </div>
@@ -19,9 +75,7 @@
       <div class="row ">
         <div class="col">
           <div id="lecture-discipline", class="border-bottom mb-4 text-secondary text-right">
-            <%= link_to [:admin, @lecture.msu_discipline] do %>
             Дисциплина: <%= @lecture.msu_discipline.title %>
-            <% end %>
           </div>
         </div>
       </div>
@@ -36,68 +90,54 @@
 
     </div>
 
-    <div class="col-3 my-5">
-      <div class=" my-3">
-        <%= link_to [:edit, :admin, @lecture.msu_discipline, @lecture] do %>
-          <button type="button" class="btn btn-outline-primary btn-block" >
-            Редактировать лекцию
-          </button>
+    <div class="col-3">
+      <div class="my-3">
+        <%= link_to [:new, :admin, @lecture, :msu_presentation],
+          class: "btn btn-block btn-outline-primary btn-sm btn-primary-icon btn-icon-wrap justify-content-center ",
+          "data-toggle": "modal",
+          "data-target": "#presModal",
+          remote: true do %>
+          <%= octicon "plus",
+              width: 16,
+              height: 16,
+              class: "btn-icon",
+                "aria-label": "Открыть" %>
+          Добавить презентацию
         <% end %>
       </div>
-
-
-      <div class="my-3 border-top border-bottom">
-        <% if @lecture.msu_presentations.any? %>
-          <div class="text-secondary text-center my-3">
-            Презентации этой лекции:
-          </div>
-          <% @lecture.msu_presentations.each do |p| %>
-            <%= render partial:'/admin/msu_presentations/presentation', object: p %>
-          <% end %>
-        <% else %>
-          <div class="text-secondary text-center my-3">
-            У этой лекции нет презентации
-          </div>
-        <% end %>
-
-
-        <div class="my-3">
-
-          <%= link_to [:new, :admin, @lecture, :msu_presentation] do %>
-          <button type="button" class="btn btn-outline-secondary btn-block" >
-            Добавить презентацию
-          </button>
-          <% end %>
+      <% if @lecture.msu_presentations.any? %>
+        <div class="text-secondary text-center my-3">
+          Презентации этой лекции:
         </div>
-      </div>
-
-      <div class=" my-3">
-        <%= link_to [:admin, @lecture.msu_discipline, @lecture],
-            method: :delete,
-            data: { confirm: 'Are you sure?' } do %>
-          <button type="button" class="btn btn-outline-danger btn-block align-self-center">
-            Удалить лекцию
-          </button>
+        <% @lecture.msu_presentations.each do |p| %>
+          <%= render partial:'/admin/msu_presentations/presentation', object: p %>
         <% end %>
-      </div>
+      <% else %>
+        <div class="text-secondary text-center my-3">
+          У этой лекции нет презентации
+        </div>
+      <% end %>
   </div>
 </div>
 </div>
 
 <script>
   $(document).ready(function(){
-    $('#lecture_content').html(marked("<%= j @lecture.content %>"));
+  //   $('#lecture_content').html(marked("<%= j @lecture.content %>"));
 
-    // var converter = new showdown.Converter(),
-    //     text      = "<%= j @lecture.content %>",
-    //     html      = converter.makeHtml(text);
-    //
-    // $('#lecture_content').html(html);
+    var text = "<%= j @lecture.content %>",
+        target = document.getElementById('lecture_content'),
+        converter = new showdown.Converter({
+          headerLevelStart: 3,
+          simpleLineBreaks: true
+        }),
+        html = converter.makeHtml(text);
+
+    target.innerHTML = html;
 
     $('p').each(function(){
       var alt = $(this).children('img').attr('alt');
       if (alt) {
-
         $(this).append("<div class='img-caption'>" + alt + "</div>");
       }
     });

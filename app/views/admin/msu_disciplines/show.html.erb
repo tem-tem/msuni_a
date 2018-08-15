@@ -8,11 +8,9 @@
     <%= render partial: '/admin/msu_disciplines/disciplines_menu' %>
   </div>
 
-  <div class="col-sm-8 col-md-8 col-lg-8" id="discipline-content">
+  <div class="col p-0" id="discipline-content" style="background-color: white;">
     <%= render partial: '/admin/msu_disciplines/msu_discipline',
           locals: {discipline: @discipline} %>
-  </div>
-  <div class="col-md-5 lecture-preview">
   </div>
 </div>
 

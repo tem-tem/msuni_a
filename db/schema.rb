@@ -10,14 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180615182639) do
-
-  create_table "msu_books", force: :cascade do |t|
-    t.string "title"
-    t.string "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+ActiveRecord::Schema.define(version: 20180623151546) do
 
   create_table "msu_disciplines", force: :cascade do |t|
     t.string "title"
@@ -26,28 +19,30 @@ ActiveRecord::Schema.define(version: 20180615182639) do
     t.boolean "visible", default: true
   end
 
+  create_table "msu_files", force: :cascade do |t|
+    t.string "name"
+    t.string "file"
+    t.string "link"
+    t.bigint "msu_discipline_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "filetype"
+    t.index ["msu_discipline_id"], name: "index_msu_files_on_msu_discipline_id"
+  end
+
   create_table "msu_images", force: :cascade do |t|
     t.string "title"
-    t.integer "msu_lecture_id"
+    t.bigint "msu_lecture_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "image"
     t.index ["msu_lecture_id"], name: "index_msu_images_on_msu_lecture_id"
   end
 
-  create_table "msu_lecture_books", force: :cascade do |t|
-    t.integer "msu_lectures_id"
-    t.integer "msu_books_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["msu_books_id"], name: "index_msu_lecture_books_on_msu_books_id"
-    t.index ["msu_lectures_id"], name: "index_msu_lecture_books_on_msu_lectures_id"
-  end
-
   create_table "msu_lectures", force: :cascade do |t|
     t.string "title"
     t.text "content"
-    t.integer "msu_discipline_id"
+    t.bigint "msu_discipline_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "visible", default: true
@@ -58,11 +53,10 @@ ActiveRecord::Schema.define(version: 20180615182639) do
   create_table "msu_presentations", force: :cascade do |t|
     t.string "title"
     t.boolean "visible"
-    t.integer "msu_lecture_id"
+    t.bigint "msu_lecture_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "pdf_filename"
-    t.string "pptx_filename"
+    t.string "pdf"
     t.index ["msu_lecture_id"], name: "index_msu_presentations_on_msu_lecture_id"
   end
 
@@ -77,4 +71,22 @@ ActiveRecord::Schema.define(version: 20180615182639) do
     t.index ["name"], name: "index_msu_users_on_name", unique: true
   end
 
+  create_table "msu_videos", force: :cascade do |t|
+    t.string "link"
+    t.string "title"
+    t.string "thumbnail"
+    t.string "description"
+    t.string "duration"
+    t.bigint "msu_discipline_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "video_id"
+    t.index ["msu_discipline_id"], name: "index_msu_videos_on_msu_discipline_id"
+  end
+
+  add_foreign_key "msu_files", "msu_disciplines"
+  add_foreign_key "msu_images", "msu_lectures", on_delete: :cascade
+  add_foreign_key "msu_lectures", "msu_disciplines", on_delete: :cascade
+  add_foreign_key "msu_presentations", "msu_lectures"
+  add_foreign_key "msu_videos", "msu_disciplines"
 end

@@ -1,0 +1,66 @@
+<div class="my-3 btn-group d-flex justify-content-end"
+     role="group"
+     aria-label="Lectures navigation">
+  <button type="button"
+          class="btn btn-outline-info btn-sm"
+          data-toggle="modal"
+          data-target="#orderLectureModal" >
+    Изменить порядок
+  </button>
+  <%= link_to [:new, :admin, @discipline, :msu_lecture],
+            class: "btn btn-outline-primary btn-sm btn-primary-icon btn-icon-wrap",
+            "data-toggle": "modal",
+            "data-target": "#newLectureModal",
+            remote: true do %>
+
+      <%= octicon "plus",
+      width: 16,
+      height: 16,
+      class: "btn-icon mr-1 my-auto",
+        "aria-label": "Открыть" %>
+      Новая лекция
+  <% end %>
+</div>
+
+<!-- Lectures list -->
+<div id="lectures">
+    <% if @discipline.msu_lectures.any? %>
+      <% @discipline.msu_lectures.each do |l| %>
+        <%= render partial: '/admin/msu_lectures/lecture', object: l %>
+      <% end %>
+
+      <!-- Order Lecture Modal -->
+      <div class="modal fade bring-to-front" id="orderLectureModal"
+           tabindex="-1"
+           role="dialog"
+           aria-labelledby="orderLectureModal"
+           aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h6 class="modal-title text-secondary" id="orderLectureModalLabel">Новый порядок</h6>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body col-10 align-self-center" id="orderLectureModalBody">
+
+              <ul id="orderLectureList" class="p-0">
+                <% @discipline.msu_lectures.each do |l| %>
+                  <%= render partial: '/admin/msu_lectures/lecture_order', locals: {lecture: l} %>
+                <% end %>
+              </ul>
+
+            </div>
+            <div class="modal-footer">
+             <button type="button" class="btn btn-sm btn-outline-primary" id="newOrderButton" onclick="sendLecturesOrder()" >Сохранить изменения</button>
+           </div>
+          </div>
+        </div>
+      </div>
+      <!-- END Order Lecture Modal -->
+
+    <% else %>
+      <%= render partial: '/admin/empty' %>
+    <% end %>
+</div>

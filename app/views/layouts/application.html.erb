@@ -7,30 +7,29 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
+    <link rel="shortcut icon" href="/favicon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
     <%= yield :head %>
   </head>
 
   <body>
   <% if admin? %>
     <% if flash.any? %>
-    <% flash.each do |key, message| %>
-    <%= render partial: 'admin/alert',
-    locals: {key: key, message: message} %>
+      <% flash.each do |key, message| %>
+        <%= render partial: 'admin/alert',
+        locals: {key: key, message: message} %>
+      <% end %>
     <% end %>
-    <% end %>
-  <div class="container-fluid row">
-
-
+  <div class="col">
     <% if menu? %>
       <%= render partial: '/admin/menu' %>
     <% end %>
 
-    <div class="col content-col">
+    <div class="col content-col p-0">
       <%= yield %>
-    </div>
-
-    <div class="row footer">
-      <%= yield :footer %>
     </div>
   </div>
 
@@ -45,6 +44,12 @@
 
     <%= yield :page_scripts %>
   <% else %>
+    <%= render partial: '/logos' %>
+    <div class="make-it-sticky">
+      <div class="menu-header">
+        <%= yield :menu %>
+      </div>
+    </div>
     <%= yield %>
   <% end %>
   </body>

@@ -1,0 +1,64 @@
+<div id="rightNav" class="right-nav">
+  <div class="nav-header" style="display: flex; align-items: start; padding: 8px;     top: 0;    position: sticky;    background: #f9f9f9;   position: -webkit-sticky; z-index: 1; height: 64px;    border-bottom: 1px solid #e9ecef;">
+
+    <%= link_to root_path,
+        class: 'book-botton blue-shadow' do %>
+      <%= octicon "repo",
+          style: '',
+          width: 20,
+          height: 20,
+          "aria-label": "Меню" %>
+      <small class="mx-1">
+        Дисциплины
+      </small>
+    <% end %>
+
+    <div class="book-botton blue-shadow ml-auto"
+        style="" onclick="hideNav()">
+      <%= octicon "x",
+          width: 20,
+          height: 20,
+          "aria-label": "Закрыть" %>
+    </div>
+  </div>
+
+  <div class="lectures-nav" style="padding: 15px">
+    <small class="text-muted">
+      Навигация по лекциям
+    </small>
+    <%= render partial: '/lectures/lectures_mini',
+               locals: {lectures: discipline.msu_lectures } %>
+  </div>
+
+</div>
+
+<script>
+  var closure = document.createElement("div");
+  closure.className = "closure";
+  closure.onclick = hideNav;
+
+
+  function showNav() {
+    if (window.innerWidth <= 400) {
+      document.getElementById("rightNav").style.width = "100vw";
+    } else {
+      document.getElementById("rightNav").style.width = "400px";
+    }
+    if (window.innerWidth < 1180) {
+      var mainWrap = document.getElementById("main-wrap");
+      document.body.insertBefore(closure, mainWrap);
+      setTimeout(function(){ closure.style.opacity = "0.5"; });
+
+      document.body.style.overflow = "hidden";
+    }
+  }
+
+  function hideNav() {
+    document.body.style.overflow = "auto";
+    document.getElementById("rightNav").style.width = "0px";
+    closure.style.opacity = "0";
+    setTimeout(function(){ closure.remove(); }, 300);
+
+  }
+
+</script>

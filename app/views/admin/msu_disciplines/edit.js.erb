@@ -1,9 +1,9 @@
-$('#formDisciplineModal').modal({ backdrop: false });
+$('#formDisciplineModal').modal();
 $("#formDisciplineModalLabel")
-  .html("Редактирование дисциплины «<%= j @discipline.title %>»");
+  .html("Новое название для «<%= j @discipline.title %>»");
 
 $("#formDisciplineModalBody").html("<%= j render 'admin/msu_disciplines/form' %>");
 
 $('#formDisciplineModal').on('shown.bs.modal', function() {
-    $('#input-discipline-name').focus();
+    $('#input-discipline-name').select();
 })

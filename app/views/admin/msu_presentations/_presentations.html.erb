@@ -1,0 +1,9 @@
+
+<% @discipline.msu_lectures.each do |lec| %>
+  <% if lec.msu_presentations.any? %>
+    <% lec.msu_presentations.each do |p| %>
+      <%= render partial:'/admin/msu_presentations/presentation',
+          object: p %>
+    <% end %>
+  <% end %>
+<% end %>
