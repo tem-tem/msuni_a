@@ -78,6 +78,9 @@ pickle-email-*.html
 *.old
 *.jar
 xerial*.*"sendgrid.env" 
+<<<<<<< HEAD
 
 # Ignore application configuration
 /config/application.yml
+=======
+>>>>>>> 220d06b6803adca9ac4a758f526f498d5fb898dd
